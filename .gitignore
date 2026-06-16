@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+# out/today.jpg 와 out/posts.json 은 Instagram 공개 URL을 위해 커밋합니다(무시하지 않음).

@@ -1,0 +1,52 @@
+name: Daily Social Post
+
+on:
+  schedule:
+    # KST 09:00 == UTC 00:00 (매일). 시간을 바꾸려면 UTC 기준으로 수정.
+    - cron: "0 0 * * *"
+  workflow_dispatch: {}   # 수동 실행 버튼
+
+permissions:
+  contents: write          # 생성된 이미지를 커밋/푸시하기 위해 필요
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Korean fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Generate content + image
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python main.py generate
+
+      - name: Commit image (make it publicly fetchable for Instagram)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add out/today.jpg out/posts.json
+          git commit -m "chore: daily image $(date -u +%F)" || echo "nothing to commit"
+          git push
+
+      - name: Publish to all platforms
+        env:
+          IMAGE_PUBLIC_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/today.jpg?v=${{ github.run_id }}"
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: python main.py publish
