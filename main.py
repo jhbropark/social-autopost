@@ -26,7 +26,18 @@ def do_generate():
     os.makedirs(OUT_DIR, exist_ok=True)
     data = generate.generate_posts()
     img = data["image"]
-    make_image.render(img["kicker"], img["hook"], img["sub"], IMAGE_JPG)
+    # 푸터 인덱스: 연중 일수 기반 2자리 번호
+    import datetime
+    index = f"{(datetime.datetime.utcnow().timetuple().tm_yday % 99) + 1:02d}"
+    make_image.render(
+        badge=img["badge"],
+        head_bold=img["head_bold"],
+        head_rest=img.get("head_rest", []),
+        keyword=img["keyword"],
+        caption=img.get("caption", "parkjunhyuk.xyz"),
+        index=index,
+        out_path=IMAGE_JPG,
+    )
     with open(POSTS_JSON, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print("✅ generated:", data.get("topic"))

@@ -59,10 +59,14 @@ def generate_posts() -> dict:
   스타일: {roles['linkedin']['style']}
   분량: {roles['linkedin']['length']}
 
-그리고 Instagram 포스터 카드에 들어갈 텍스트도 만들어줘:
-  - kicker: 영문 시리즈명 + 번호 (예: "Creative Director's Notebook / 01"), 짧게
-  - hook: 카드의 큰 한 문장 (질문형 권장, 40자 내외, 줄바꿈 \\n 1회 허용)
-  - sub: 카드 보조 문장 (30자 내외)
+그리고 Instagram 포스터 카드에 들어갈 텍스트도 만들어줘.
+카드는 '혼합 굵기 헤드라인 + 거대 키워드' 에디토리얼 레이아웃이다:
+  - badge: 알약형 카테고리 배지. 영문 대문자 1~2단어 (예: "SPACE NOTE", "MEDIA ART", "AI CREATIVE")
+  - head_bold: 강조 헤드라인(볼드) 한 줄. 한국어 14자 내외, 문장 도입부.
+  - head_rest: 보조 헤드라인(라이트) 1~2줄. 각 줄 12자 내외의 배열(list).
+  - keyword: 카드에서 가장 크게 박히는 결론 단어/짧은 구. 한국어 6자 내외 한 줄.
+  - caption: 푸터 좌측 캡션. 영문 시리즈명 + 핸들 (예: "Creative Director's Notebook · parkjunhyuk.xyz")
+  → head_bold + head_rest + keyword 를 위에서 아래로 읽으면 하나의 완성된 문장이 되도록 자연스럽게 끊어라.
 
 반드시 아래 JSON 형식으로만 답해. 다른 말 금지:
 {{
@@ -70,7 +74,7 @@ def generate_posts() -> dict:
   "instagram": {{"caption": "...", "series": "{series}"}},
   "facebook": {{"text": "..."}},
   "linkedin": {{"text": "..."}},
-  "image": {{"kicker": "...", "hook": "...", "sub": "..."}}
+  "image": {{"badge": "...", "head_bold": "...", "head_rest": ["...", "..."], "keyword": "...", "caption": "..."}}
 }}"""
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])

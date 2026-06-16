@@ -1,106 +1,181 @@
 """
-오늘의 IG 포스터 카드(1080x1080 JPEG)를 Pillow로 렌더링한다.
-브라우저/폰트 설치 없이 CI에서 동작하도록 시스템 한글 폰트를 자동 탐색한다.
+오늘의 IG 포스터 카드(1080x1080 JPEG) 렌더.
+참고 디자인: RIMAN 'NEWSROOM' 에디토리얼 템플릿.
+  - 다크 차콜 배경 + 상단 그라데이션 패널(선택적 사진)
+  - 우상단 세리프 워드마크
+  - 세이지 그린 알약형 카테고리 배지
+  - 혼합 굵기 헤드라인(강조 볼드 + 보조 라이트 + 거대 키워드)
+  - 푸터: 좌측 캡션 + 우측 인덱스 + 구분선
+브라우저/외부 폰트 없이 CI(Linux)에서 동작하도록 시스템 폰트를 자동 탐색한다.
 """
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W = H = 1080
-BG = (10, 12, 13)
-FG = (243, 241, 236)
-TEAL = (127, 208, 207)
-AMBER = (231, 168, 90)
-SUB = (200, 196, 187)
-MUTED = (140, 147, 143)
 
-# 한글 폰트 후보 (CI Linux: fonts-noto-cjk / Windows: malgun)
-FONT_CANDIDATES_BOLD = [
+# 팔레트
+BG_TOP = (26, 28, 30)
+BG_BOT = (13, 14, 15)
+PILL = (111, 143, 134)        # muted sage green
+PILL_TX = (242, 246, 244)
+FG = (245, 245, 243)
+HEAD_SOFT = (223, 224, 222)   # 보조 헤드라인(라이트)
+CAPTION = (143, 146, 144)
+DIVIDER = (58, 61, 63)
+
+# ---- 폰트 후보 (CI Linux: fonts-noto-cjk / Windows: malgun, georgia) ----
+F_CJK_BOLD = [
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
     "fonts/NotoSansKR-Bold.ttf",
     "C:/Windows/Fonts/malgunbd.ttf",
-    "C:/Windows/Fonts/malgun.ttf",
 ]
-FONT_CANDIDATES_REG = [
+F_CJK_REG = [
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
     "fonts/NotoSansKR-Regular.ttf",
     "C:/Windows/Fonts/malgun.ttf",
 ]
+F_SERIF = [  # 우상단 워드마크용 세리프
+    "C:/Windows/Fonts/georgiab.ttf",
+    "C:/Windows/Fonts/georgia.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+]
 
 
-def _font(candidates, size):
-    for path in candidates:
-        if os.path.exists(path):
+def _font(cands, size):
+    for p in cands:
+        if os.path.exists(p):
             try:
-                return ImageFont.truetype(path, size)
+                return ImageFont.truetype(p, size)
             except Exception:
                 continue
     return ImageFont.load_default()
 
 
 def _wrap(draw, text, font, max_w):
-    """공백 단위 줄바꿈. \\n은 강제 줄바꿈."""
-    lines = []
+    out = []
     for para in text.split("\n"):
-        words = para.split(" ")
-        cur = ""
+        words, cur = para.split(" "), ""
         for w in words:
-            test = (cur + " " + w).strip()
-            if draw.textlength(test, font=font) <= max_w:
-                cur = test
+            t = (cur + " " + w).strip()
+            if draw.textlength(t, font=font) <= max_w:
+                cur = t
             else:
                 if cur:
-                    lines.append(cur)
+                    out.append(cur)
                 cur = w
-        lines.append(cur)
-    return lines
+        out.append(cur)
+    return out
 
 
-def render(kicker: str, hook: str, sub: str, out_path: str = "out/today.jpg") -> str:
+def _vertical_gradient(top, bottom):
+    base = Image.new("RGB", (W, H), top)
+    top_c = Image.new("RGB", (W, H), bottom)
+    mask = Image.new("L", (1, H))
+    for y in range(H):
+        mask.putpixel((0, y), int(255 * (y / H)))
+    mask = mask.resize((W, H))
+    base.paste(top_c, (0, 0), mask)
+    return base
+
+
+def _top_panel(img, top_image=None, panel_h=560):
+    """상단 패널: 사진이 있으면 채우고 아래로 어둡게 페이드, 없으면 은은한 글로우."""
+    if top_image and os.path.exists(top_image):
+        photo = Image.open(top_image).convert("RGB")
+        # 가로 채움 크롭
+        ratio = max(W / photo.width, panel_h / photo.height)
+        photo = photo.resize((int(photo.width * ratio), int(photo.height * ratio)))
+        photo = photo.crop((0, 0, W, panel_h))
+        img.paste(photo, (0, 0))
+        # 하단 페이드 (패널 → 배경색)
+        fade = Image.new("L", (1, panel_h), 0)
+        for y in range(panel_h):
+            a = max(0.0, (y - panel_h * 0.45) / (panel_h * 0.55))
+            fade.putpixel((0, y), int(255 * min(1.0, a)))
+        fade = fade.resize((W, panel_h))
+        img.paste(Image.new("RGB", (W, panel_h), BG_TOP), (0, 0), fade)
+    else:
+        glow = Image.new("RGB", (W, H), BG_TOP)
+        gd = ImageDraw.Draw(glow)
+        gd.ellipse([W * 0.30, -H * 0.18, W * 1.05, panel_h * 0.95], fill=(46, 52, 54))
+        gd.ellipse([W * 0.52, -H * 0.05, W * 1.15, panel_h * 0.7], fill=(70, 84, 80))
+        glow = glow.filter(ImageFilter.GaussianBlur(110))
+        img.paste(Image.composite(glow, img, Image.new("L", (W, H), 150)), (0, 0))
+    return img
+
+
+def _pill(draw, x, y, text, font):
+    pad_x, pad_y = 28, 14
+    tw = draw.textlength(text, font=font)
+    asc, desc = font.getmetrics()
+    th = asc + desc
+    w, h = tw + pad_x * 2, th + pad_y * 2
+    draw.rounded_rectangle([x, y, x + w, y + h], radius=h // 2, fill=PILL)
+    draw.text((x + pad_x, y + pad_y - 2), text, font=font, fill=PILL_TX)
+    return y + h
+
+
+def render(badge, head_bold, head_rest, keyword, caption,
+           index="01", out_path="out/today.jpg", top_image=None):
+    """
+    badge      : 알약 배지 텍스트 (영문 대문자 권장, 예 'MEDIA ART')
+    head_bold  : 강조 헤드라인(볼드) 한 줄
+    head_rest  : 보조 헤드라인(라이트) — str 또는 list[str]
+    keyword    : 거대 키워드/결론 한 줄 (엑스트라볼드)
+    caption    : 푸터 좌측 캡션
+    index      : 푸터 우측 번호
+    top_image  : 상단 패널에 넣을 사진 경로(선택)
+    """
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
-    img = Image.new("RGB", (W, H), BG)
+    if isinstance(head_rest, str):
+        head_rest = [head_rest]
+
+    img = _vertical_gradient(BG_TOP, BG_BOT)
+    img = _top_panel(img, top_image=top_image)
     d = ImageDraw.Draw(img)
 
-    # 하단 글로우 (앰버/틸) — 블러로 부드럽게
-    glow = Image.new("RGB", (W, H), BG)
-    gd = ImageDraw.Draw(glow)
-    gd.ellipse([W * 0.20, H * 0.74, W * 0.80, H * 1.26], fill=(58, 40, 18))
-    gd.ellipse([W * 0.30, H * 0.84, W * 0.70, H * 1.30], fill=(16, 42, 42))
-    glow = glow.filter(ImageFilter.GaussianBlur(90))
-    img = Image.blend(img, glow, 0.7)
-    d = ImageDraw.Draw(img)
+    pad = 88
+    f_mark = _font(F_SERIF, 40)
+    f_badge = _font(F_CJK_BOLD, 24)
+    f_bold = _font(F_CJK_BOLD, 58)
+    f_soft = _font(F_CJK_REG, 50)
+    f_key = _font(F_CJK_BOLD, 92)
+    f_cap = _font(F_CJK_REG, 24)
+    f_idx = _font(F_CJK_BOLD, 26)
 
-    pad = 96
-    f_kick = _font(FONT_CANDIDATES_BOLD, 26)
-    f_hook = _font(FONT_CANDIDATES_BOLD, 70)
-    f_sub = _font(FONT_CANDIDATES_REG, 32)
-    f_foot = _font(FONT_CANDIDATES_BOLD, 27)
-    f_foot_r = _font(FONT_CANDIDATES_REG, 25)
+    # 우상단 워드마크
+    mark = "parkjunhyuk.xyz"
+    mw = d.textlength(mark, font=f_mark)
+    d.text((W - pad - mw, 58), mark, font=f_mark, fill=FG)
 
-    y = pad
-    # kicker
-    d.text((pad, y), kicker.upper(), font=f_kick, fill=TEAL)
-    y += 70
-
-    # hook (강조 단어 색 처리는 단순화: 전체 FG, 줄바꿈 처리)
+    # 배지
+    y = _pill(d, pad, 525, badge.upper(), f_badge)
     y += 30
-    for line in _wrap(d, hook, f_hook, W - pad * 2):
-        d.text((pad, y), line, font=f_hook, fill=FG)
-        y += 92
 
-    # sub
-    y += 30
-    for line in _wrap(d, sub, f_sub, W - pad * 2):
-        d.text((pad, y), line, font=f_sub, fill=SUB)
-        y += 48
+    # 강조 헤드라인 (볼드)
+    for line in _wrap(d, head_bold, f_bold, W - pad * 2):
+        d.text((pad, y), line, font=f_bold, fill=FG)
+        y += 72
+    # 보조 헤드라인 (라이트)
+    for raw in head_rest:
+        for line in _wrap(d, raw, f_soft, W - pad * 2):
+            d.text((pad, y), line, font=f_soft, fill=HEAD_SOFT)
+            y += 62
+    # 거대 키워드
+    y += 12
+    for line in _wrap(d, keyword, f_key, W - pad * 2):
+        d.text((pad, y), line, font=f_key, fill=FG)
+        y += 100
 
-    # footer
-    fy = H - pad - 20
-    d.text((pad, fy), "parkjunhyuk.xyz", font=f_foot, fill=FG)
-    tag = "Space · Media Art · Experience"
-    tw = d.textlength(tag, font=f_foot_r)
-    d.text((W - pad - tw, fy + 2), tag, font=f_foot_r, fill=MUTED)
+    # 푸터: 구분선 + 캡션 + 인덱스
+    fy = H - pad + 2
+    d.line([(pad, fy - 18), (W - pad, fy - 18)], fill=DIVIDER, width=1)
+    d.text((pad, fy), caption, font=f_cap, fill=CAPTION)
+    iw = d.textlength(index, font=f_idx)
+    d.text((W - pad - iw, fy - 1), index, font=f_idx, fill=CAPTION)
 
     img.save(out_path, "JPEG", quality=92)
     return out_path
@@ -108,8 +183,11 @@ def render(kicker: str, hook: str, sub: str, out_path: str = "out/today.jpg") ->
 
 if __name__ == "__main__":
     p = render(
-        "Creative Director's Notebook / 01",
-        "왜 어떤 전시는 5분 만에 빠져나오고,\n어떤 전시는 30분을 머물게 할까?",
-        "머무는 시간을 결정한 건 '다음 장면이 궁금한가'였다.",
+        badge="Space Note",
+        head_bold="관람객을 머물게 하는 건",
+        head_rest=["자극의 총량이 아니라", "다음 장면에 대한"],
+        keyword="궁금증이다",
+        caption="Creative Director's Notebook · parkjunhyuk.xyz",
+        index="01",
     )
     print("saved:", p)
