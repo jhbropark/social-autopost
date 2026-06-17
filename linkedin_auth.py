@@ -91,17 +91,18 @@ def main():
     data = tok.json()
 
     print("\n================ 결과 ================")
-    print("access_token (60일):", data.get("access_token", "")[:24], "...")
     rt = data.get("refresh_token")
     if rt:
+        print("access_token (60일):", data.get("access_token", "")[:24], "...")
         print("\n✅ refresh_token (365일) — 이걸 Secret LINKEDIN_REFRESH_TOKEN 에 등록:\n")
         print(rt)
         print("\nrefresh_token_expires_in:", data.get("refresh_token_expires_in"))
     else:
-        print("\n⚠️ 응답에 refresh_token 이 없습니다.")
-        print("   이 앱은 아직 'programmatic refresh token' 권한이 없습니다.")
-        print("   → 자동 갱신 불가. 60일마다 수동 토큰 갱신을 써야 합니다.")
-        print("   (LinkedIn 앱이 refresh token 발급 대상이어야 합니다.)")
+        print("⚠️ 이 앱은 refresh_token 미발급(자동 갱신 불가). 아래 60일 access_token 을")
+        print("   Secret  LINKEDIN_ACCESS_TOKEN  에 등록하세요. (약 60일 후 재실행 필요)")
+        print(f"\n   expires_in(초): {data.get('expires_in')}  (~{int(data.get('expires_in', 0))//86400}일)\n")
+        print("LINKEDIN_ACCESS_TOKEN:\n")
+        print(data.get("access_token", ""))
     print("======================================")
 
 
