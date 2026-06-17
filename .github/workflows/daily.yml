@@ -45,6 +45,11 @@ jobs:
       - name: Publish to all platforms
         env:
           IMAGE_PUBLIC_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/today.jpg?v=${{ github.run_id }}"
+          # 자동 갱신(권장): refresh_token + client 자격증명
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          # 폴백(수동 60일 토큰) — 위 3개가 없을 때만 사용
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}

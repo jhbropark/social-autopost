@@ -7,7 +7,8 @@
 | Secret | 용도 |
 |---|---|
 | `ANTHROPIC_API_KEY` | 매일 글 생성 |
-| `LINKEDIN_ACCESS_TOKEN` | LinkedIn 게시 |
+| `LINKEDIN_REFRESH_TOKEN` + `LINKEDIN_CLIENT_ID` + `LINKEDIN_CLIENT_SECRET` | LinkedIn 게시 (자동 갱신, 권장) |
+| `LINKEDIN_ACCESS_TOKEN` | LinkedIn 게시 (수동 60일, 폴백) |
 | `FB_PAGE_ID` | Facebook 페이지 식별 |
 | `FB_PAGE_ACCESS_TOKEN` | Facebook·Instagram 게시 |
 | `IG_USER_ID` | Instagram 계정(선택, 자동조회 가능) |
@@ -29,11 +30,29 @@
 2. 앱 **Products** 탭 → 다음 2개 추가(즉시 승인됨):
    - **Sign In with LinkedIn using OpenID Connect**
    - **Share on LinkedIn**
-3. 앱 **Auth** 탭 → 상단 **OAuth 2.0 tools** → *Create token* (또는 https://www.linkedin.com/developers/tools/oauth )
+### 방법 A — 자동 갱신 (권장, refresh_token)
+한 번 인증해두면 365일 동안 매 실행마다 토큰이 자동 발급됩니다.
+1. 앱 **Auth** 탭 → **Authorized redirect URLs** 에 추가:
+   ```
+   http://localhost:8000/callback
+   ```
+2. 같은 화면의 **Client ID / Client Secret** 확인 → Secret 등록:
+   **`LINKEDIN_CLIENT_ID`**, **`LINKEDIN_CLIENT_SECRET`**
+3. 로컬에서 일회용 스크립트 실행:
+   ```powershell
+   $env:LINKEDIN_CLIENT_ID="xxx"; $env:LINKEDIN_CLIENT_SECRET="yyy"; python linkedin_auth.py
+   ```
+   브라우저 동의 후 콘솔에 출력된 **refresh_token** 복사 → Secret **`LINKEDIN_REFRESH_TOKEN`**
+4. ⚠️ 만약 출력에 refresh_token 이 **없으면**, 이 앱은 아직 refresh token 발급 대상이 아닙니다.
+   → 방법 B(수동)로 진행하세요. (refresh_token 은 365일 후 재실행해 갱신)
+
+### 방법 B — 수동 토큰 (폴백, 60일)
+1. 앱 **Auth** 탭 → **OAuth 2.0 tools** → *Create token* (또는 https://www.linkedin.com/developers/tools/oauth )
    - 스코프 체크: `openid`, `profile`, `w_member_social`
-   - **Request access token** → 생성된 토큰 복사 → Secret **`LINKEDIN_ACCESS_TOKEN`**
-4. ⚠️ 이 토큰은 **약 60일** 후 만료됩니다. 만료되면 3번을 다시 해서 Secret을 갱신하세요.
-   (자동 갱신이 필요하면 알려주세요 — refresh_token 방식으로 바꿔드립니다.)
+   - **Request access token** → 토큰 복사 → Secret **`LINKEDIN_ACCESS_TOKEN`**
+2. ⚠️ 약 **60일** 후 만료 → 만료 시 위를 다시 해서 Secret 갱신.
+
+> 코드는 자동 갱신(A)을 우선 사용하고, 그 값이 없을 때만 수동 토큰(B)으로 폴백합니다.
 
 ---
 

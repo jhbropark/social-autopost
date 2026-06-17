@@ -16,8 +16,31 @@ GRAPH = "https://graph.facebook.com/v21.0"
 
 
 # ---------------------------------------------------------------- LinkedIn
+def _linkedin_token() -> str:
+    """refresh_token(+client_id/secret)이 있으면 매번 새 액세스 토큰을 발급.
+    없으면 기존 LINKEDIN_ACCESS_TOKEN(수동 60일)을 그대로 사용."""
+    rt = os.environ.get("LINKEDIN_REFRESH_TOKEN")
+    cid = os.environ.get("LINKEDIN_CLIENT_ID")
+    csec = os.environ.get("LINKEDIN_CLIENT_SECRET")
+    if rt and cid and csec:
+        r = requests.post(
+            "https://www.linkedin.com/oauth/v2/accessToken",
+            data={
+                "grant_type": "refresh_token",
+                "refresh_token": rt,
+                "client_id": cid,
+                "client_secret": csec,
+            },
+            timeout=30,
+        )
+        if r.status_code >= 300:
+            raise RuntimeError(f"LinkedIn refresh {r.status_code}: {r.text}")
+        return r.json()["access_token"]
+    return os.environ["LINKEDIN_ACCESS_TOKEN"]
+
+
 def post_linkedin(text: str) -> dict:
-    token = os.environ["LINKEDIN_ACCESS_TOKEN"]
+    token = _linkedin_token()
     h = {"Authorization": f"Bearer {token}"}
     # 사용자 URN(sub) 조회 — openid/profile 스코프 필요
     me = requests.get("https://api.linkedin.com/v2/userinfo", headers=h, timeout=30)
