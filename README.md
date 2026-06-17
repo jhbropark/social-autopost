@@ -10,8 +10,9 @@
 | 파일 | 역할 |
 |---|---|
 | `config.py` | 브랜드 전략 · 요일 테마 · 모델 설정 |
-| `generate.py` | Claude API로 오늘의 3종 글 + 이미지 문구 생성 |
-| `make_image.py` | Pillow로 1080×1080 포스터(JPEG) 렌더 |
+| `generate.py` | Claude API로 오늘의 3종 글 + IG 캐러셀 문구 생성 |
+| `make_image.py` | Pillow로 1080×1080 단일 포스터(JPEG) 렌더 (캐러셀 슬라이드의 기반 톤·헬퍼) |
+| `carousel.py` | IG 캐러셀(표지+포인트4+아웃트로) 슬라이드 렌더 |
 | `platforms.py` | LinkedIn / Facebook / Instagram 게시 함수 |
 | `main.py` | generate → publish 오케스트레이션 |
 | `.github/workflows/daily.yml` | 매일 cron 실행 |

@@ -102,21 +102,51 @@ def _ig_user_id(token: str) -> str:
     return acc["id"]
 
 
-def post_instagram(caption: str, image_url: str) -> dict:
+def post_instagram(caption: str, image_urls) -> dict:
+    """image_urls: 단일 URL(str) 또는 캐러셀용 URL 리스트(2~10장)."""
     token = os.environ["FB_PAGE_ACCESS_TOKEN"]
     ig_id = _ig_user_id(token)
+    if isinstance(image_urls, str):
+        image_urls = [image_urls]
 
-    # 1) 미디어 컨테이너 생성
-    c = requests.post(
-        f"{GRAPH}/{ig_id}/media",
-        data={"image_url": image_url, "caption": caption, "access_token": token},
-        timeout=60,
-    )
-    if c.status_code >= 300:
-        raise RuntimeError(f"IG media create {c.status_code}: {c.text}")
-    creation_id = c.json()["id"]
+    # 단일 이미지
+    if len(image_urls) == 1:
+        c = requests.post(
+            f"{GRAPH}/{ig_id}/media",
+            data={"image_url": image_urls[0], "caption": caption, "access_token": token},
+            timeout=60,
+        )
+        if c.status_code >= 300:
+            raise RuntimeError(f"IG media create {c.status_code}: {c.text}")
+        creation_id = c.json()["id"]
+    else:
+        # 캐러셀: 1) 각 슬라이드를 carousel_item 으로 생성
+        child_ids = []
+        for url in image_urls:
+            ch = requests.post(
+                f"{GRAPH}/{ig_id}/media",
+                data={"image_url": url, "is_carousel_item": "true", "access_token": token},
+                timeout=60,
+            )
+            if ch.status_code >= 300:
+                raise RuntimeError(f"IG carousel item {ch.status_code}: {ch.text}")
+            child_ids.append(ch.json()["id"])
+        # 2) 캐러셀 컨테이너 생성
+        c = requests.post(
+            f"{GRAPH}/{ig_id}/media",
+            data={
+                "media_type": "CAROUSEL",
+                "children": ",".join(child_ids),
+                "caption": caption,
+                "access_token": token,
+            },
+            timeout=60,
+        )
+        if c.status_code >= 300:
+            raise RuntimeError(f"IG carousel container {c.status_code}: {c.text}")
+        creation_id = c.json()["id"]
 
-    # 2) 게시
+    # 게시
     p = requests.post(
         f"{GRAPH}/{ig_id}/media_publish",
         data={"creation_id": creation_id, "access_token": token},

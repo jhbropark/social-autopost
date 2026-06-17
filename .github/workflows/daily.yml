@@ -34,17 +34,18 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python main.py generate
 
-      - name: Commit image (make it publicly fetchable for Instagram)
+      - name: Commit slides (make them publicly fetchable for Instagram)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add out/today.jpg out/posts.json
-          git commit -m "chore: daily image $(date -u +%F)" || echo "nothing to commit"
+          git add out/carousel out/posts.json
+          git commit -m "chore: daily carousel $(date -u +%F)" || echo "nothing to commit"
           git push
 
       - name: Publish to all platforms
         env:
-          IMAGE_PUBLIC_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/today.jpg?v=${{ github.run_id }}"
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/carousel"
+          CACHE_BUST: ${{ github.run_id }}
           # 자동 갱신(권장): refresh_token + client 자격증명
           LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}

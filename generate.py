@@ -59,14 +59,16 @@ def generate_posts() -> dict:
   스타일: {roles['linkedin']['style']}
   분량: {roles['linkedin']['length']}
 
-그리고 Instagram 포스터 카드에 들어갈 텍스트도 만들어줘.
-카드는 '혼합 굵기 헤드라인 + 거대 키워드' 에디토리얼 레이아웃이다:
+그리고 Instagram **캐러셀(여러 장 스와이프)** 슬라이드 텍스트도 만들어줘.
+구조: 표지 1장 + 포인트 4장 + 아웃트로(코드가 자동 생성). 저장·체류율을 높이는 교육형 캐러셀.
   - badge: 알약형 카테고리 배지. 영문 대문자 1~2단어 (예: "SPACE NOTE", "MEDIA ART", "AI CREATIVE")
-  - head_bold: 강조 헤드라인(볼드) 한 줄. 한국어 14자 내외, 문장 도입부.
-  - head_rest: 보조 헤드라인(라이트) 1~2줄. 각 줄 12자 내외의 배열(list).
-  - keyword: 카드에서 가장 크게 박히는 결론 단어/짧은 구. 한국어 6자 내외 한 줄.
-  - caption: 푸터 좌측 캡션. 영문 시리즈명 + 핸들 (예: "Creative Director's Notebook · parkjunhyuk.xyz")
-  → head_bold + head_rest + keyword 를 위에서 아래로 읽으면 하나의 완성된 문장이 되도록 자연스럽게 끊어라.
+  - cover_bold: 표지 강조 헤드라인(볼드) 한 줄, 한국어 14자 내외, 문장 도입부
+  - cover_rest: 표지 보조 라이트 1줄 배열
+  - cover_keyword: 표지에서 가장 크게 박히는 결론/주제 한 줄, 한국어 8자 내외
+  → cover_bold + cover_rest + cover_keyword 를 위→아래로 읽으면 하나의 훅 문장이 되게.
+  - caption: 푸터 캡션 "{series} · parkjunhyuk.xyz"
+  - points: 정확히 4개. 각 {{title: 10자 내외 핵심, body: 40자 내외 1~2문장 설명}}. 실용적·구체적으로.
+  - outro_line: 마무리 통찰 한 줄(\\n 1회 허용)
 
 반드시 아래 JSON 형식으로만 답해. 다른 말 금지:
 {{
@@ -74,7 +76,7 @@ def generate_posts() -> dict:
   "instagram": {{"caption": "...", "series": "{series}"}},
   "facebook": {{"text": "..."}},
   "linkedin": {{"text": "..."}},
-  "image": {{"badge": "...", "head_bold": "...", "head_rest": ["...", "..."], "keyword": "...", "caption": "..."}}
+  "carousel": {{"badge": "...", "cover_bold": "...", "cover_rest": ["..."], "cover_keyword": "...", "caption": "...", "points": [{{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}], "outro_line": "..."}}
 }}"""
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
