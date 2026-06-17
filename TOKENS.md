@@ -69,34 +69,28 @@
    - **Instagram Graph API**
 3. **App roles**에 본인 계정이 관리자/개발자인지 확인(본인 자산이라 앱 심사 없이 사용 가능).
 
-### 토큰 받기 (Graph API Explorer)
-4. https://developers.facebook.com/tools/explorer → 우측에서 본인 앱 선택
-5. **Permissions**에 아래를 모두 추가하고 **Generate Access Token**:
+### 토큰 받기 (Graph API Explorer → 헬퍼 스크립트)
+> 앱은 **parkjunhyuk-autopost** 사용 (이용 사례: "Instagram 콘텐츠 관리" + "페이지 관리").
+> 이 앱의 "Facebook 로그인이 포함된 API 설정"에서 "Add required content permissions"를 눌러
+> instagram_basic / instagram_content_publish / pages_read_engagement / business_management / pages_show_list 가 추가돼 있어야 합니다.
+
+4. https://developers.facebook.com/tools/explorer → 우측에서 **parkjunhyuk-autopost** 앱 선택
+5. **권한 추가**에서 5개 선택 후 **Generate Access Token** (동의 팝업에서 parkjunhyukxyz 페이지 + IG 선택):
    ```
-   pages_show_list
-   pages_read_engagement
-   pages_manage_posts
-   instagram_basic
-   instagram_content_publish
-   business_management
+   instagram_basic  instagram_content_publish
+   pages_show_list  pages_read_engagement  business_management
    ```
-6. 받은 **User 토큰**으로 페이지 토큰 조회 — Explorer 주소창에 입력 후 전송:
+6. 상단의 **사용자 토큰(EAA...)** 을 복사.
+7. 로컬에서 헬퍼 실행 → 장기 페이지 토큰 + IG ID를 한 번에 출력:
+   ```powershell
+   cd "C:\Users\im\Downloads\claude code\social-autopost"
+   $env:META_APP_ID="앱ID"; $env:META_APP_SECRET="앱시크릿"; $env:META_SHORT_TOKEN="위에서복사한토큰"; python meta_token.py
    ```
-   GET /me/accounts
-   ```
-   결과에서 parkjunhyukxyz 페이지의 `id` → Secret **`FB_PAGE_ID`**,
-   그 페이지의 `access_token` → 이게 **페이지 토큰**입니다.
-7. 페이지 토큰을 **장기 토큰(60일)** 으로 교환(만료 줄이기). 브라우저에서:
-   ```
-   https://graph.facebook.com/v21.0/oauth/access_token?grant_type=fb_exchange_token&client_id=<앱ID>&client_secret=<앱시크릿>&fb_exchange_token=<위 User 토큰>
-   ```
-   반환된 장기 User 토큰으로 다시 `GET /me/accounts` → **페이지 토큰**(이건 보통 만료 없음) 복사
-   → Secret **`FB_PAGE_ACCESS_TOKEN`**
-8. (선택) Instagram 계정 ID 미리 확인:
-   ```
-   GET /<FB_PAGE_ID>?fields=instagram_business_account
-   ```
-   나온 id → Secret **`IG_USER_ID`** (비워두면 스크립트가 자동 조회합니다)
+   (앱ID/시크릿: 앱 → 앱 설정 → 기본 설정)
+8. 출력된 값을 Secret 등록: **`FB_PAGE_ID`**, **`FB_PAGE_ACCESS_TOKEN`**(무만료), **`IG_USER_ID`**(선택)
+
+> 확인됨: 페이지 **Parkjunhyukxyz / ID `1100600083135592`** (CREATE_CONTENT 권한 보유).
+> FB 페이지 게시(`pages_manage_posts`)도 쓰려면 앱의 "페이지 관리" 이용 사례에서 해당 권한을 추가하세요.
 
 > 핵심 제약: Instagram은 **공개 이미지 URL**로만 게시됩니다. 이 프로젝트는 생성한 이미지를
 > 리포지토리에 커밋해 `raw.githubusercontent.com` 공개 URL로 자동 제공하므로 별도 호스팅이 필요 없습니다.
