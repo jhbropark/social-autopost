@@ -12,6 +12,11 @@ import sys
 import json
 import datetime
 
+# moviepy 1.0.3 은 Pillow 10+ 에서 제거된 Image.ANTIALIAS 를 참조한다 → 호환 shim
+from PIL import Image as _PILImage
+if not hasattr(_PILImage, "ANTIALIAS"):
+    _PILImage.ANTIALIAS = _PILImage.Resampling.LANCZOS
+
 import generate
 import carousel
 import imagesearch
