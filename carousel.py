@@ -17,7 +17,8 @@ import os
 from PIL import Image, ImageDraw
 import make_image as M
 
-W = M.W  # 1080
+W = M.W  # 1080 (가로)
+H = M.H  # 1350 (세로, 4:5)
 AMBER = (231, 168, 90)
 TEAL = (127, 208, 207)
 PAD = 88
@@ -29,7 +30,7 @@ def _base():
 
 
 def _footer(d, caption, right_text):
-    fy = W - PAD + 2
+    fy = H - PAD + 2
     f_cap = M._font(M.F_CJK_REG, 24)
     f_idx = M._font(M.F_CJK_BOLD, 26)
     d.line([(PAD, fy - 18), (W - PAD, fy - 18)], fill=M.DIVIDER, width=1)
@@ -53,7 +54,7 @@ def render_cover(data, path):
     f_bold = M._font(M.F_CJK_BOLD, 60)
     f_soft = M._font(M.F_CJK_REG, 52)
     f_key = M._font(M.F_CJK_BOLD, 96)
-    y = M._pill(d, PAD, 520, data["badge"].upper(), f_badge)
+    y = M._pill(d, PAD, 660, data["badge"].upper(), f_badge)
     y += 30
     for line in M._wrap(d, data["cover_bold"], f_bold, W - PAD * 2):
         d.text((PAD, y), line, font=f_bold, fill=M.FG); y += 74
@@ -67,7 +68,7 @@ def render_cover(data, path):
     f_hint = M._font(M.F_CJK_BOLD, 30)
     hint = "밀어서 보기  →"
     hw = d.textlength(hint, font=f_hint)
-    d.text((W - PAD - hw, W - PAD - 70), hint, font=f_hint, fill=TEAL)
+    d.text((W - PAD - hw, H - PAD - 70), hint, font=f_hint, fill=TEAL)
     _footer(d, data["caption"], "01")
     img.save(path, "JPEG", quality=92)
     return path
@@ -80,10 +81,10 @@ def render_point(data, point, n, total, path):
     f_title = M._font(M.F_CJK_BOLD, 58)
     f_body = M._font(M.F_CJK_REG, 40)
     # 큰 번호
-    d.text((PAD, 150), f"{n:02d}", font=f_num, fill=AMBER)
+    d.text((PAD, 250), f"{n:02d}", font=f_num, fill=AMBER)
     # 얇은 구분선
-    d.line([(PAD, 360), (PAD + 120, 360)], fill=TEAL, width=4)
-    y = 430
+    d.line([(PAD, 460), (PAD + 120, 460)], fill=TEAL, width=4)
+    y = 540
     for line in M._wrap(d, point["title"], f_title, W - PAD * 2):
         d.text((PAD, y), line, font=f_title, fill=M.FG); y += 72
     y += 16
@@ -100,8 +101,8 @@ def render_outro(data, path):
     f_line = M._font(M.F_CJK_BOLD, 56)
     f_mark = M._font(M.F_SERIF, 64)
     f_cta = M._font(M.F_CJK_REG, 34)
-    # 결론 문장 (중앙 상단부)
-    y = 300
+    # 결론 문장 (세로 중앙부)
+    y = 500
     for line in M._wrap(d, data["outro_line"], f_line, W - PAD * 2):
         d.text((PAD, y), line, font=f_line, fill=M.FG); y += 72
     # 워드마크 (크게)
@@ -109,7 +110,7 @@ def render_outro(data, path):
     d.text((PAD, y), "parkjunhyuk.xyz", font=f_mark, fill=AMBER)
     y += 100
     d.text((PAD, y), "저장 · 공유하고, 팔로우하세요", font=f_cta, fill=M.HEAD_SOFT)
-    _footer(d, data["caption"], "↩")
+    _footer(d, data["caption"], "FIN")
     img.save(path, "JPEG", quality=92)
     return path
 
