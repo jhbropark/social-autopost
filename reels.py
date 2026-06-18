@@ -62,22 +62,35 @@ def _make_video(src, overlay_png, out_path):
     final.close()
 
 
-def do_make():
-    os.makedirs(OUT_DIR, exist_ok=True)
-    data = generate.generate_posts(target=_today_kst(), variant=0)
+def build_reel(data, out_dir):
+    """주어진 글(data)로 스톡영상+오버레이 릴스 MP4를 out_dir/reel.mp4 로 만든다.
+    영상 검색 실패 시 None. (daily.py 등에서 재사용)"""
+    os.makedirs(out_dir, exist_ok=True)
     vq = data.get("image_query") or data.get("topic")
     print("🔎 video query:", vq)
-    src = imagesearch.search_video(vq, os.path.join(OUT_DIR, "_src.mp4"))
+    src = imagesearch.search_video(vq, os.path.join(out_dir, "_src.mp4"))
     if not src:
+        return None
+    overlay = os.path.join(out_dir, "_overlay.png")
+    carousel.render_reel_overlay(data["carousel"]).save(overlay)
+    out = os.path.join(out_dir, "reel.mp4")
+    _make_video(src, overlay, out)
+    try:
+        os.remove(src)   # 큰 원본 영상은 커밋하지 않음
+    except OSError:
+        pass
+    return out
+
+
+def do_make():
+    data = generate.generate_posts(target=_today_kst(), variant=0)
+    out = build_reel(data, OUT_DIR)
+    if not out:
         print("❌ 스톡 영상 검색 실패(Pexels). PEXELS_API_KEY 확인.")
         sys.exit(1)
-    overlay = os.path.join(OUT_DIR, "_overlay.png")
-    carousel.render_reel_overlay(data["carousel"]).save(overlay)
-    out = os.path.join(OUT_DIR, "reel.mp4")
-    _make_video(src, overlay, out)
     print(f"✅ reel.mp4 ({os.path.getsize(out) // 1024} KB) — {data.get('topic')}")
     with open(META, "w", encoding="utf-8") as f:
-        json.dump({"caption": data["instagram"]["caption"], "topic": data.get("topic"), "image_query": vq},
+        json.dump({"caption": data["instagram"]["caption"], "topic": data.get("topic")},
                   f, ensure_ascii=False, indent=2)
 
 

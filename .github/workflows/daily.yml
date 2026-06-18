@@ -29,11 +29,12 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Generate content + images (IG 3 / LinkedIn 1)
+      - name: Generate content + media (IG 2 carousel + 1 reel / LinkedIn 1)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           IG_POSTS_PER_DAY: "3"
+          REELS_PER_DAY: "1"
           LINKEDIN_POSTS_PER_DAY: "1"
         run: python daily.py generate
 
