@@ -114,6 +114,13 @@ def build_reel(data, out_dir):
 
     out = os.path.join(out_dir, "reel.mp4")
     _make_video_v2(srcs, beats, out)
+
+    # 썸네일(커버): 훅 구간(텍스트 있는 시점) 프레임을 추출 → cover.jpg
+    import moviepy.editor as mpe
+    clip = mpe.VideoFileClip(out)
+    clip.save_frame(os.path.join(out_dir, "cover.jpg"), t=min(1.8, clip.duration / 3))
+    clip.close()
+
     for s in srcs:                       # 큰 원본 영상은 커밋하지 않음
         try:
             os.remove(s)
@@ -138,9 +145,11 @@ def do_publish():
     with open(META, encoding="utf-8") as f:
         meta = json.load(f)
     base = os.environ["IMAGE_BASE_URL"].rstrip("/")
-    url = f"{base}/reel.mp4?v={os.environ.get('CACHE_BUST', '1')}"
+    bust = os.environ.get("CACHE_BUST", "1")
+    url = f"{base}/reel.mp4?v={bust}"
+    cover = f"{base}/cover.jpg?v={bust}"
     print("📤 publishing reel:", url)
-    print("✅ instagram reel:", platforms.post_reel(url, meta["caption"]))
+    print("✅ instagram reel:", platforms.post_reel(url, meta["caption"], cover_url=cover))
 
 
 if __name__ == "__main__":

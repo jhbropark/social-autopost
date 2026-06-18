@@ -100,6 +100,12 @@ def _reel_url(data):
     return f"{base}/{data['_dir']}/{data['_video']}?v={bust}"
 
 
+def _reel_cover_url(data):
+    base = os.environ["IMAGE_BASE_URL"].rstrip("/")
+    bust = os.environ.get("CACHE_BUST", "1")
+    return f"{base}/{data['_dir']}/cover.jpg?v={bust}"
+
+
 def do_publish():
     with open(PLAN_JSON, encoding="utf-8") as f:
         plan = json.load(f)
@@ -110,7 +116,7 @@ def do_publish():
         print(f"\n=== IG {label} #{i + 1}: {data.get('topic')} ===")
         try:
             if data.get("_type") == "reel":
-                print("✅ instagram reel:", platforms.post_reel(_reel_url(data), data["instagram"]["caption"]))
+                print("✅ instagram reel:", platforms.post_reel(_reel_url(data), data["instagram"]["caption"], cover_url=_reel_cover_url(data)))
             else:
                 print("✅ instagram:", platforms.post_instagram(data["instagram"]["caption"], _slide_urls(data)))
         except Exception as e:

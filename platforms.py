@@ -271,21 +271,21 @@ def post_instagram(caption: str, image_urls) -> dict:
     return p.json()
 
 
-def post_reel(video_url: str, caption: str) -> dict:
+def post_reel(video_url: str, caption: str, cover_url: str = None) -> dict:
     """릴스(세로 영상) 게시. video_url 은 공개 접근 가능한 MP4.
+    cover_url 이 있으면 그 이미지를 썸네일(커버)로 지정한다.
     영상은 처리에 시간이 걸리므로 컨테이너 status_code 를 길게 폴링한다."""
     base, token, ig_id = _ig_endpoint()
-    c = requests.post(
-        f"{base}/{ig_id}/media",
-        data={
-            "media_type": "REELS",
-            "video_url": video_url,
-            "caption": caption,
-            "share_to_feed": "true",
-            "access_token": token,
-        },
-        timeout=60,
-    )
+    data = {
+        "media_type": "REELS",
+        "video_url": video_url,
+        "caption": caption,
+        "share_to_feed": "true",
+        "access_token": token,
+    }
+    if cover_url:
+        data["cover_url"] = cover_url
+    c = requests.post(f"{base}/{ig_id}/media", data=data, timeout=60)
     if c.status_code >= 300:
         raise RuntimeError(f"IG reel create {c.status_code}: {c.text}")
     creation_id = c.json()["id"]
