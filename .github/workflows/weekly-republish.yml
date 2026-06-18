@@ -1,0 +1,49 @@
+name: Weekly Republish (IG only)
+
+# 이미 생성된 주간 plan.json 을 재생성 없이 슬라이드만 ASCII 폴더로 다시 렌더한 뒤
+# Instagram 에만 7일치를 게시한다(LinkedIn 중복 방지). 수동 실행 전용.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-post
+  cancel-in-progress: false
+
+jobs:
+  republish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Korean fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Re-render slides into ASCII folders (no regeneration)
+        run: python weekly.py rerender
+
+      - name: Commit slides
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add out/week
+          git commit -m "chore: weekly slides ASCII re-render $(date -u +%F)" || echo "nothing to commit"
+          git push
+
+      - name: Publish to Instagram only (7 days)
+        env:
+          WEEKLY_PLATFORMS: instagram
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/week"
+          CACHE_BUST: ${{ github.run_id }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: python weekly.py publish
