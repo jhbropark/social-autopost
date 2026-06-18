@@ -92,10 +92,12 @@ def generate_posts(target=None) -> dict:
     · title: 그 장의 핵심을 쉬운 우리말로. "A: B" 같은 라벨식·비유식 제목 금지(예: 금지 "동선: 체이닝 설계", "출구: 포맷 선정"). 무슨 말인지 바로 와닿는 평이한 표현으로.
     · body: 1~2개의 짧고 완결된 문장. 전문용어·영어 약어·번역투 금지. 누구나 한 번에 이해되게.
   - outro_line: 마무리 한 줄. 쉬운 우리말 1~2문장. 두 문장이면 사이에 \\n 1회로 줄을 나눈다(한 문장이 어중간하게 잘리지 않게).
+  - image_query: 표지 배경 사진 검색용 **영어** 키워드 2~4단어. 주제를 시각적으로 대표하되 사람 얼굴·글자가 없는 공간/건축/전시/도시/조명/추상 위주. (예: "media art installation", "modern museum interior", "city lights at night", "abstract blue light")
 
 반드시 아래 JSON 형식으로만 답해. 다른 말 금지:
 {{
   "topic": "오늘 소재 한 줄",
+  "image_query": "english keywords for cover photo",
   "instagram": {{"caption": "...", "series": "{series}"}},
   "facebook": {{"text": "..."}},
   "linkedin": {{"text": "..."}},

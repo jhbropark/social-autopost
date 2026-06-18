@@ -194,6 +194,8 @@ def _top_panel(img, top_image=None, panel_h=560):
         photo = photo.resize((int(photo.width * ratio), int(photo.height * ratio)))
         photo = photo.crop((0, 0, W, panel_h))
         img.paste(photo, (0, 0))
+        # 가독성: 사진을 전체적으로 어둡게(약 38%) — 상단 워드마크/대비 확보
+        img.paste(Image.new("RGB", (W, panel_h), BG_TOP), (0, 0), Image.new("L", (W, panel_h), 96))
         # 하단 페이드 (패널 → 배경색)
         fade = Image.new("L", (1, panel_h), 0)
         for y in range(panel_h):

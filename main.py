@@ -16,6 +16,7 @@ import json
 import generate
 import carousel
 import platforms
+import imagesearch
 
 OUT_DIR = "out"
 CAROUSEL_DIR = os.path.join(OUT_DIR, "carousel")
@@ -27,10 +28,18 @@ def do_generate():
     # 이전 슬라이드 정리 (장수 변동 대비)
     if os.path.isdir(CAROUSEL_DIR):
         for f in os.listdir(CAROUSEL_DIR):
-            if f.endswith(".jpg"):
+            if f.endswith(".jpg") and not f.startswith("_"):
                 os.remove(os.path.join(CAROUSEL_DIR, f))
 
     data = generate.generate_posts()
+    # 표지 배경 사진 검색(주제 키워드) → top_image 연결
+    os.makedirs(CAROUSEL_DIR, exist_ok=True)
+    hero = imagesearch.search_image(data.get("image_query") or data.get("topic"))
+    if hero is not None:
+        hp = os.path.join(CAROUSEL_DIR, "_hero.jpg")
+        hero.save(hp, "JPEG", quality=88)
+        data["carousel"]["top_image"] = hp
+        print("🖼  hero:", data.get("image_query"))
     slides = carousel.render_carousel(data["carousel"], out_dir=CAROUSEL_DIR)
     data["_slides"] = [os.path.basename(p) for p in slides]   # 게시 순서 보존
 

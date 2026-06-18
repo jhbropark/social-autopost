@@ -45,9 +45,9 @@ def _wordmark(d):
     d.text((W - PAD - w, 60), mark, font=f, fill=M.FG)
 
 
-def render_cover(data, path, seed=0):
-    hero = data.get("top_image") or M.render_hero(W, 560, seed)
-    img = M._top_panel(_base(), top_image=hero)
+def render_cover(data, path):
+    # 표지 상단: 검색된 주제 사진(top_image). 없으면 단색 글로우 패널로 폴백.
+    img = M._top_panel(_base(), top_image=data.get("top_image"))
     d = ImageDraw.Draw(img)
     _wordmark(d)
 
@@ -111,8 +111,8 @@ def render_point(data, point, n, total, path):
     return path
 
 
-def render_outro(data, path, seed=0):
-    img = M._top_panel(_base(), top_image=M.render_hero(W, 420, seed + 7), panel_h=420)
+def render_outro(data, path):
+    img = M._top_panel(_base(), top_image=data.get("top_image"), panel_h=420)
     d = ImageDraw.Draw(img)
     f_line = M._font(M.F_CJK_BOLD, 56)
     f_mark = M._font(M.F_SERIF, 64)
@@ -135,12 +135,10 @@ def render_carousel(data, out_dir="out/carousel"):
     os.makedirs(out_dir, exist_ok=True)
     paths = []
     total = len(data["points"])
-    # 주제별로 히어로 비주얼이 달라지도록 결정적 시드(badge+keyword 기반)
-    seed = sum(ord(c) for c in (data.get("badge", "") + data.get("cover_keyword", ""))) or 1
-    paths.append(render_cover(data, os.path.join(out_dir, "01_cover.jpg"), seed))
+    paths.append(render_cover(data, os.path.join(out_dir, "01_cover.jpg")))
     for i, pt in enumerate(data["points"], 1):
         paths.append(render_point(data, pt, i, total, os.path.join(out_dir, f"{i+1:02d}_point.jpg")))
-    paths.append(render_outro(data, os.path.join(out_dir, f"{total+2:02d}_outro.jpg"), seed))
+    paths.append(render_outro(data, os.path.join(out_dir, f"{total+2:02d}_outro.jpg")))
     return paths
 
 

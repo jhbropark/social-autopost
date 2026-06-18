@@ -20,6 +20,7 @@ import datetime
 import generate
 import carousel
 import platforms
+import imagesearch
 
 OUT_DIR = "out/week"
 PLAN_JSON = os.path.join(OUT_DIR, "plan.json")
@@ -34,14 +35,33 @@ def _week_dates(base=None):
     return [monday + datetime.timedelta(days=i) for i in range(7)]
 
 
-def _render_day(i, data):
+def _attach_hero(data, day_dir, fetch):
+    """표지 배경 사진을 day_dir/_hero.jpg 로 준비하고 carousel.top_image 에 연결.
+    fetch=True 면 image_query 로 새로 검색·저장, False 면 기존 _hero.jpg 재사용."""
+    cz = data["carousel"]
+    hero_path = os.path.join(day_dir, "_hero.jpg")
+    if fetch:
+        img = imagesearch.search_image(data.get("image_query") or data.get("topic"))
+        if img is not None:
+            img.save(hero_path, "JPEG", quality=88)
+            print(f"   🖼  hero: '{data.get('image_query')}' → {hero_path}")
+    if os.path.exists(hero_path):
+        cz["top_image"] = hero_path
+    else:
+        cz.pop("top_image", None)
+        if fetch:
+            print(f"   ⚠ hero 검색 실패 — 단색 패널로 폴백")
+
+
+def _render_day(i, data, fetch=True):
     """i번째 요일의 캐러셀을 ASCII 폴더에 렌더하고 메타를 채운다."""
     day_name = f"{i}_{WEEKDAY_EN[i]}"
     day_dir = os.path.join(OUT_DIR, day_name)
     os.makedirs(day_dir, exist_ok=True)
-    for f in os.listdir(day_dir):           # 이전 슬라이드 정리
-        if f.endswith(".jpg"):
+    for f in os.listdir(day_dir):           # 슬라이드만 정리(_hero.jpg 등 보존)
+        if f.endswith(".jpg") and not f.startswith("_"):
             os.remove(os.path.join(day_dir, f))
+    _attach_hero(data, day_dir, fetch)
     slides = carousel.render_carousel(data["carousel"], out_dir=day_dir)
     data["_slides"] = [os.path.basename(p) for p in slides]
     data["_dir"] = day_name
@@ -69,7 +89,7 @@ def do_rerender():
     with open(PLAN_JSON, encoding="utf-8") as f:
         plan = json.load(f)
     for i, data in enumerate(plan):
-        n = _render_day(i, data)
+        n = _render_day(i, data, fetch=False)   # 재렌더는 기존 _hero.jpg 재사용
         print(f"re-rendered {data['_dir']} ({data.get('_date')}): {n} slides")
     with open(PLAN_JSON, "w", encoding="utf-8") as f:
         json.dump(plan, f, ensure_ascii=False, indent=2)
