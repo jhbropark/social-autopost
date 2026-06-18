@@ -205,35 +205,45 @@ def render_li_cover(data, path, w=1080, h=1350):
     # NEWS 배지(좌상단)
     M._pill(d, P, 84, "NEWS", M._font(M.F_CJK_BOLD, 30))
 
-    # 우측 팩트 패널 (포인트 3개 요약)
-    f_pt = M._font(M.F_CJK_BOLD, 30)
-    f_pb = M._font(M.F_CJK_REG, 26)
+    # 우측 팩트 패널: facts(숫자·핵심) 3개. 없으면 포인트 제목으로 폴백.
     px = 616
     pw = w - P - px
     py = 168
-    for pt in data.get("points", [])[:3]:
-        t_lines = M._wrap(d, pt.get("title", ""), f_pt, pw - 48)[:2]
-        b_lines = M._wrap(d, pt.get("body", ""), f_pb, pw - 48)[:2]
-        ph = 28 + len(t_lines) * 38 + 8 + len(b_lines) * 34 + 28
+    facts = data.get("facts") or [p.get("title", "") for p in data.get("points", [])[:3]]
+    f_fact = M._font(M.F_CJK_BOLD, 33)
+    for ft in facts[:3]:
+        lines = M._wrap(d, ft, f_fact, pw - 48)[:3]
+        ph = 30 + len(lines) * 44 + 30
         d.rounded_rectangle([px, py, px + pw, py + ph], radius=18, fill=(19, 22, 26))
-        yy = py + 28
-        for ln in t_lines:
-            d.text((px + 24, yy), ln, font=f_pt, fill=M.FG); yy += 38
-        yy += 8
-        for ln in b_lines:
-            d.text((px + 24, yy), ln, font=f_pb, fill=M.HEAD_SOFT); yy += 34
+        yy = py + 30
+        for ln in lines:
+            d.text((px + 24, yy), ln, font=f_fact, fill=M.FG); yy += 44
         py += ph + 22
 
-    # 좌측 제목(하단 정렬): 볼드 + 키워드(액센트)
+    # 좌측 제목(하단 정렬): 볼드(어절 액센트) + 키워드(액센트)
     f_bold = M._font(M.F_CJK_BOLD, 64)
     f_key = M._font(M.F_CJK_BOLD, 86)
     lw = px - P - 28
+    accent = data.get("cover_accent", "")
     bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, lw)
     key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, lw)
     total = len(bold_lines) * 78 + 16 + len(key_lines) * 98
     y = h - 156 - total
+
+    def _line_accent(ln, font, yy):
+        # accent 어절이 이 줄에 있으면 그 부분만 컬러로
+        if accent and accent in ln:
+            before, after = ln.split(accent, 1)
+            cx = P
+            for seg, col in ((before, M.FG), (accent, ACCENT), (after, M.FG)):
+                if seg:
+                    d.text((cx, yy), seg, font=font, fill=col)
+                    cx += d.textlength(seg, font=font)
+        else:
+            d.text((P, yy), ln, font=font, fill=M.FG)
+
     for ln in bold_lines:
-        d.text((P, y), ln, font=f_bold, fill=M.FG); y += 78
+        _line_accent(ln, f_bold, y); y += 78
     y += 16
     for ln in key_lines:
         d.text((P, y), ln, font=f_key, fill=ACCENT); y += 98

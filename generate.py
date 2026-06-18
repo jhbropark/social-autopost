@@ -81,7 +81,7 @@ def generate_posts(target=None, variant=0) -> dict:
   분량: {roles['linkedin']['length']}
 
 그리고 Instagram **캐러셀(여러 장 스와이프)** 슬라이드 텍스트도 만들어줘.
-구조: 표지 1장 + 포인트 4장 + 아웃트로(코드가 자동 생성). 저장·체류율을 높이는 교육형 캐러셀.
+구조: 표지 1장 + 포인트 5장 + 아웃트로(코드가 자동 생성). 저장·체류율을 높이는 교육형 캐러셀.
   - badge: 알약형 카테고리 배지. 영문 대문자 1~2단어 (예: "SPACE NOTE", "MEDIA ART", "AI CREATIVE")
   - cover_bold: 표지 헤드라인(볼드) 한 줄. 한국어 12자 이내. 그 자체로 뜻이 통하는 도입 또는 질문.
   - cover_rest: 표지 보조 설명 1줄 배열(원소 1개). 16자 이내. cover_bold를 자연스럽게 잇는 짧은 보충.
@@ -89,11 +89,13 @@ def generate_posts(target=None, variant=0) -> dict:
   ※ 표지 카피 규칙(중요): 세 줄을 억지로 한 문장으로 이어붙이지 말 것. 각 줄이 독립적으로 읽혀도 자연스럽고 문법이 맞아야 한다.
     표지만 보고도 '무엇에 관한 글'인지 바로 이해돼야 한다. 도치·생략·말장난으로 호기심만 부풀리는 난해한 카피 금지(예: 금지 "공간 디자이너처럼 AI를 / 다루는 사람은 왜 결과물이 다를까 / 동선이 답이다" — 뜻이 모호함). 쉽고 또렷하게.
   - caption: 푸터 캡션 "{series} · parkjunhyuk.xyz"
-  - points: 정확히 4개. 각 {{title: 12자 이내, body: 45자 이내}}.
+  - points: 정확히 5개. 각 {{title: 12자 이내, body: 45자 이내}}.
     · title: 그 장의 핵심을 쉬운 우리말로. "A: B" 같은 라벨식·비유식 제목 금지(예: 금지 "동선: 체이닝 설계", "출구: 포맷 선정"). 무슨 말인지 바로 와닿는 평이한 표현으로.
     · body: 1~2개의 짧고 완결된 문장. 전문용어·영어 약어·번역투 금지. 누구나 한 번에 이해되게.
   - outro_line: 마무리 한 줄. 쉬운 우리말 1~2문장. 두 문장이면 사이에 \\n 1회로 줄을 나눈다(한 문장이 어중간하게 잘리지 않게).
   - image_query: 표지 배경 사진 검색용 **영어** 키워드 2~4단어. 주제를 시각적으로 대표하되 사람 얼굴·글자가 없는 공간/건축/전시/도시/조명/추상 위주. (예: "media art installation", "modern museum interior", "city lights at night", "abstract blue light")
+  - facts: 링크드인 표지 우측 요약 패널용 3개. 각 18자 이내. **숫자·핵심 사실 위주**(수치가 있으면 우선 강조, 없으면 가장 또렷한 한 줄). 본문 포인트의 핵심을 압축.
+  - cover_accent: cover_bold 안에서 가장 강조할 짧은 어절(cover_bold에 **그대로 들어있는 부분 문자열**). 표지에서 그 어절만 컬러로 강조됨.
 
 반드시 아래 JSON 형식으로만 답해. 다른 말 금지:
 {{
@@ -102,7 +104,7 @@ def generate_posts(target=None, variant=0) -> dict:
   "instagram": {{"caption": "...", "series": "{series}"}},
   "facebook": {{"text": "..."}},
   "linkedin": {{"text": "..."}},
-  "carousel": {{"badge": "...", "cover_bold": "...", "cover_rest": ["..."], "cover_keyword": "...", "caption": "...", "points": [{{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}], "outro_line": "..."}}
+  "carousel": {{"badge": "...", "cover_bold": "...", "cover_accent": "...", "cover_rest": ["..."], "cover_keyword": "...", "facts": ["...", "...", "..."], "caption": "...", "points": [{{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}, {{"title": "...", "body": "..."}}], "outro_line": "..."}}
 }}"""
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
