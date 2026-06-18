@@ -120,8 +120,17 @@ def do_publish():
 
     for data in plan[:LINKEDIN_POSTS]:
         print(f"\n=== LinkedIn: {data.get('topic')} ===")
+        li_text = data.get("linkedin", {}).get("text", "")
         try:
-            print("✅ linkedin:", platforms.post_linkedin(data["linkedin"]["text"]))
+            # 캐러셀이면 PDF 문서(캐러셀)로 게시(도달 최상), 아니면 텍스트
+            if data.get("_type") == "carousel" and data.get("_slides"):
+                day_dir = os.path.join(OUT_DIR, data["_dir"])
+                pdf = carousel.slides_to_pdf(
+                    [os.path.join(day_dir, s) for s in data["_slides"]],
+                    os.path.join(day_dir, "carousel.pdf"))
+                print("✅ linkedin(doc):", platforms.post_linkedin_document(pdf, li_text, title=data.get("topic", "parkjunhyuk.xyz")))
+            else:
+                print("✅ linkedin:", platforms.post_linkedin(li_text))
         except Exception as e:
             print("❌ linkedin:", e); failed = True
 

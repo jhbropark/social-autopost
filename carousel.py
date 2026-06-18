@@ -187,6 +187,13 @@ def render_reel_overlay(data, w=1080, h=1920):
     return img
 
 
+def slides_to_pdf(slide_paths, out_pdf):
+    """캐러셀 슬라이드(JPG)들을 하나의 PDF로 합친다 — 링크드인 문서(캐러셀) 게시용."""
+    imgs = [Image.open(p).convert("RGB") for p in slide_paths]
+    imgs[0].save(out_pdf, "PDF", save_all=True, append_images=imgs[1:], resolution=150.0)
+    return out_pdf
+
+
 def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
     """릴스 비트(장면)별 텍스트 카드(투명 PNG). 중앙 정렬 + 안전영역(상15%/하20%) 준수.
     kind: 'hook' | 'point' | 'cta'."""

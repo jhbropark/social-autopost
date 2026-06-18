@@ -40,36 +40,113 @@ def _linkedin_token() -> str:
     return os.environ["LINKEDIN_ACCESS_TOKEN"]
 
 
-def post_linkedin(text: str) -> dict:
-    token = _linkedin_token()
-    h = {"Authorization": f"Bearer {token}"}
-    # 사용자 URN(sub) 조회 — openid/profile 스코프 필요
-    me = requests.get("https://api.linkedin.com/v2/userinfo", headers=h, timeout=30)
-    me.raise_for_status()
-    sub = me.json()["sub"]
+LI_VERSION = "202601"
+LI_REST = "https://api.linkedin.com/rest"
 
+
+def _li_headers(token):
+    return {
+        "Authorization": f"Bearer {token}",
+        "X-Restli-Protocol-Version": "2.0.0",
+        "LinkedIn-Version": LI_VERSION,
+    }
+
+
+def _li_author(token):
+    """게시 작성자 URN(urn:li:person:{sub}). openid/profile 스코프 필요."""
+    me = requests.get("https://api.linkedin.com/v2/userinfo",
+                      headers={"Authorization": f"Bearer {token}"}, timeout=30)
+    me.raise_for_status()
+    return f"urn:li:person:{me.json()['sub']}"
+
+
+def _li_post(token, author, commentary, content=None):
+    """공통 게시 호출. content 가 있으면 미디어 포함 게시."""
     body = {
-        "author": f"urn:li:person:{sub}",
-        "commentary": text,
+        "author": author,
+        "commentary": commentary,
         "visibility": "PUBLIC",
-        "distribution": {
-            "feedDistribution": "MAIN_FEED",
-            "targetEntities": [],
-            "thirdPartyDistributionChannels": [],
-        },
+        "distribution": {"feedDistribution": "MAIN_FEED", "targetEntities": [], "thirdPartyDistributionChannels": []},
         "lifecycleState": "PUBLISHED",
         "isReshareDisabledByAuthor": False,
     }
-    headers = {
-        **h,
-        "Content-Type": "application/json",
-        "X-Restli-Protocol-Version": "2.0.0",
-        "LinkedIn-Version": "202601",
-    }
-    r = requests.post("https://api.linkedin.com/rest/posts", headers=headers, json=body, timeout=30)
+    if content:
+        body["content"] = content
+    r = requests.post(f"{LI_REST}/posts",
+                      headers={**_li_headers(token), "Content-Type": "application/json"}, json=body, timeout=30)
     if r.status_code >= 300:
-        raise RuntimeError(f"LinkedIn {r.status_code}: {r.text}")
+        raise RuntimeError(f"LinkedIn post {r.status_code}: {r.text}")
     return {"id": r.headers.get("x-restli-id", "ok")}
+
+
+def _li_upload(kind, token, author, file_path):
+    """documents/images 단일 업로드: initializeUpload → uploadUrl 에 PUT → 미디어 URN 반환."""
+    init = requests.post(f"{LI_REST}/{kind}?action=initializeUpload",
+                         headers={**_li_headers(token), "Content-Type": "application/json"},
+                         json={"initializeUploadRequest": {"owner": author}}, timeout=30)
+    if init.status_code >= 300:
+        raise RuntimeError(f"LinkedIn {kind} init {init.status_code}: {init.text}")
+    val = init.json()["value"]
+    urn = val[kind[:-1]]                    # documents→document, images→image
+    with open(file_path, "rb") as fh:
+        put = requests.put(val["uploadUrl"], data=fh.read(),
+                           headers={"Authorization": f"Bearer {token}"}, timeout=180)
+    if put.status_code >= 300:
+        raise RuntimeError(f"LinkedIn {kind} upload {put.status_code}: {put.text}")
+    return urn
+
+
+def post_linkedin(text: str) -> dict:
+    """텍스트 게시."""
+    token = _linkedin_token()
+    return _li_post(token, _li_author(token), text)
+
+
+def post_linkedin_document(pdf_path: str, commentary: str, title: str = "parkjunhyuk.xyz") -> dict:
+    """PDF 문서(캐러셀) 게시 — 링크드인에서 좌우로 넘기는 슬라이드로 표시."""
+    token = _linkedin_token()
+    author = _li_author(token)
+    urn = _li_upload("documents", token, author, pdf_path)
+    return _li_post(token, author, commentary, {"media": {"id": urn, "title": title[:100]}})
+
+
+def post_linkedin_image(image_path: str, commentary: str, alt: str = "parkjunhyuk.xyz") -> dict:
+    """단일 이미지 + 글 게시."""
+    token = _linkedin_token()
+    author = _li_author(token)
+    urn = _li_upload("images", token, author, image_path)
+    return _li_post(token, author, commentary, {"media": {"id": urn, "altText": alt[:300]}})
+
+
+def post_linkedin_video(video_path: str, commentary: str, title: str = "parkjunhyuk.xyz") -> dict:
+    """동영상 게시 — 멀티파트 업로드(initialize→PUT parts→finalize)."""
+    token = _linkedin_token()
+    author = _li_author(token)
+    size = os.path.getsize(video_path)
+    init = requests.post(f"{LI_REST}/videos?action=initializeUpload",
+                         headers={**_li_headers(token), "Content-Type": "application/json"},
+                         json={"initializeUploadRequest": {"owner": author, "fileSizeBytes": size,
+                                                            "uploadCaptions": False, "uploadThumbnail": False}}, timeout=30)
+    if init.status_code >= 300:
+        raise RuntimeError(f"LinkedIn video init {init.status_code}: {init.text}")
+    val = init.json()["value"]
+    urn = val["video"]
+    with open(video_path, "rb") as fh:
+        data = fh.read()
+    etags = []
+    for ins in val["uploadInstructions"]:
+        part = data[ins["firstByte"]:ins["lastByte"] + 1]
+        put = requests.put(ins["uploadUrl"], data=part,
+                           headers={"Authorization": f"Bearer {token}"}, timeout=300)
+        if put.status_code >= 300:
+            raise RuntimeError(f"LinkedIn video upload {put.status_code}: {put.text}")
+        etags.append(put.headers.get("ETag"))
+    fin = requests.post(f"{LI_REST}/videos?action=finalizeUpload",
+                        headers={**_li_headers(token), "Content-Type": "application/json"},
+                        json={"finalizeUploadRequest": {"video": urn, "uploadToken": "", "uploadedPartIds": etags}}, timeout=60)
+    if fin.status_code >= 300:
+        raise RuntimeError(f"LinkedIn video finalize {fin.status_code}: {fin.text}")
+    return _li_post(token, author, commentary, {"media": {"id": urn, "title": title[:100]}})
 
 
 # ---------------------------------------------------------------- Facebook
