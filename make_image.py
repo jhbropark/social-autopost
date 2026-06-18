@@ -9,6 +9,7 @@
 브라우저/외부 폰트 없이 CI(Linux)에서 동작하도록 시스템 폰트를 자동 탐색한다.
 """
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 # Instagram 피드는 세로 4:5(1080x1350)까지 크롭 없이 표시한다.
@@ -95,6 +96,22 @@ def _wrap(draw, text, font, max_w):
         else:
             lo = mid + 1
     return best
+
+
+def _wrap_sentences(draw, text, font, max_w):
+    """본문용: 문장 종결부호(. ? !) 뒤에서 먼저 줄을 나눈 뒤 각 문장을 균형 래핑한다.
+    → 한 줄 중간에서 문장이 끝나고 다음 문장이 시작되는 어색함을 없앤다.
+    명시적 줄바꿈(\\n)도 문단 경계로 보존한다."""
+    out = []
+    for para in text.split("\n"):
+        para = para.strip()
+        if not para:
+            out.append("")
+            continue
+        for sent in re.split(r"(?<=[.?!])\s+", para):
+            if sent:
+                out.extend(_wrap(draw, sent, font, max_w))
+    return out
 
 
 def _vertical_gradient(top, bottom):

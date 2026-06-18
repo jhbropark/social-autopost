@@ -87,7 +87,7 @@ def render_point(data, point, n, total, path):
     for line in M._wrap(d, point["title"], f_title, W - PAD * 2):
         d.text((PAD, y), line, font=f_title, fill=M.FG); y += 72
     y += 16
-    for line in M._wrap(d, point["body"], f_body, W - PAD * 2):
+    for line in M._wrap_sentences(d, point["body"], f_body, W - PAD * 2):
         d.text((PAD, y), line, font=f_body, fill=M.HEAD_SOFT); y += 56
     _footer(d, data["caption"], f"{n} / {total}")
     img.save(path, "JPEG", quality=92)
@@ -102,7 +102,7 @@ def render_outro(data, path):
     f_cta = M._font(M.F_CJK_REG, 34)
     # 결론 문장 (세로 중앙부)
     y = 500
-    for line in M._wrap(d, data["outro_line"], f_line, W - PAD * 2):
+    for line in M._wrap_sentences(d, data["outro_line"], f_line, W - PAD * 2):
         d.text((PAD, y), line, font=f_line, fill=M.FG); y += 72
     # 워드마크 (크게)
     y += 60
