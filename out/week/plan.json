@@ -53,7 +53,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "0_월",
+    "_dir": "0_mon",
     "_date": "2026-06-15",
     "_weekday": "월"
   },
@@ -111,7 +111,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "1_화",
+    "_dir": "1_tue",
     "_date": "2026-06-16",
     "_weekday": "화"
   },
@@ -169,7 +169,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "2_수",
+    "_dir": "2_wed",
     "_date": "2026-06-17",
     "_weekday": "수"
   },
@@ -227,7 +227,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "3_목",
+    "_dir": "3_thu",
     "_date": "2026-06-18",
     "_weekday": "목"
   },
@@ -285,7 +285,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "4_금",
+    "_dir": "4_fri",
     "_date": "2026-06-19",
     "_weekday": "금"
   },
@@ -343,7 +343,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "5_토",
+    "_dir": "5_sat",
     "_date": "2026-06-20",
     "_weekday": "토"
   },
@@ -400,7 +400,7 @@
       "05_point.jpg",
       "06_outro.jpg"
     ],
-    "_dir": "6_일",
+    "_dir": "6_sun",
     "_date": "2026-06-21",
     "_weekday": "일"
   }
