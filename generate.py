@@ -42,8 +42,8 @@ def _today_kst():
     return datetime.datetime.utcnow() + datetime.timedelta(hours=9)
 
 
-def generate_posts() -> dict:
-    today = _today_kst()
+def generate_posts(target=None) -> dict:
+    today = target or _today_kst()
     weekday = today.weekday()
     theme = config.WEEKLY_THEMES[weekday]
     # 날짜 기반으로 기둥을 순환 선택 (요일마다 다른 기둥)
