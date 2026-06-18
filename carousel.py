@@ -131,6 +131,62 @@ def render_outro(data, path):
     return path
 
 
+def render_reel_overlay(data, w=1080, h=1920):
+    """릴스(9:16) 텍스트 오버레이(투명 PNG). 영상 위에 합성된다.
+    상/하단 어두운 스크림 + 워드마크 + 본문 블록 + 팔로우 CTA."""
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(img)
+    # 가독성 스크림: 상단 약하게(워드마크), 하단(텍스트 영역) 강하게
+    for y in range(h):
+        if y < h * 0.16:
+            a = int(150 * (1 - y / (h * 0.16)))
+        elif y > h * 0.46:
+            a = int(205 * ((y - h * 0.46) / (h * 0.54)))
+        else:
+            a = 0
+        sd.line([(0, y), (w, y)], fill=(8, 10, 13, min(210, a)))
+
+    d = ImageDraw.Draw(img)
+    PADr = 90
+    maxw = w - PADr * 2
+
+    f_mark = M._font(M.F_SERIF, 46)
+    mark = "parkjunhyuk.xyz"
+    d.text(((w - d.textlength(mark, font=f_mark)) / 2, 96), mark, font=f_mark, fill=M.FG)
+
+    badge = data.get("badge", "").upper()
+    bold, rest, keyword = data.get("cover_bold", ""), data.get("cover_rest", []), data.get("cover_keyword", "")
+    y_start, y_limit = 1010, 1640
+    for scale in (1.0, 0.92, 0.85, 0.78, 0.72):
+        f_badge = M._font(M.F_CJK_BOLD, 34)
+        f_bold = M._font(M.F_CJK_BOLD, int(84 * scale))
+        f_soft = M._font(M.F_CJK_REG, int(60 * scale))
+        f_key = M._font(M.F_CJK_BOLD, int(132 * scale))
+        lh_bold, lh_soft, lh_key = int(100 * scale), int(74 * scale), int(146 * scale)
+        bold_lines = M._wrap(d, bold, f_bold, maxw)
+        rest_lines = [ln for raw in rest for ln in M._wrap(d, raw, f_soft, maxw)]
+        key_lines = M._wrap(d, keyword, f_key, maxw)
+        asc, dsc = f_badge.getmetrics()
+        total = (asc + dsc + 28) + 32 + len(bold_lines) * lh_bold \
+            + len(rest_lines) * lh_soft + 16 + len(key_lines) * lh_key
+        if total <= y_limit - y_start:
+            break
+
+    y = M._pill(d, PADr, y_start, badge, f_badge) + 32
+    for line in bold_lines:
+        d.text((PADr, y), line, font=f_bold, fill=M.FG); y += lh_bold
+    for line in rest_lines:
+        d.text((PADr, y), line, font=f_soft, fill=M.HEAD_SOFT); y += lh_soft
+    y += 16
+    for line in key_lines:
+        d.text((PADr, y), line, font=f_key, fill=M.FG); y += lh_key
+
+    f_cta = M._font(M.F_CJK_BOLD, 40)
+    cta = "팔로우하고 더 보기  →  @parkjunhyukxyz"
+    d.text(((w - d.textlength(cta, font=f_cta)) / 2, 1740), cta, font=f_cta, fill=ACCENT)
+    return img
+
+
 def render_carousel(data, out_dir="out/carousel"):
     os.makedirs(out_dir, exist_ok=True)
     paths = []

@@ -192,3 +192,35 @@ def post_instagram(caption: str, image_urls) -> dict:
     if p.status_code >= 300:
         raise RuntimeError(f"IG publish {p.status_code}: {p.text}")
     return p.json()
+
+
+def post_reel(video_url: str, caption: str) -> dict:
+    """릴스(세로 영상) 게시. video_url 은 공개 접근 가능한 MP4.
+    영상은 처리에 시간이 걸리므로 컨테이너 status_code 를 길게 폴링한다."""
+    base, token, ig_id = _ig_endpoint()
+    c = requests.post(
+        f"{base}/{ig_id}/media",
+        data={
+            "media_type": "REELS",
+            "video_url": video_url,
+            "caption": caption,
+            "share_to_feed": "true",
+            "access_token": token,
+        },
+        timeout=60,
+    )
+    if c.status_code >= 300:
+        raise RuntimeError(f"IG reel create {c.status_code}: {c.text}")
+    creation_id = c.json()["id"]
+
+    # 영상 처리 대기(최대 ~6분)
+    _wait_until_ready(base, creation_id, token, attempts=60, delay=6)
+
+    p = requests.post(
+        f"{base}/{ig_id}/media_publish",
+        data={"creation_id": creation_id, "access_token": token},
+        timeout=60,
+    )
+    if p.status_code >= 300:
+        raise RuntimeError(f"IG reel publish {p.status_code}: {p.text}")
+    return p.json()

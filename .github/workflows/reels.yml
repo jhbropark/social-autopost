@@ -1,0 +1,44 @@
+name: Reel Preview (make only)
+
+# 스톡 영상 + 텍스트 오버레이로 9:16 릴스 MP4를 만들고 커밋만 한다(게시 없음).
+# 미리보기 확인용. 수동 실행 전용.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reels-post
+  cancel-in-progress: false
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Korean fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Make reel (stock video + overlay)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          REEL_SECONDS: "12"
+        run: python reels.py make
+
+      - name: Commit reel
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add out/reels
+          git commit -m "chore: reel preview $(date -u +%F)" || echo "nothing to commit"
+          git push

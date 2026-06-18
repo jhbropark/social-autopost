@@ -1,3 +1,7 @@
 anthropic>=0.40.0
 requests>=2.31.0
 pillow>=10.0.0
+# 릴스(영상) 합성용
+moviepy==1.0.3
+imageio-ffmpeg>=0.4.9
+numpy>=1.24
