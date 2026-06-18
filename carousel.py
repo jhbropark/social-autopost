@@ -45,24 +45,41 @@ def _wordmark(d):
     d.text((W - PAD - w, 60), mark, font=f, fill=M.FG)
 
 
-def render_cover(data, path):
-    img = M._top_panel(_base(), top_image=data.get("top_image"))
+def render_cover(data, path, seed=0):
+    hero = data.get("top_image") or M.render_hero(W, 560, seed)
+    img = M._top_panel(_base(), top_image=hero)
     d = ImageDraw.Draw(img)
     _wordmark(d)
-    f_badge = M._font(M.F_CJK_BOLD, 32)
-    f_bold = M._font(M.F_CJK_BOLD, 78)
-    f_soft = M._font(M.F_CJK_REG, 60)
-    f_key = M._font(M.F_CJK_BOLD, 124)
-    y = M._pill(d, PAD, 600, data["badge"].upper(), f_badge)
-    y += 34
-    for line in M._wrap(d, data["cover_bold"], f_bold, W - PAD * 2):
-        d.text((PAD, y), line, font=f_bold, fill=M.FG); y += 94
-    for raw in data.get("cover_rest", []):
-        for line in M._wrap(d, raw, f_soft, W - PAD * 2):
-            d.text((PAD, y), line, font=f_soft, fill=M.HEAD_SOFT); y += 74
+
+    badge = data["badge"].upper()
+    bold, rest, keyword = data["cover_bold"], data.get("cover_rest", []), data["cover_keyword"]
+    maxw = W - PAD * 2
+    y_start, y_limit = 600, H - PAD - 130     # 본문 영역(힌트/푸터 위 여백)
+
+    # 텍스트가 길면 폰트를 단계적으로 축소해 세로 영역을 넘지 않게 맞춘다(fit-to-box)
+    for scale in (1.0, 0.92, 0.85, 0.78, 0.72, 0.66):
+        f_badge = M._font(M.F_CJK_BOLD, 32)
+        f_bold = M._font(M.F_CJK_BOLD, int(78 * scale))
+        f_soft = M._font(M.F_CJK_REG, int(60 * scale))
+        f_key = M._font(M.F_CJK_BOLD, int(124 * scale))
+        lh_bold, lh_soft, lh_key = int(94 * scale), int(74 * scale), int(136 * scale)
+        bold_lines = M._wrap(d, bold, f_bold, maxw)
+        rest_lines = [ln for raw in rest for ln in M._wrap(d, raw, f_soft, maxw)]
+        key_lines = M._wrap(d, keyword, f_key, maxw)
+        asc, dsc = f_badge.getmetrics()
+        total = (asc + dsc + 28) + 34 + len(bold_lines) * lh_bold \
+            + len(rest_lines) * lh_soft + 16 + len(key_lines) * lh_key
+        if total <= y_limit - y_start:
+            break
+
+    y = M._pill(d, PAD, y_start, badge, f_badge) + 34
+    for line in bold_lines:
+        d.text((PAD, y), line, font=f_bold, fill=M.FG); y += lh_bold
+    for line in rest_lines:
+        d.text((PAD, y), line, font=f_soft, fill=M.HEAD_SOFT); y += lh_soft
     y += 16
-    for line in M._wrap(d, data["cover_keyword"], f_key, W - PAD * 2):
-        d.text((PAD, y), line, font=f_key, fill=M.FG); y += 136
+    for line in key_lines:
+        d.text((PAD, y), line, font=f_key, fill=M.FG); y += lh_key
     # 스와이프 힌트
     f_hint = M._font(M.F_CJK_BOLD, 30)
     hint = "밀어서 보기  →"
@@ -94,8 +111,8 @@ def render_point(data, point, n, total, path):
     return path
 
 
-def render_outro(data, path):
-    img = M._top_panel(_base(), panel_h=420)
+def render_outro(data, path, seed=0):
+    img = M._top_panel(_base(), top_image=M.render_hero(W, 420, seed + 7), panel_h=420)
     d = ImageDraw.Draw(img)
     f_line = M._font(M.F_CJK_BOLD, 56)
     f_mark = M._font(M.F_SERIF, 64)
@@ -118,10 +135,12 @@ def render_carousel(data, out_dir="out/carousel"):
     os.makedirs(out_dir, exist_ok=True)
     paths = []
     total = len(data["points"])
-    paths.append(render_cover(data, os.path.join(out_dir, "01_cover.jpg")))
+    # 주제별로 히어로 비주얼이 달라지도록 결정적 시드(badge+keyword 기반)
+    seed = sum(ord(c) for c in (data.get("badge", "") + data.get("cover_keyword", ""))) or 1
+    paths.append(render_cover(data, os.path.join(out_dir, "01_cover.jpg"), seed))
     for i, pt in enumerate(data["points"], 1):
         paths.append(render_point(data, pt, i, total, os.path.join(out_dir, f"{i+1:02d}_point.jpg")))
-    paths.append(render_outro(data, os.path.join(out_dir, f"{total+2:02d}_outro.jpg")))
+    paths.append(render_outro(data, os.path.join(out_dir, f"{total+2:02d}_outro.jpg"), seed))
     return paths
 
 

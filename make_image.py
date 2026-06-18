@@ -10,7 +10,9 @@
 """
 import os
 import re
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import math
+import random
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
 # Instagram 피드는 세로 4:5(1080x1350)까지 크롭 없이 표시한다.
 # 정사각형(1:1)으로 올리면 피드에서 좌우가 잘리므로 4:5로 렌더한다.
@@ -125,10 +127,68 @@ def _vertical_gradient(top, bottom):
     return base
 
 
+def render_hero(w, h, seed=0):
+    """주제별로 조금씩 다른 추상 비주얼을 생성한다(외부 의존 없음, CI에서도 동작).
+    구성: 어두운 그라데이션 + 블루 라디얼 글로우 + 공간 원근 격자 + 노드 네트워크.
+    3색 팔레트(#1A1D20/#F8F9FA/#4169E1) 계열로 통일."""
+    rnd = random.Random(seed)
+
+    # 베이스 세로 그라데이션
+    base = Image.new("RGB", (w, h), BG_TOP)
+    bd = ImageDraw.Draw(base)
+    for y in range(h):
+        t = y / max(1, h - 1)
+        bd.line([(0, y), (w, y)], fill=tuple(int(BG_TOP[i] + (BG_BOT[i] - BG_TOP[i]) * t) for i in range(3)))
+
+    cx = int(w * rnd.uniform(0.30, 0.70))
+    cy = int(h * rnd.uniform(0.18, 0.42))
+
+    # 블루 라디얼 글로우 (screen 합성)
+    glow = Image.new("RGB", (w, h), (0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    gd.ellipse([cx - w * 0.55, cy - h * 0.85, cx + w * 0.55, cy + h * 0.85], fill=(24, 38, 82))
+    gd.ellipse([cx - w * 0.30, cy - h * 0.45, cx + w * 0.30, cy + h * 0.45], fill=(46, 70, 148))
+    gd.ellipse([cx - w * 0.11, cy - h * 0.17, cx + w * 0.11, cy + h * 0.17], fill=(72, 102, 196))
+    base = ImageChops.screen(base, glow.filter(ImageFilter.GaussianBlur(80)))
+
+    # 공간 원근 격자(소실점으로 수렴) — 건축/공간 느낌
+    grid = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    g2 = ImageDraw.Draw(grid)
+    vp = (cx, int(h * 0.40))
+    for i in range(-12, 13):
+        g2.line([(w / 2 + i * (w / 10), h + 20), vp], fill=(82, 112, 200, 42), width=2)
+    for j in range(1, 10):
+        yy = vp[1] + (h - vp[1]) * (j / 10) ** 1.8
+        g2.line([(0, yy), (w, yy)], fill=(82, 112, 200, int(42 * j / 10)), width=2)
+    base = Image.alpha_composite(base.convert("RGBA"), grid)
+
+    # 노드 네트워크(AI/연결) — 상단부
+    net = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    n2 = ImageDraw.Draw(net)
+    pts = [(rnd.uniform(w * 0.05, w * 0.95), rnd.uniform(h * 0.05, h * 0.60)) for _ in range(rnd.randint(10, 14))]
+    for i, p in enumerate(pts):
+        for q in pts[i + 1:]:
+            dist = math.hypot(p[0] - q[0], p[1] - q[1])
+            if dist < w * 0.24:
+                n2.line([p, q], fill=(150, 175, 235, int(70 * (1 - dist / (w * 0.24)))), width=1)
+    for p in pts:
+        r = rnd.choice([2, 3, 3, 4])
+        n2.ellipse([p[0] - r * 3, p[1] - r * 3, p[0] + r * 3, p[1] + r * 3], fill=(120, 150, 230, 38))
+        n2.ellipse([p[0] - r, p[1] - r, p[0] + r, p[1] + r], fill=(226, 233, 248, 215))
+    base = Image.alpha_composite(base, net)
+
+    return base.convert("RGB")
+
+
 def _top_panel(img, top_image=None, panel_h=560):
-    """상단 패널: 사진이 있으면 채우고 아래로 어둡게 페이드, 없으면 은은한 글로우."""
-    if top_image and os.path.exists(top_image):
+    """상단 패널: 사진/생성이미지가 있으면 채우고 아래로 어둡게 페이드, 없으면 은은한 글로우.
+    top_image 는 파일 경로(str) 또는 PIL.Image 모두 허용."""
+    photo = None
+    if isinstance(top_image, Image.Image):
+        photo = top_image.convert("RGB")
+    elif isinstance(top_image, str) and os.path.exists(top_image):
         photo = Image.open(top_image).convert("RGB")
+    if photo is not None:
         # 가로 채움 크롭
         ratio = max(W / photo.width, panel_h / photo.height)
         photo = photo.resize((int(photo.width * ratio), int(photo.height * ratio)))
