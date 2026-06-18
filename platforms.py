@@ -10,6 +10,7 @@
   IMAGE_PUBLIC_URL         : 게시할 이미지의 공개 URL (Instagram 필수)
 """
 import os
+import time
 import requests
 
 GRAPH = "https://graph.facebook.com/v21.0"
@@ -63,7 +64,7 @@ def post_linkedin(text: str) -> dict:
         **h,
         "Content-Type": "application/json",
         "X-Restli-Protocol-Version": "2.0.0",
-        "LinkedIn-Version": "202401",
+        "LinkedIn-Version": "202601",
     }
     r = requests.post("https://api.linkedin.com/rest/posts", headers=headers, json=body, timeout=30)
     if r.status_code >= 300:
@@ -116,6 +117,26 @@ def _ig_endpoint():
     return GRAPH, fb_token, _ig_user_id(fb_token)
 
 
+def _wait_until_ready(base, container_id, token, attempts=15, delay=4):
+    """미디어 컨테이너가 게시 가능(FINISHED) 상태가 될 때까지 폴링.
+    IG는 컨테이너 생성이 비동기라, 생성 직후 media_publish 하면
+    'media is not ready'(9007/2207027) 오류가 난다."""
+    for _ in range(attempts):
+        r = requests.get(
+            f"{base}/{container_id}",
+            params={"fields": "status_code", "access_token": token},
+            timeout=30,
+        )
+        if r.status_code < 300:
+            status = r.json().get("status_code")
+            if status == "FINISHED":
+                return
+            if status == "ERROR":
+                raise RuntimeError(f"IG container 처리 실패: {r.text}")
+        time.sleep(delay)
+    # 폴링이 끝나도 FINISHED를 못 봤으면 일단 진행(아래 publish에서 최종 판정)
+
+
 def post_instagram(caption: str, image_urls) -> dict:
     """image_urls: 단일 URL(str) 또는 캐러셀용 URL 리스트(2~10장)."""
     base, token, ig_id = _ig_endpoint()
@@ -158,6 +179,9 @@ def post_instagram(caption: str, image_urls) -> dict:
         if c.status_code >= 300:
             raise RuntimeError(f"IG carousel container {c.status_code}: {c.text}")
         creation_id = c.json()["id"]
+
+    # 컨테이너가 게시 가능 상태가 될 때까지 대기 (비동기 처리 완료 보장)
+    _wait_until_ready(base, creation_id, token)
 
     # 게시
     p = requests.post(
