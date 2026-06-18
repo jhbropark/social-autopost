@@ -16,7 +16,7 @@ import carousel
 import platforms
 
 
-def _commentary(target, fallback):
+def _plan_entry(target):
     plan_path = "out/week/plan.json"
     if os.path.exists(plan_path):
         with open(plan_path, encoding="utf-8") as f:
@@ -24,7 +24,14 @@ def _commentary(target, fallback):
         name = os.path.basename(target.rstrip("/"))
         for p in plan:
             if p.get("_dir") == name:
-                return p.get("linkedin", {}).get("text", fallback), p.get("topic", "parkjunhyuk.xyz")
+                return p
+    return None
+
+
+def _commentary(target, fallback):
+    entry = _plan_entry(target)
+    if entry:
+        return entry.get("linkedin", {}).get("text", fallback), entry.get("topic", "parkjunhyuk.xyz")
     return fallback, "parkjunhyuk.xyz"
 
 
@@ -38,8 +45,13 @@ def main():
         slides = sorted(glob.glob(os.path.join(target, "[0-9]*.jpg")))
         if not slides:
             print("슬라이드 없음:", target); sys.exit(1)
+        # 표지를 뉴스카드형으로 교체(plan 데이터 있으면)
+        entry = _plan_entry(target)
+        if entry and entry.get("carousel"):
+            li_cover = carousel.render_li_cover(entry["carousel"], os.path.join(target, "li_cover.jpg"))
+            slides = [li_cover] + slides[1:]
         pdf = carousel.slides_to_pdf(slides, os.path.join(target, "carousel.pdf"))
-        print(f"📄 {len(slides)}장 → PDF 캐러셀 게시")
+        print(f"📄 {len(slides)}장 → PDF 캐러셀(뉴스카드) 게시")
         print("✅ doc:", platforms.post_linkedin_document(pdf, text, title=topic))
     elif cmd == "image":
         img = os.environ.get("LI_FILE", os.path.join(target, "01_cover.jpg"))

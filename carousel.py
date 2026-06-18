@@ -21,6 +21,7 @@ W = M.W  # 1080 (가로)
 H = M.H  # 1350 (세로, 4:5)
 ACCENT = (65, 105, 225)   # #4169E1 — 유일한 액센트(번호·구분선·힌트·워드마크)
 PAD = 88
+LI_SIGNATURE = "Junhyuk Park · parkjunhyuk.xyz   (SEOUL)"   # 링크드인 뉴스카드 서명
 
 
 def _base():
@@ -185,6 +186,75 @@ def render_reel_overlay(data, w=1080, h=1920):
     cta = "팔로우하고 더 보기  →  @parkjunhyukxyz"
     d.text(((w - d.textlength(cta, font=f_cta)) / 2, 1740), cta, font=f_cta, fill=ACCENT)
     return img
+
+
+def render_li_cover(data, path, w=1080, h=1350):
+    """링크드인 뉴스카드형 표지: NEWS 배지 + 좌측 큰 제목(키워드 액센트) + 우측 팩트 패널 + 서명.
+    (차우진 엔터문화연구소 피드 포맷 참고)"""
+    img = M._vertical_gradient(M.BG_TOP, M.BG_BOT)
+    top = data.get("top_image")
+    if isinstance(top, str) and os.path.exists(top):
+        photo = Image.open(top).convert("RGB")
+        ratio = max(w / photo.width, h / photo.height)
+        photo = photo.resize((int(photo.width * ratio), int(photo.height * ratio))).crop((0, 0, w, h))
+        img = Image.blend(img, photo, 0.30)                                   # 사진 은은하게
+        img = Image.blend(img, Image.new("RGB", (w, h), (8, 10, 13)), 0.48)   # 전체 어둡게
+    d = ImageDraw.Draw(img)
+    P = 72
+
+    # NEWS 배지(좌상단)
+    M._pill(d, P, 84, "NEWS", M._font(M.F_CJK_BOLD, 30))
+
+    # 우측 팩트 패널 (포인트 3개 요약)
+    f_pt = M._font(M.F_CJK_BOLD, 30)
+    f_pb = M._font(M.F_CJK_REG, 26)
+    px = 616
+    pw = w - P - px
+    py = 168
+    for pt in data.get("points", [])[:3]:
+        t_lines = M._wrap(d, pt.get("title", ""), f_pt, pw - 48)[:2]
+        b_lines = M._wrap(d, pt.get("body", ""), f_pb, pw - 48)[:2]
+        ph = 28 + len(t_lines) * 38 + 8 + len(b_lines) * 34 + 28
+        d.rounded_rectangle([px, py, px + pw, py + ph], radius=18, fill=(19, 22, 26))
+        yy = py + 28
+        for ln in t_lines:
+            d.text((px + 24, yy), ln, font=f_pt, fill=M.FG); yy += 38
+        yy += 8
+        for ln in b_lines:
+            d.text((px + 24, yy), ln, font=f_pb, fill=M.HEAD_SOFT); yy += 34
+        py += ph + 22
+
+    # 좌측 제목(하단 정렬): 볼드 + 키워드(액센트)
+    f_bold = M._font(M.F_CJK_BOLD, 64)
+    f_key = M._font(M.F_CJK_BOLD, 86)
+    lw = px - P - 28
+    bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, lw)
+    key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, lw)
+    total = len(bold_lines) * 78 + 16 + len(key_lines) * 98
+    y = h - 156 - total
+    for ln in bold_lines:
+        d.text((P, y), ln, font=f_bold, fill=M.FG); y += 78
+    y += 16
+    for ln in key_lines:
+        d.text((P, y), ln, font=f_key, fill=ACCENT); y += 98
+
+    # 서명 푸터
+    d.line([(P, h - 100), (w - P, h - 100)], fill=M.DIVIDER, width=1)
+    d.text((P, h - 82), LI_SIGNATURE, font=M._font(M.F_CJK_REG, 24), fill=M.CAPTION)
+
+    img.save(path, "JPEG", quality=92)
+    return path
+
+
+def render_li_carousel(data, out_dir):
+    """링크드인용 캐러셀: 뉴스카드 표지 + 포인트 슬라이드 + 아웃트로."""
+    os.makedirs(out_dir, exist_ok=True)
+    total = len(data["points"])
+    paths = [render_li_cover(data, os.path.join(out_dir, "01_cover.jpg"))]
+    for i, pt in enumerate(data["points"], 1):
+        paths.append(render_point(data, pt, i, total, os.path.join(out_dir, f"{i+1:02d}_point.jpg")))
+    paths.append(render_outro(data, os.path.join(out_dir, f"{total+2:02d}_outro.jpg")))
+    return paths
 
 
 def slides_to_pdf(slide_paths, out_pdf):

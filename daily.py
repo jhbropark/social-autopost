@@ -122,12 +122,12 @@ def do_publish():
         print(f"\n=== LinkedIn: {data.get('topic')} ===")
         li_text = data.get("linkedin", {}).get("text", "")
         try:
-            # 캐러셀이면 PDF 문서(캐러셀)로 게시(도달 최상), 아니면 텍스트
+            # 캐러셀이면 PDF 문서(뉴스카드 표지)로 게시(도달 최상), 아니면 텍스트
             if data.get("_type") == "carousel" and data.get("_slides"):
                 day_dir = os.path.join(OUT_DIR, data["_dir"])
-                pdf = carousel.slides_to_pdf(
-                    [os.path.join(day_dir, s) for s in data["_slides"]],
-                    os.path.join(day_dir, "carousel.pdf"))
+                li_cover = carousel.render_li_cover(data["carousel"], os.path.join(day_dir, "li_cover.jpg"))
+                pdf_slides = [li_cover] + [os.path.join(day_dir, s) for s in data["_slides"][1:]]
+                pdf = carousel.slides_to_pdf(pdf_slides, os.path.join(day_dir, "carousel.pdf"))
                 print("✅ linkedin(doc):", platforms.post_linkedin_document(pdf, li_text, title=data.get("topic", "parkjunhyuk.xyz")))
             else:
                 print("✅ linkedin:", platforms.post_linkedin(li_text))
