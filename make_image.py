@@ -56,20 +56,45 @@ def _font(cands, size):
     return ImageFont.load_default()
 
 
-def _wrap(draw, text, font, max_w):
+def _greedy_wrap(draw, text, font, max_w):
+    """한 줄을 max_w까지 꽉 채우는 단순 그리디 줄바꿈."""
     out = []
     for para in text.split("\n"):
-        words, cur = para.split(" "), ""
-        for w in words:
+        cur = ""
+        for w in para.split(" "):
             t = (cur + " " + w).strip()
-            if draw.textlength(t, font=font) <= max_w:
+            if not cur or draw.textlength(t, font=font) <= max_w:
                 cur = t
             else:
-                if cur:
-                    out.append(cur)
+                out.append(cur)
                 cur = w
         out.append(cur)
     return out
+
+
+def _wrap(draw, text, font, max_w):
+    """줄을 균형 있게 나눈다. 그리디로 필요한 줄 수 n을 구한 뒤,
+    n줄을 유지하는 한도에서 폭을 좁혀 줄 길이를 고르게 만든다.
+    → 마지막 줄에 짧은 단어만 외톨이로 남거나 조사가 어색하게 끊기는 것을 줄인다.
+    단, 명시적 줄바꿈(\\n)이 있으면 그 문단 구분은 보존한다."""
+    if "\n" in text:
+        out = []
+        for para in text.split("\n"):
+            out.extend(_wrap(draw, para, font, max_w) if para else [""])
+        return out
+    base = _greedy_wrap(draw, text, font, max_w)
+    n = len(base)
+    if n <= 1:
+        return base
+    lo, hi, best = 1, max_w, base
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        cand = _greedy_wrap(draw, text, font, mid)
+        if len(cand) <= n:
+            best, hi = cand, mid - 1
+        else:
+            lo = mid + 1
+    return best
 
 
 def _vertical_gradient(top, bottom):

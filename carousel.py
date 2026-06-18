@@ -128,12 +128,12 @@ def render_carousel(data, out_dir="out/carousel"):
 if __name__ == "__main__":
     sample = {
         "badge": "AI Creative",
-        "cover_bold": "AI 결과물이 다른 이유",
-        "cover_rest": ["잘 쓰는 사람은 순서부터 짠다"],
-        "cover_keyword": "설계가 먼저",
+        "cover_bold": "공간에서 배운 AI 작업법",
+        "cover_rest": ["흐름을 설계하는 사람이 결과도 다르다"],
+        "cover_keyword": "흐름 설계",
         "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
         "points": [
-            {"title": "진입 동선의 첫 30초", "body": "입구에서 전체를 다 보여주면 호기심이 소진된다. 일부만 보여주고 나머지를 감춰라."},
+            {"title": "목적을 하나로 좁히기", "body": "의도가 여러 개면 결과가 흐릿해진다. 시작 전에 이 작업이 무엇을 위한 것인지 하나만 정한다."},
             {"title": "질문의 연속성", "body": "각 장면은 다음 장면에 대한 궁금증을 남겨야 한다. '멋진 장면의 나열'이 아니라 '질문의 사슬'."},
             {"title": "멈춤의 지점", "body": "모든 구간이 강할 필요는 없다. 의도된 여백이 있어야 클라이맥스가 작동한다."},
             {"title": "떠날 명분 vs 머물 명분", "body": "출구가 너무 명확하면 효율적으로 떠난다. 마지막에 한 번 더 돌아보게 하라."},
