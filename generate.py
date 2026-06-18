@@ -42,13 +42,14 @@ def _today_kst():
     return datetime.datetime.utcnow() + datetime.timedelta(hours=9)
 
 
-def generate_posts(target=None) -> dict:
+def generate_posts(target=None, variant=0) -> dict:
     today = target or _today_kst()
     weekday = today.weekday()
     theme = config.WEEKLY_THEMES[weekday]
-    # 날짜 기반으로 기둥을 순환 선택 (요일마다 다른 기둥)
-    pillar = config.CONTENT_PILLARS[today.timetuple().tm_yday % len(config.CONTENT_PILLARS)]
-    series = config.IG_SERIES[today.timetuple().tm_yday % len(config.IG_SERIES)]
+    # 날짜 기반 순환 + variant 오프셋 (같은 날 여러 개 만들 때 기둥/시리즈를 다르게)
+    base = today.timetuple().tm_yday + variant
+    pillar = config.CONTENT_PILLARS[base % len(config.CONTENT_PILLARS)]
+    series = config.IG_SERIES[base % len(config.IG_SERIES)]
 
     roles = config.PLATFORM_ROLES
     system = (

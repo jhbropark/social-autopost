@@ -29,24 +29,28 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Generate content + image
+      - name: Generate content + images (IG 3 / LinkedIn 1)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-        run: python main.py generate
+          IG_POSTS_PER_DAY: "3"
+          LINKEDIN_POSTS_PER_DAY: "1"
+        run: python daily.py generate
 
       - name: Commit slides (make them publicly fetchable for Instagram)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add out/carousel out/posts.json
-          git commit -m "chore: daily carousel $(date -u +%F)" || echo "nothing to commit"
+          git add out/daily
+          git commit -m "chore: daily posts $(date -u +%F)" || echo "nothing to commit"
           git push
 
-      - name: Publish to all platforms
+      - name: Publish (IG 3 / LinkedIn 1)
         env:
-          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/carousel"
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/daily"
           CACHE_BUST: ${{ github.run_id }}
+          IG_POSTS_PER_DAY: "3"
+          LINKEDIN_POSTS_PER_DAY: "1"
           # 자동 갱신(권장): refresh_token + client 자격증명
           LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
@@ -60,4 +64,4 @@ jobs:
           # Facebook 페이지 게시 + (IG 폴백 경로)
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-        run: python main.py publish
+        run: python daily.py publish
