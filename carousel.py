@@ -50,20 +50,20 @@ def render_cover(data, path):
     img = M._top_panel(_base(), top_image=data.get("top_image"))
     d = ImageDraw.Draw(img)
     _wordmark(d)
-    f_badge = M._font(M.F_CJK_BOLD, 24)
-    f_bold = M._font(M.F_CJK_BOLD, 60)
-    f_soft = M._font(M.F_CJK_REG, 52)
-    f_key = M._font(M.F_CJK_BOLD, 96)
-    y = M._pill(d, PAD, 660, data["badge"].upper(), f_badge)
-    y += 30
+    f_badge = M._font(M.F_CJK_BOLD, 32)
+    f_bold = M._font(M.F_CJK_BOLD, 78)
+    f_soft = M._font(M.F_CJK_REG, 60)
+    f_key = M._font(M.F_CJK_BOLD, 124)
+    y = M._pill(d, PAD, 600, data["badge"].upper(), f_badge)
+    y += 34
     for line in M._wrap(d, data["cover_bold"], f_bold, W - PAD * 2):
-        d.text((PAD, y), line, font=f_bold, fill=M.FG); y += 74
+        d.text((PAD, y), line, font=f_bold, fill=M.FG); y += 94
     for raw in data.get("cover_rest", []):
         for line in M._wrap(d, raw, f_soft, W - PAD * 2):
-            d.text((PAD, y), line, font=f_soft, fill=M.HEAD_SOFT); y += 64
-    y += 10
+            d.text((PAD, y), line, font=f_soft, fill=M.HEAD_SOFT); y += 74
+    y += 16
     for line in M._wrap(d, data["cover_keyword"], f_key, W - PAD * 2):
-        d.text((PAD, y), line, font=f_key, fill=M.FG); y += 104
+        d.text((PAD, y), line, font=f_key, fill=M.FG); y += 136
     # 스와이프 힌트
     f_hint = M._font(M.F_CJK_BOLD, 30)
     hint = "밀어서 보기  →"
@@ -128,10 +128,10 @@ def render_carousel(data, out_dir="out/carousel"):
 
 if __name__ == "__main__":
     sample = {
-        "badge": "Space Note",
-        "cover_bold": "관람객을 30분",
-        "cover_rest": ["머물게 하는"],
-        "cover_keyword": "4가지 레버",
+        "badge": "AI Creative",
+        "cover_bold": "AI 결과물이 다른 이유",
+        "cover_rest": ["잘 쓰는 사람은 순서부터 짠다"],
+        "cover_keyword": "설계가 먼저",
         "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
         "points": [
             {"title": "진입 동선의 첫 30초", "body": "입구에서 전체를 다 보여주면 호기심이 소진된다. 일부만 보여주고 나머지를 감춰라."},
