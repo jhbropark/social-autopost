@@ -19,8 +19,7 @@ import make_image as M
 
 W = M.W  # 1080 (가로)
 H = M.H  # 1350 (세로, 4:5)
-AMBER = (231, 168, 90)
-TEAL = (127, 208, 207)
+ACCENT = (65, 105, 225)   # #4169E1 — 유일한 액센트(번호·구분선·힌트·워드마크)
 PAD = 88
 
 
@@ -68,7 +67,7 @@ def render_cover(data, path):
     f_hint = M._font(M.F_CJK_BOLD, 30)
     hint = "밀어서 보기  →"
     hw = d.textlength(hint, font=f_hint)
-    d.text((W - PAD - hw, H - PAD - 70), hint, font=f_hint, fill=TEAL)
+    d.text((W - PAD - hw, H - PAD - 70), hint, font=f_hint, fill=ACCENT)
     _footer(d, data["caption"], "01")
     img.save(path, "JPEG", quality=92)
     return path
@@ -81,9 +80,9 @@ def render_point(data, point, n, total, path):
     f_title = M._font(M.F_CJK_BOLD, 58)
     f_body = M._font(M.F_CJK_REG, 40)
     # 큰 번호
-    d.text((PAD, 250), f"{n:02d}", font=f_num, fill=AMBER)
+    d.text((PAD, 250), f"{n:02d}", font=f_num, fill=ACCENT)
     # 얇은 구분선
-    d.line([(PAD, 460), (PAD + 120, 460)], fill=TEAL, width=4)
+    d.line([(PAD, 460), (PAD + 120, 460)], fill=ACCENT, width=4)
     y = 540
     for line in M._wrap(d, point["title"], f_title, W - PAD * 2):
         d.text((PAD, y), line, font=f_title, fill=M.FG); y += 72
@@ -107,7 +106,7 @@ def render_outro(data, path):
         d.text((PAD, y), line, font=f_line, fill=M.FG); y += 72
     # 워드마크 (크게)
     y += 60
-    d.text((PAD, y), "parkjunhyuk.xyz", font=f_mark, fill=AMBER)
+    d.text((PAD, y), "parkjunhyuk.xyz", font=f_mark, fill=ACCENT)
     y += 100
     d.text((PAD, y), "저장 · 공유하고, 팔로우하세요", font=f_cta, fill=M.HEAD_SOFT)
     _footer(d, data["caption"], "FIN")

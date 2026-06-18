@@ -15,15 +15,15 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 # 정사각형(1:1)으로 올리면 피드에서 좌우가 잘리므로 4:5로 렌더한다.
 W, H = 1080, 1350
 
-# 팔레트
-BG_TOP = (26, 28, 30)
-BG_BOT = (13, 14, 15)
-PILL = (111, 143, 134)        # muted sage green
-PILL_TX = (242, 246, 244)
-FG = (245, 245, 243)
-HEAD_SOFT = (223, 224, 222)   # 보조 헤드라인(라이트)
-CAPTION = (143, 146, 144)
-DIVIDER = (58, 61, 63)
+# 팔레트 — 3색 시스템 (#1A1D20 / #F8F9FA / #4169E1)
+BG_TOP = (26, 29, 32)         # #1A1D20 (배경)
+BG_BOT = (15, 17, 20)         # 같은 계열 더 어둡게(그라데이션 깊이용)
+PILL = (65, 105, 225)         # #4169E1 (액센트) — 배지 배경
+PILL_TX = (248, 249, 250)     # #F8F9FA
+FG = (248, 249, 250)          # #F8F9FA (본문 텍스트)
+HEAD_SOFT = (186, 190, 198)   # 흰색 계열 톤다운(보조 텍스트)
+CAPTION = (118, 123, 130)     # 더 톤다운(푸터 캡션)
+DIVIDER = (44, 48, 54)        # 어두운 계열 구분선
 
 # ---- 폰트 후보 (CI Linux: fonts-noto-cjk / Windows: malgun, georgia) ----
 F_CJK_BOLD = [
@@ -102,8 +102,8 @@ def _top_panel(img, top_image=None, panel_h=560):
     else:
         glow = Image.new("RGB", (W, H), BG_TOP)
         gd = ImageDraw.Draw(glow)
-        gd.ellipse([W * 0.30, -H * 0.18, W * 1.05, panel_h * 0.95], fill=(46, 52, 54))
-        gd.ellipse([W * 0.52, -H * 0.05, W * 1.15, panel_h * 0.7], fill=(70, 84, 80))
+        gd.ellipse([W * 0.30, -H * 0.18, W * 1.05, panel_h * 0.95], fill=(32, 38, 52))
+        gd.ellipse([W * 0.52, -H * 0.05, W * 1.15, panel_h * 0.7], fill=(44, 56, 92))
         glow = glow.filter(ImageFilter.GaussianBlur(110))
         img.paste(Image.composite(glow, img, Image.new("L", (W, H), 150)), (0, 0))
     return img
