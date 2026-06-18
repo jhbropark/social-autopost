@@ -112,7 +112,7 @@ def generate_posts(target=None, variant=0) -> dict:
     for attempt in range(3):
         resp = client.messages.create(
             model=config.CLAUDE_MODEL,
-            max_tokens=2000,
+            max_tokens=4000,
             system=system,
             messages=[{"role": "user", "content": user}],
         )
