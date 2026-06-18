@@ -102,17 +102,30 @@ def _ig_user_id(token: str) -> str:
     return acc["id"]
 
 
+IG_GRAPH = "https://graph.instagram.com/v21.0"
+
+
+def _ig_endpoint():
+    """게시에 사용할 (base_url, token, ig_user_id) 결정.
+    INSTAGRAM_ACCESS_TOKEN 이 있으면 Instagram 로그인 API(graph.instagram.com)를 쓴다
+    — FB 페이지·비즈니스 불필요. 없으면 FB 페이지 토큰(graph.facebook.com)으로 폴백."""
+    ig_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
+    if ig_token:
+        return IG_GRAPH, ig_token, os.environ["IG_USER_ID"]
+    fb_token = os.environ["FB_PAGE_ACCESS_TOKEN"]
+    return GRAPH, fb_token, _ig_user_id(fb_token)
+
+
 def post_instagram(caption: str, image_urls) -> dict:
     """image_urls: 단일 URL(str) 또는 캐러셀용 URL 리스트(2~10장)."""
-    token = os.environ["FB_PAGE_ACCESS_TOKEN"]
-    ig_id = _ig_user_id(token)
+    base, token, ig_id = _ig_endpoint()
     if isinstance(image_urls, str):
         image_urls = [image_urls]
 
     # 단일 이미지
     if len(image_urls) == 1:
         c = requests.post(
-            f"{GRAPH}/{ig_id}/media",
+            f"{base}/{ig_id}/media",
             data={"image_url": image_urls[0], "caption": caption, "access_token": token},
             timeout=60,
         )
@@ -124,7 +137,7 @@ def post_instagram(caption: str, image_urls) -> dict:
         child_ids = []
         for url in image_urls:
             ch = requests.post(
-                f"{GRAPH}/{ig_id}/media",
+                f"{base}/{ig_id}/media",
                 data={"image_url": url, "is_carousel_item": "true", "access_token": token},
                 timeout=60,
             )
@@ -133,7 +146,7 @@ def post_instagram(caption: str, image_urls) -> dict:
             child_ids.append(ch.json()["id"])
         # 2) 캐러셀 컨테이너 생성
         c = requests.post(
-            f"{GRAPH}/{ig_id}/media",
+            f"{base}/{ig_id}/media",
             data={
                 "media_type": "CAROUSEL",
                 "children": ",".join(child_ids),
@@ -148,7 +161,7 @@ def post_instagram(caption: str, image_urls) -> dict:
 
     # 게시
     p = requests.post(
-        f"{GRAPH}/{ig_id}/media_publish",
+        f"{base}/{ig_id}/media_publish",
         data={"creation_id": creation_id, "access_token": token},
         timeout=60,
     )

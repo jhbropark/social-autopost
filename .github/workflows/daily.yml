@@ -52,7 +52,11 @@ jobs:
           LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
           # 폴백(수동 60일 토큰) — 위 3개가 없을 때만 사용
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          # Instagram: INSTAGRAM_ACCESS_TOKEN(Instagram 로그인, 권장)이 있으면 그걸로 게시,
+          # 없으면 FB 페이지 토큰으로 폴백. 두 경우 모두 IG_USER_ID 필요.
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          # Facebook 페이지 게시 + (IG 폴백 경로)
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: python main.py publish
