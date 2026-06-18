@@ -13,11 +13,28 @@ Claude API로 '오늘의 게시물 3종'을 생성한다.
 }
 """
 import os
+import re
 import json
 import datetime
 import anthropic
 
 import config
+
+
+def _parse_json(text: str) -> dict:
+    """모델 응답에서 JSON을 견고하게 추출. 코드펜스/바깥 텍스트/후행 콤마를 정리."""
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("```")[1]
+        if text.lower().startswith("json"):
+            text = text[4:]
+    # 첫 '{' ~ 마지막 '}' 만 취해 본문 바깥 잡텍스트 제거
+    s, e = text.find("{"), text.rfind("}")
+    if s != -1 and e != -1:
+        text = text[s:e + 1]
+    # 흔한 모델 실수: } 또는 ] 앞 후행 콤마 제거
+    text = re.sub(r",(\s*[}\]])", r"\1", text)
+    return json.loads(text)
 
 
 def _today_kst():
@@ -81,21 +98,25 @@ def generate_posts() -> dict:
 }}"""
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    resp = client.messages.create(
-        model=config.CLAUDE_MODEL,
-        max_tokens=2000,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-    )
-    text = resp.content[0].text.strip()
-    # 혹시 코드펜스로 감싸 오면 제거
-    if text.startswith("```"):
-        text = text.split("```")[1]
-        if text.startswith("json"):
-            text = text[4:]
-    data = json.loads(text)
-    data["topic_meta"] = {"theme": theme, "pillar": pillar, "date": today.strftime("%Y-%m-%d")}
-    return data
+    last_err = None
+    for attempt in range(3):
+        resp = client.messages.create(
+            model=config.CLAUDE_MODEL,
+            max_tokens=2000,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        )
+        try:
+            data = _parse_json(resp.content[0].text)
+            # 필수 키 검증
+            data["carousel"]["cover_keyword"]
+            data["instagram"]["caption"]
+            data["topic_meta"] = {"theme": theme, "pillar": pillar, "date": today.strftime("%Y-%m-%d")}
+            return data
+        except (json.JSONDecodeError, KeyError, TypeError) as e:
+            last_err = e
+            print(f"⚠️ 생성 결과 파싱 실패 (시도 {attempt + 1}/3): {e}")
+    raise RuntimeError(f"콘텐츠 생성 3회 모두 실패: {last_err}")
 
 
 if __name__ == "__main__":
