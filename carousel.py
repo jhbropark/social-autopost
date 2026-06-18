@@ -187,6 +187,72 @@ def render_reel_overlay(data, w=1080, h=1920):
     return img
 
 
+def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
+    """릴스 비트(장면)별 텍스트 카드(투명 PNG). 중앙 정렬 + 안전영역(상15%/하20%) 준수.
+    kind: 'hook' | 'point' | 'cta'."""
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(img)
+    for y in range(h):                       # 가독성 스크림(중앙 강조 + 상단 워드마크)
+        a = 60
+        if 560 < y < 1400:
+            a = 125
+        if y < 280:
+            a = max(a, int(155 * (1 - y / 280)))
+        sd.line([(0, y), (w, y)], fill=(8, 10, 13, a))
+    d = ImageDraw.Draw(img)
+    PADc = 80
+    maxw = w - PADc * 2
+
+    def center(txt, font, y, fill):
+        d.text(((w - d.textlength(txt, font=font)) / 2, y), txt, font=font, fill=fill)
+
+    def center_block(lines, font, y, fill, lh):
+        for ln in lines:
+            center(ln, font, y, fill); y += lh
+        return y
+
+    center("parkjunhyuk.xyz", M._font(M.F_SERIF, 42), 150, M.FG)
+
+    if kind == "hook":
+        f_badge = M._font(M.F_CJK_BOLD, 34)
+        f_bold = M._font(M.F_CJK_BOLD, 80)
+        f_key = M._font(M.F_CJK_BOLD, 148)
+        bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, maxw)
+        key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, maxw)
+        asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 28
+        total = bh + 30 + len(bold_lines) * 96 + 24 + len(key_lines) * 158
+        y = int(h * 0.52 - total / 2)
+        badge = data.get("badge", "").upper()
+        bw = d.textlength(badge, font=f_badge) + 56
+        M._pill(d, (w - bw) / 2, y, badge, f_badge); y += bh + 30
+        y = center_block(bold_lines, f_bold, y, M.HEAD_SOFT, 96) + 24
+        center_block(key_lines, f_key, y, M.FG, 158)
+
+    elif kind == "point":
+        f_num = M._font(M.F_CJK_BOLD, 110)
+        f_title = M._font(M.F_CJK_BOLD, 78)
+        f_body = M._font(M.F_CJK_REG, 50)
+        title_lines = M._wrap(d, title or "", f_title, maxw)
+        body_lines = M._wrap_sentences(d, body or "", f_body, maxw)
+        total = 130 + 30 + len(title_lines) * 92 + 18 + len(body_lines) * 66
+        y = int(h * 0.52 - total / 2)
+        center(f"{n:02d}", f_num, y, ACCENT); y += 130 + 30
+        y = center_block(title_lines, f_title, y, M.FG, 92) + 18
+        center_block(body_lines, f_body, y, M.HEAD_SOFT, 66)
+
+    else:  # cta
+        f_key = M._font(M.F_CJK_BOLD, 132)
+        f_cta = M._font(M.F_CJK_BOLD, 46)
+        key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, maxw)
+        total = len(key_lines) * 146 + 60 + 60
+        y = int(h * 0.50 - total / 2)
+        y = center_block(key_lines, f_key, y, M.FG, 146) + 60
+        center("팔로우하고 더 보기", f_cta, y, M.HEAD_SOFT); y += 64
+        center("@parkjunhyukxyz", f_cta, y, ACCENT)
+
+    return img
+
+
 def render_carousel(data, out_dir="out/carousel"):
     os.makedirs(out_dir, exist_ok=True)
     paths = []

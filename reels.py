@@ -32,53 +32,93 @@ def _today_kst():
     return datetime.datetime.utcnow() + datetime.timedelta(hours=9)
 
 
-def _make_video(src, overlay_png, out_path):
+TW, TH = 1080, 1920
+
+
+def _fill_vertical(clip):
+    """영상을 1080x1920로 채우고 중앙 크롭."""
+    clip = clip.resize(max(TW / clip.w, TH / clip.h))
+    return clip.crop(x1=(clip.w - TW) / 2, y1=(clip.h - TH) / 2, width=TW, height=TH)
+
+
+def _make_video_v2(srcs, beats, out_path):
+    """srcs: 스톡영상 경로 리스트, beats: [(overlay_png, seconds), ...].
+    배경은 여러 클립을 ~5초씩 컷으로 이어 길이를 채우고 어둡게. 그 위에 비트별 텍스트를 페이드로 올린다."""
     import moviepy.editor as mpe
 
-    tw, th = 1080, 1920
-    clip = mpe.VideoFileClip(src).without_audio()
-    clip = clip.resize(max(tw / clip.w, th / clip.h))            # 9:16 채움
-    x1, y1 = (clip.w - tw) / 2, (clip.h - th) / 2
-    clip = clip.crop(x1=x1, y1=y1, width=tw, height=th)          # 중앙 크롭
-    if clip.duration < DUR:
-        clip = clip.fx(mpe.vfx.loop, duration=DUR)
-    else:
-        clip = clip.subclip(0, DUR)
-    clip = clip.fx(mpe.vfx.colorx, 0.6)                           # 어둡게(텍스트 가독성)
+    total = sum(d for _, d in beats)
+    parts, filled, i = [], 0.0, 0
+    while filled < total and i < 12:
+        src = srcs[i % len(srcs)]
+        c = _fill_vertical(mpe.VideoFileClip(src).without_audio())
+        seg = min(5.0, c.duration, total - filled)
+        if seg <= 0.2:
+            i += 1
+            continue
+        parts.append(c.subclip(0, seg))
+        filled += seg
+        i += 1
+    bg = mpe.concatenate_videoclips(parts, method="compose").subclip(0, total)
+    bg = bg.fx(mpe.vfx.colorx, 0.55)
 
-    overlay = mpe.ImageClip(overlay_png).set_duration(DUR)
-    final = mpe.CompositeVideoClip([clip, overlay], size=(tw, th)).set_duration(DUR)
+    overlays, t = [], 0.0
+    for png, dur in beats:
+        overlays.append(mpe.ImageClip(png).set_start(t).set_duration(dur).crossfadein(0.4))
+        t += dur
+
+    final = mpe.CompositeVideoClip([bg] + overlays, size=(TW, TH)).set_duration(total)
 
     audio_codec = None
     if MUSIC and os.path.exists(MUSIC):
         a = mpe.AudioFileClip(MUSIC)
-        a = mpe.afx.audio_loop(a, duration=DUR) if a.duration < DUR else a.subclip(0, DUR)
-        final = final.set_audio(a)
+        a = mpe.afx.audio_loop(a, duration=total) if a.duration < total else a.subclip(0, total)
+        final = final.set_audio(a.audio_fadeout(0.6))
         audio_codec = "aac"
 
     final.write_videofile(out_path, fps=30, codec="libx264", audio_codec=audio_codec,
                           preset="medium", bitrate="4500k", logger=None)
-    clip.close()
     final.close()
 
 
 def build_reel(data, out_dir):
-    """주어진 글(data)로 스톡영상+오버레이 릴스 MP4를 out_dir/reel.mp4 로 만든다.
-    영상 검색 실패 시 None. (daily.py 등에서 재사용)"""
+    """주어진 글(data)로 v2 릴스(0초 훅 + 멀티 비트 키네틱 + 컷)를 out_dir/reel.mp4 로 만든다.
+    스톡영상 검색 실패 시 None. (daily.py 등에서 재사용)"""
     os.makedirs(out_dir, exist_ok=True)
+    cz = data["carousel"]
     vq = data.get("image_query") or data.get("topic")
     print("🔎 video query:", vq)
-    src = imagesearch.search_video(vq, os.path.join(out_dir, "_src.mp4"))
-    if not src:
+
+    # 서로 다른 스톡 클립 최대 3개(컷 전환용)
+    srcs = []
+    for pick in range(4):
+        p = imagesearch.search_video(vq, os.path.join(out_dir, f"_src{len(srcs)}.mp4"), pick=pick)
+        if p:
+            srcs.append(p)
+        if len(srcs) >= 3:
+            break
+    if not srcs:
         return None
-    overlay = os.path.join(out_dir, "_overlay.png")
-    carousel.render_reel_overlay(data["carousel"]).save(overlay)
+
+    # 비트 구성: 훅 → 포인트1 → 포인트2 → CTA
+    pts = cz.get("points", [])
+    beats_spec = [("hook", None, None, None, 4.0)]
+    for i, pt in enumerate(pts[:2], 1):
+        beats_spec.append(("point", i, pt.get("title"), pt.get("body"), 4.0))
+    beats_spec.append(("cta", None, None, None, 3.0))
+
+    beats = []
+    for idx, (kind, n, title, body, dur) in enumerate(beats_spec):
+        png = os.path.join(out_dir, f"_beat{idx}.png")
+        carousel.render_reel_card(cz, kind, n=n, title=title, body=body).save(png)
+        beats.append((png, dur))
+
     out = os.path.join(out_dir, "reel.mp4")
-    _make_video(src, overlay, out)
-    try:
-        os.remove(src)   # 큰 원본 영상은 커밋하지 않음
-    except OSError:
-        pass
+    _make_video_v2(srcs, beats, out)
+    for s in srcs:                       # 큰 원본 영상은 커밋하지 않음
+        try:
+            os.remove(s)
+        except OSError:
+            pass
     return out
 
 
