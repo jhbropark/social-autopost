@@ -61,11 +61,14 @@ def do_publish(data=None):
     except Exception as e:
         results["linkedin"] = ("FAIL", str(e))
 
-    # Facebook
-    try:
-        results["facebook"] = ("ok", platforms.post_facebook(data["facebook"]["text"]))
-    except Exception as e:
-        results["facebook"] = ("FAIL", str(e))
+    # Facebook — 페이지 토큰이 있을 때만 게시(없으면 건너뜀. Meta 페이지 토큰 발급 전까지)
+    if os.environ.get("FB_PAGE_ACCESS_TOKEN"):
+        try:
+            results["facebook"] = ("ok", platforms.post_facebook(data["facebook"]["text"]))
+        except Exception as e:
+            results["facebook"] = ("FAIL", str(e))
+    else:
+        results["facebook"] = ("skip", "FB_PAGE_ACCESS_TOKEN 미설정 — 건너뜀")
 
     # Instagram (캐러셀: 공개 슬라이드 URL 목록 필요)
     try:
@@ -76,10 +79,10 @@ def do_publish(data=None):
 
     print("\n=== 게시 결과 ===")
     failed = False
+    marks = {"ok": "✅", "skip": "⏭️", "FAIL": "❌"}
     for k, (status, info) in results.items():
-        mark = "✅" if status == "ok" else "❌"
-        print(f"{mark} {k}: {info}")
-        if status != "ok":
+        print(f"{marks.get(status, '❌')} {k}: {info}")
+        if status == "FAIL":   # skip은 실패로 보지 않음
             failed = True
     if failed:
         sys.exit(1)
