@@ -1,0 +1,41 @@
+name: LinkedIn Escape Test
+
+# 괄호 등 예약문자 이스케이프 수정 검증(텍스트 게시 1건). 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Post LinkedIn text with parentheses
+        env:
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import platforms
+          text = (
+              "체류시간이 27% 늘면, 같은 콘텐츠로도 재방문율이 1.8배가 된다.\n\n"
+              "전시·공간 프로젝트에서 가장 과소평가되는 변수는 '동선'이다. "
+              "우리는 보통 무엇을 보여줄지(콘텐츠)에 예산의 90%를 쓰고, "
+              "어떻게 움직이게 할지(동선)에 10%를 쓴다.\n\n"
+              "그런데 체류와 재방문을 가르는 건 후자였다.\n\n"
+              "#ExperienceDesign #공간디자인 #미디어아트"
+          )
+          print("LI:", platforms.post_linkedin(text))
+          PY
