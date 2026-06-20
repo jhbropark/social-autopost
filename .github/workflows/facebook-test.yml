@@ -1,0 +1,28 @@
+name: Facebook Test
+
+# 페이스북 페이지 게시만 단독 검증. 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Post to Facebook page
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python -c "import platforms; print('FB:', platforms.post_facebook('parkjunhyuk.xyz 자동 게시 연결 테스트 — 공간·AI·미디어아트 이야기를 이어갑니다.'))"
