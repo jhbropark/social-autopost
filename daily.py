@@ -26,6 +26,7 @@ PLAN_JSON = os.path.join(OUT_DIR, "plan.json")
 IG_POSTS = int(os.environ.get("IG_POSTS_PER_DAY", "3"))
 REELS = int(os.environ.get("REELS_PER_DAY", "1"))
 LINKEDIN_POSTS = int(os.environ.get("LINKEDIN_POSTS_PER_DAY", "1"))
+FB_POSTS = int(os.environ.get("FB_POSTS_PER_DAY", "1"))
 
 
 def _today_kst():
@@ -142,7 +143,15 @@ def do_publish():
         except Exception as e:
             print("❌ linkedin:", e); failed = True
 
-    if not os.environ.get("FB_PAGE_ACCESS_TOKEN"):
+    if os.environ.get("FB_PAGE_ACCESS_TOKEN"):
+        for data in plan[:FB_POSTS]:
+            print(f"\n=== Facebook: {data.get('topic')} ===")
+            fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
+            try:
+                print("✅ facebook:", platforms.post_facebook(fb_text))
+            except Exception as e:
+                print("❌ facebook:", e); failed = True
+    else:
         print("\n⏭️ facebook: FB_PAGE_ACCESS_TOKEN 미설정 — 건너뜀")
 
     if failed:

@@ -49,6 +49,7 @@ jobs:
           CACHE_BUST: ${{ github.run_id }}
           IG_POSTS_PER_DAY: "3"
           LINKEDIN_POSTS_PER_DAY: "1"
+          FB_POSTS_PER_DAY: "1"
           # 자동 갱신(권장): refresh_token + client 자격증명
           LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
