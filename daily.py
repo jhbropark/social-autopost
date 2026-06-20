@@ -107,6 +107,16 @@ def _reel_cover_url(data):
     return f"{base}/{data['_dir']}/cover.jpg?v={bust}"
 
 
+def _hero_url(data):
+    """FB 사진 게시용 hero 공개 URL. 없으면 None(텍스트 게시로 폴백)."""
+    local = os.path.join(OUT_DIR, data.get("_dir", ""), "_hero.jpg")
+    if not os.path.exists(local):
+        return None
+    base = os.environ["IMAGE_BASE_URL"].rstrip("/")
+    bust = os.environ.get("CACHE_BUST", "1")
+    return f"{base}/{data['_dir']}/_hero.jpg?v={bust}"
+
+
 def do_publish():
     with open(PLAN_JSON, encoding="utf-8") as f:
         plan = json.load(f)
@@ -148,7 +158,8 @@ def do_publish():
             print(f"\n=== Facebook: {data.get('topic')} ===")
             fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
             try:
-                print("✅ facebook:", platforms.post_facebook(fb_text))
+                print("✅ facebook:", platforms.post_facebook(
+                    fb_text, image_url=_hero_url(data), link="https://parkjunhyuk.xyz"))
             except Exception as e:
                 print("❌ facebook:", e); failed = True
     else:

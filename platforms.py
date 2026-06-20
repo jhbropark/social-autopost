@@ -166,17 +166,39 @@ def _fb_page_token(page_id: str, token: str) -> str:
     return token
 
 
-def post_facebook(text: str) -> dict:
+def post_facebook(text: str, image_url: str = None, link: str = None) -> dict:
+    """페이지 글 게시.
+    image_url 있으면 사진 게시(/photos)로 — 텍스트 전용보다 도달이 크게 높다.
+    link 있으면 게시 후 첫 댓글로 링크를 단다(본문 외부링크는 도달 페널티라 댓글로)."""
     page_id = os.environ["FB_PAGE_ID"]
     page_token = _fb_page_token(page_id, os.environ["FB_PAGE_ACCESS_TOKEN"])
-    r = requests.post(
-        f"{GRAPH}/{page_id}/feed",
-        data={"message": text, "access_token": page_token},
-        timeout=30,
-    )
+    if image_url:
+        r = requests.post(
+            f"{GRAPH}/{page_id}/photos",
+            data={"url": image_url, "message": text, "access_token": page_token},
+            timeout=60,
+        )
+    else:
+        r = requests.post(
+            f"{GRAPH}/{page_id}/feed",
+            data={"message": text, "access_token": page_token},
+            timeout=30,
+        )
     if r.status_code >= 300:
         raise RuntimeError(f"Facebook {r.status_code}: {r.text}")
-    return r.json()
+    res = r.json()
+    # 사진 게시는 story id가 post_id, 일반 글은 id
+    target = res.get("post_id") or res.get("id")
+    if link and target:
+        try:
+            requests.post(
+                f"{GRAPH}/{target}/comments",
+                data={"message": link, "access_token": page_token},
+                timeout=30,
+            )
+        except Exception:
+            pass  # 댓글 실패는 게시 성공을 막지 않는다
+    return res
 
 
 # ---------------------------------------------------------------- Instagram
