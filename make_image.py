@@ -28,14 +28,24 @@ HEAD_SOFT = (186, 190, 198)   # 흰색 계열 톤다운(보조 텍스트)
 CAPTION = (118, 123, 130)     # 더 톤다운(푸터 캡션)
 DIVIDER = (44, 48, 54)        # 어두운 계열 구분선
 
-# ---- 폰트 후보 (CI Linux: fonts-noto-cjk / Windows: malgun, georgia) ----
+# ---- 폰트 후보 (1순위: 리포 번들 Pretendard / 폴백: Noto, malgun) ----
+# Pretendard 를 fonts/ 에 번들 → 한+영 일관, 모던, apt 설치 의존 제거.
 F_CJK_BOLD = [
+    "fonts/Pretendard-Bold.ttf",
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
     "fonts/NotoSansKR-Bold.ttf",
     "C:/Windows/Fonts/malgunbd.ttf",
 ]
+F_CJK_XBOLD = [  # 키워드/임팩트용 — 엑스트라볼드
+    "fonts/Pretendard-ExtraBold.ttf",
+    "fonts/Pretendard-Bold.ttf",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+    "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
+    "C:/Windows/Fonts/malgunbd.ttf",
+]
 F_CJK_REG = [
+    "fonts/Pretendard-Regular.ttf",
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
     "fonts/NotoSansKR-Regular.ttf",
@@ -248,7 +258,7 @@ def render(badge, head_bold, head_rest, keyword, caption,
     f_badge = _font(F_CJK_BOLD, 24)
     f_bold = _font(F_CJK_BOLD, 58)
     f_soft = _font(F_CJK_REG, 50)
-    f_key = _font(F_CJK_BOLD, 92)
+    f_key = _font(F_CJK_XBOLD, 92)
     f_cap = _font(F_CJK_REG, 24)
     f_idx = _font(F_CJK_BOLD, 26)
 

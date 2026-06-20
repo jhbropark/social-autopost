@@ -62,7 +62,7 @@ def render_cover(data, path):
         f_badge = M._font(M.F_CJK_BOLD, 32)
         f_bold = M._font(M.F_CJK_BOLD, int(78 * scale))
         f_soft = M._font(M.F_CJK_REG, int(60 * scale))
-        f_key = M._font(M.F_CJK_BOLD, int(124 * scale))
+        f_key = M._font(M.F_CJK_XBOLD, int(124 * scale))
         lh_bold, lh_soft, lh_key = int(94 * scale), int(74 * scale), int(136 * scale)
         bold_lines = M._wrap(d, bold, f_bold, maxw)
         rest_lines = [ln for raw in rest for ln in M._wrap(d, raw, f_soft, maxw)]
@@ -162,7 +162,7 @@ def render_reel_overlay(data, w=1080, h=1920):
         f_badge = M._font(M.F_CJK_BOLD, 34)
         f_bold = M._font(M.F_CJK_BOLD, int(84 * scale))
         f_soft = M._font(M.F_CJK_REG, int(60 * scale))
-        f_key = M._font(M.F_CJK_BOLD, int(132 * scale))
+        f_key = M._font(M.F_CJK_XBOLD, int(132 * scale))
         lh_bold, lh_soft, lh_key = int(100 * scale), int(74 * scale), int(146 * scale)
         bold_lines = M._wrap(d, bold, f_bold, maxw)
         rest_lines = [ln for raw in rest for ln in M._wrap(d, raw, f_soft, maxw)]
@@ -222,7 +222,7 @@ def render_li_cover(data, path, w=1080, h=1350):
 
     # 좌측 제목(하단 정렬): 볼드(어절 액센트) + 키워드(액센트)
     f_bold = M._font(M.F_CJK_BOLD, 64)
-    f_key = M._font(M.F_CJK_BOLD, 86)
+    f_key = M._font(M.F_CJK_XBOLD, 86)
     lw = px - P - 28
     accent = data.get("cover_accent", "")
     bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, lw)
@@ -367,7 +367,7 @@ def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
     if kind == "hook":
         f_badge = M._font(M.F_CJK_BOLD, 34)
         f_bold = M._font(M.F_CJK_BOLD, 80)
-        f_key = M._font(M.F_CJK_BOLD, 148)
+        f_key = M._font(M.F_CJK_XBOLD, 148)
         bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, maxw)
         key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, maxw)
         asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 28
@@ -392,7 +392,7 @@ def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
         center_block(body_lines, f_body, y, M.HEAD_SOFT, 66)
 
     else:  # cta
-        f_key = M._font(M.F_CJK_BOLD, 132)
+        f_key = M._font(M.F_CJK_XBOLD, 132)
         f_cta = M._font(M.F_CJK_BOLD, 46)
         key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, maxw)
         total = len(key_lines) * 146 + 60 + 60
