@@ -20,9 +20,16 @@ jobs:
       - name: Install deps
         run: pip install requests
 
-      - name: Post to Facebook page
+      - name: Post to Facebook page (photo + first-comment link)
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          IMG: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/projects/sample/01.jpg"
         run: |
-          python -c "import platforms; print('FB:', platforms.post_facebook('parkjunhyuk.xyz 자동 게시 연결 테스트 — 공간·AI·미디어아트 이야기를 이어갑니다.'))"
+          python - <<'PY'
+          import os, platforms
+          text = ("나는 관람객을 30분 붙잡으려다, 오히려 5분 만에 내보낸 전시를 만든 적이 있다.\n\n"
+                  "문제는 콘텐츠가 아니라 동선이었다. 사람은 '볼 것'이 아니라 '움직일 길'을 따라 머문다.\n\n"
+                  "당신이 마지막으로 오래 머문 공간은, 무엇이 당신을 붙잡았나요?")
+          print("FB:", platforms.post_facebook(text, image_url=os.environ["IMG"], link="https://parkjunhyuk.xyz"))
+          PY
