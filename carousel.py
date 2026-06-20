@@ -292,6 +292,45 @@ def render_li_carousel(data, out_dir):
     return paths
 
 
+def render_showcase_cover(meta, hero_path, path, w=1080, h=1350):
+    """작품 쇼케이스 표지(nendo식 미니멀): 히어로 이미지 풀블리드 + 하단 그라데이션 +
+    작품명 + 한 줄 컨셉 + 절제된 태그/워드마크. 작품이 주인공이 되도록 최소 개입."""
+    img = Image.open(hero_path).convert("RGB")
+    ratio = max(w / img.width, h / img.height)
+    img = img.resize((int(img.width * ratio), int(img.height * ratio)))
+    left = (img.width - w) // 2
+    img = img.crop((left, 0, left + w, h))
+
+    # 하단 그라데이션 스크림(텍스트 가독성)
+    scrim = Image.new("L", (1, h), 0)
+    for y in range(h):
+        a = 0 if y < h * 0.50 else int(205 * ((y - h * 0.50) / (h * 0.50)))
+        scrim.putpixel((0, y), min(215, a))
+    img.paste(Image.new("RGB", (w, h), (8, 10, 13)), (0, 0), scrim.resize((w, h)))
+
+    d = ImageDraw.Draw(img)
+    P = 80
+    M._pill(d, P, 82, (meta.get("badge", "PROJECT")).upper(), M._font(M.F_CJK_BOLD, 28))
+    mk = "parkjunhyuk.xyz"
+    f_mark = M._font(M.F_SERIF, 38)
+    d.text((w - P - d.textlength(mk, font=f_mark), 86), mk, font=f_mark, fill=M.FG)
+
+    f_name = M._font(M.F_CJK_BOLD, 82)
+    f_con = M._font(M.F_CJK_REG, 38)
+    name_lines = M._wrap(d, meta.get("name", ""), f_name, w - P * 2)
+    con_lines = M._wrap(d, meta.get("concept_ko", ""), f_con, w - P * 2)
+    total = len(name_lines) * 92 + 20 + len(con_lines) * 50
+    y = h - 120 - total
+    for ln in name_lines:
+        d.text((P, y), ln, font=f_name, fill=M.FG); y += 92
+    y += 20
+    for ln in con_lines:
+        d.text((P, y), ln, font=f_con, fill=M.HEAD_SOFT); y += 50
+
+    img.save(path, "JPEG", quality=92)
+    return path
+
+
 def slides_to_pdf(slide_paths, out_pdf):
     """캐러셀 슬라이드(JPG)들을 하나의 PDF로 합친다 — 링크드인 문서(캐러셀) 게시용."""
     imgs = [Image.open(p).convert("RGB") for p in slide_paths]

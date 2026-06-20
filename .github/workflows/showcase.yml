@@ -1,0 +1,57 @@
+name: Showcase Publish
+
+# 작품 쇼케이스(nendo식) 게시. projects/<slug>/ 에 이미지+project.json 을 커밋한 뒤 수동 실행.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "projects/<slug> 폴더명 (예: my-installation)"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: showcase-post
+  cancel-in-progress: false
+
+jobs:
+  showcase:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Korean fonts
+        run: sudo apt-get install -y fonts-noto-cjk || sudo bash -c "apt-get update && apt-get install -y fonts-noto-cjk"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Render showcase cover
+        run: python showcase.py render ${{ inputs.slug }}
+
+      - name: Commit cover (public raw URLs)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add projects/${{ inputs.slug }}
+          git commit -m "chore: showcase ${{ inputs.slug }}" || echo "nothing to commit"
+          git push
+
+      - name: Publish showcase (IG + LinkedIn + Facebook)
+        env:
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/projects"
+          CACHE_BUST: ${{ github.run_id }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: python showcase.py publish ${{ inputs.slug }}

@@ -71,6 +71,7 @@ def generate_posts(target=None, variant=0) -> dict:
   분량: {roles['instagram']['length']}
   IG 시리즈 라벨: "{series}" 를 본문 끝부분에 넣을 것.
   줄바꿈: 한 문단은 1~3줄로 짧게, 문단 사이는 빈 줄(\\n\\n)로 나눠 읽기 쉽게. 문장 중간에서 어색하게 끊지 말 것.
+  영어 병기(글로벌 도달): 한국어 본문 뒤에 빈 줄 두 개(\\n\\n) → 영어 2~3줄 핵심 요약 → 빈 줄 → 해시태그 순으로. 영어는 번역투 없이 자연스럽게.
 
 [Facebook] 포지션: {roles['facebook']['position']} — "{roles['facebook']['question']}"
   스타일: {roles['facebook']['style']}
