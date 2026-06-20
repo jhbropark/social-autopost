@@ -132,7 +132,9 @@ def do_publish():
             if data.get("_type") == "carousel" and data.get("_slides"):
                 day_dir = os.path.join(OUT_DIR, data["_dir"])
                 li_cover = carousel.render_li_cover(data["carousel"], os.path.join(day_dir, "li_cover.jpg"))
-                pdf_slides = [li_cover] + [os.path.join(day_dir, s) for s in data["_slides"][1:]]
+                li_outro = carousel.render_li_outro(data["carousel"], os.path.join(day_dir, "li_outro.jpg"))
+                # IG 표지/아웃트로는 빼고 LinkedIn 전용으로 교체(가운데 포인트 슬라이드는 재사용)
+                pdf_slides = [li_cover] + [os.path.join(day_dir, s) for s in data["_slides"][1:-1]] + [li_outro]
                 pdf = carousel.slides_to_pdf(pdf_slides, os.path.join(day_dir, "carousel.pdf"))
                 print("✅ linkedin(doc):", platforms.post_linkedin_document(pdf, li_text, title=data.get("topic", "parkjunhyuk.xyz")))
             else:

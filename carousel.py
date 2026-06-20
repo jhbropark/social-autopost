@@ -256,6 +256,31 @@ def render_li_cover(data, path, w=1080, h=1350):
     return path
 
 
+def render_li_outro(data, path, w=1080, h=1350):
+    """링크드인 문서 마지막 페이지: 결론 한 줄 + 댓글 유도 CTA + 서명(IG '저장·팔로우' 대신)."""
+    img = M._vertical_gradient(M.BG_TOP, M.BG_BOT)
+    d = ImageDraw.Draw(img)
+    P = 88
+    maxw = w - P * 2
+
+    f_line = M._font(M.F_CJK_BOLD, 60)
+    lines = M._wrap_sentences(d, data.get("outro_line", ""), f_line, maxw)
+    y = int(h * 0.34)
+    for ln in lines:
+        d.text((P, y), ln, font=f_line, fill=M.FG); y += 76
+
+    y += 60
+    f_cta = M._font(M.F_CJK_BOLD, 44)
+    d.text((P, y), "이 주제, 어떻게 보시나요?", font=f_cta, fill=ACCENT); y += 60
+    f_sub = M._font(M.F_CJK_REG, 38)
+    d.text((P, y), "댓글로 의견을 남겨주세요.", font=f_sub, fill=M.HEAD_SOFT)
+
+    d.line([(P, h - 100), (w - P, h - 100)], fill=M.DIVIDER, width=1)
+    d.text((P, h - 82), LI_SIGNATURE, font=M._font(M.F_CJK_REG, 24), fill=M.CAPTION)
+    img.save(path, "JPEG", quality=92)
+    return path
+
+
 def render_li_carousel(data, out_dir):
     """링크드인용 캐러셀: 뉴스카드 표지 + 포인트 슬라이드 + 아웃트로."""
     os.makedirs(out_dir, exist_ok=True)

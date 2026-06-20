@@ -45,11 +45,12 @@ def main():
         slides = sorted(glob.glob(os.path.join(target, "[0-9]*.jpg")))
         if not slides:
             print("슬라이드 없음:", target); sys.exit(1)
-        # 표지를 뉴스카드형으로 교체(plan 데이터 있으면)
+        # 표지·아웃트로를 LinkedIn 전용으로 교체(plan 데이터 있으면)
         entry = _plan_entry(target)
         if entry and entry.get("carousel"):
             li_cover = carousel.render_li_cover(entry["carousel"], os.path.join(target, "li_cover.jpg"))
-            slides = [li_cover] + slides[1:]
+            li_outro = carousel.render_li_outro(entry["carousel"], os.path.join(target, "li_outro.jpg"))
+            slides = [li_cover] + slides[1:-1] + [li_outro]
         pdf = carousel.slides_to_pdf(slides, os.path.join(target, "carousel.pdf"))
         print(f"📄 {len(slides)}장 → PDF 캐러셀(뉴스카드) 게시")
         print("✅ doc:", platforms.post_linkedin_document(pdf, text, title=topic))
