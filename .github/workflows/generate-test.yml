@@ -1,0 +1,35 @@
+name: Generate Test
+
+# Anthropic 크레딧/생성만 검증(게시 없음). 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install anthropic requests
+
+      - name: Generate one post (no publish)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python - <<'PY'
+          import generate
+          d = generate.generate_posts()
+          print("OK topic:", d.get("topic"))
+          print("pillar:", d.get("pillar"))
+          print("ig:", (d.get("instagram", {}).get("caption", "")[:40]))
+          print("has fb/li:", bool(d.get("facebook", {}).get("text")), bool(d.get("linkedin", {}).get("text")))
+          print("cover_keyword:", d.get("carousel", {}).get("cover_keyword"))
+          PY
