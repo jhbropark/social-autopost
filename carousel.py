@@ -188,6 +188,61 @@ def render_reel_overlay(data, w=1080, h=1920):
     return img
 
 
+def render_fb_card(data, path, w=1080, h=1080):
+    """페이스북 글에 붙일 정사각 카드. 본문과 무관한 일반 사진 대신,
+    주제 헤드라인(cover_bold + 키워드 액센트)을 사진 위에 얹어 글과 연결한다."""
+    img = M._vertical_gradient(M.BG_TOP, M.BG_BOT).resize((w, h))
+    top = data.get("top_image")
+    if isinstance(top, str) and os.path.exists(top):
+        photo = Image.open(top).convert("RGB")
+        ratio = max(w / photo.width, h / photo.height)
+        photo = photo.resize((int(photo.width * ratio), int(photo.height * ratio)))
+        left, t = (photo.width - w) // 2, (photo.height - h) // 2
+        photo = photo.crop((left, t, left + w, t + h))
+        img = Image.blend(img, photo, 0.34)
+        img = Image.blend(img, Image.new("RGB", (w, h), (8, 10, 13)), 0.50)
+    d = ImageDraw.Draw(img)
+    P = 76
+    M._pill(d, P, 72, data.get("badge", "NOTE").upper(), M._font(M.F_CJK_BOLD, 28))
+    mk = "parkjunhyuk.xyz"
+    f_mark = M._font(M.F_SERIF, 34)
+    d.text((w - P - d.textlength(mk, font=f_mark), 76), mk, font=f_mark, fill=M.FG)
+
+    bold, rest, key = data.get("cover_bold", ""), data.get("cover_rest", []), data.get("cover_keyword", "")
+    accent = data.get("cover_accent", "")
+    f_bold = M._font(M.F_CJK_BOLD, 64)
+    f_soft = M._font(M.F_CJK_REG, 46)
+    f_key = M._font(M.F_CJK_XBOLD, 92)
+    maxw = w - P * 2
+    bl = M._wrap(d, bold, f_bold, maxw)
+    rl = [ln for r in rest for ln in M._wrap(d, r, f_soft, maxw)]
+    kl = M._wrap(d, key, f_key, maxw)
+    total = len(bl) * 78 + len(rl) * 56 + 16 + len(kl) * 104
+    y = h - 96 - total
+
+    def _accent(ln, font, yy):
+        if accent and accent in ln:
+            before, after = ln.split(accent, 1)
+            cx = P
+            for seg, col in ((before, M.FG), (accent, ACCENT), (after, M.FG)):
+                if seg:
+                    d.text((cx, yy), seg, font=font, fill=col)
+                    cx += d.textlength(seg, font=font)
+        else:
+            d.text((P, yy), ln, font=font, fill=M.FG)
+
+    for ln in bl:
+        _accent(ln, f_bold, y); y += 78
+    for ln in rl:
+        d.text((P, y), ln, font=f_soft, fill=M.HEAD_SOFT); y += 56
+    y += 16
+    for ln in kl:
+        d.text((P, y), ln, font=f_key, fill=ACCENT); y += 104
+
+    img.save(path, "JPEG", quality=92)
+    return path
+
+
 def render_li_cover(data, path, w=1080, h=1350):
     """링크드인 뉴스카드형 표지: NEWS 배지 + 좌측 큰 제목(키워드 액센트) + 우측 팩트 패널 + 서명.
     (차우진 엔터문화연구소 피드 포맷 참고)"""

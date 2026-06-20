@@ -53,6 +53,8 @@ def _render_carousel(slot, data):
             os.remove(os.path.join(day_dir, f))
     _attach_hero(data, day_dir)
     slides = carousel.render_carousel(data["carousel"], out_dir=day_dir)
+    # 페이스북용 카드(주제 헤드라인을 사진 위에 얹어 글과 연결)
+    carousel.render_fb_card(data["carousel"], os.path.join(day_dir, "fb_card.jpg"))
     data["_type"], data["_dir"] = "carousel", slot
     data["_slides"] = [os.path.basename(p) for p in slides]
     return len(slides)
@@ -121,14 +123,15 @@ def _reel_cover_url(data):
     return f"{base}/{data['_dir']}/cover.jpg?v={bust}"
 
 
-def _hero_url(data):
-    """FB 사진 게시용 hero 공개 URL. 없으면 None(텍스트 게시로 폴백)."""
-    local = os.path.join(OUT_DIR, data.get("_dir", ""), "_hero.jpg")
-    if not os.path.exists(local):
-        return None
+def _fb_image_url(data):
+    """FB 사진 게시용 공개 URL. 주제 헤드라인을 얹은 fb_card 우선, 없으면 hero, 둘 다 없으면 None."""
+    d = data.get("_dir", "")
     base = os.environ["IMAGE_BASE_URL"].rstrip("/")
     bust = os.environ.get("CACHE_BUST", "1")
-    return f"{base}/{data['_dir']}/_hero.jpg?v={bust}"
+    for name in ("fb_card.jpg", "_hero.jpg"):
+        if os.path.exists(os.path.join(OUT_DIR, d, name)):
+            return f"{base}/{d}/{name}?v={bust}"
+    return None
 
 
 def do_publish():
@@ -173,7 +176,7 @@ def do_publish():
             fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
             try:
                 print("✅ facebook:", platforms.post_facebook(
-                    fb_text, image_url=_hero_url(data), link="https://parkjunhyuk.xyz"))
+                    fb_text, image_url=_fb_image_url(data), link="https://parkjunhyuk.xyz"))
             except Exception as e:
                 print("❌ facebook:", e); failed = True
     else:
