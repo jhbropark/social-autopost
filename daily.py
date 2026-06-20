@@ -61,17 +61,31 @@ def _render_carousel(slot, data):
 def do_generate():
     os.makedirs(OUT_DIR, exist_ok=True)
     today = _today_kst()
+
+    # 시드 우회: out/daily/_seed.json 이 있으면 Claude API 대신 그 콘텐츠로 렌더(크레딧 0).
+    seed = None
+    seed_path = os.path.join(OUT_DIR, "_seed.json")
+    if os.path.exists(seed_path):
+        with open(seed_path, encoding="utf-8-sig") as f:
+            seed = json.load(f)
+        print(f"🌱 시드 콘텐츠({len(seed)}개) 사용 — Claude API 호출 건너뜀")
+
+    def _content(v):
+        if seed is not None:
+            return dict(seed[v] if v < len(seed) else seed[-1])
+        return generate.generate_posts(target=today, variant=v)
+
     carousels = max(0, IG_POSTS - REELS)
     plan, variant = [], 0
 
     for i in range(carousels):
-        data = generate.generate_posts(target=today, variant=variant); variant += 1
+        data = _content(variant); variant += 1
         n = _render_carousel(str(i), data)
         plan.append(data)
         print(f"✅ 캐러셀 #{i + 1}: {data.get('topic')} [{n} slides]")
 
     for r in range(REELS):
-        data = generate.generate_posts(target=today, variant=variant); variant += 1
+        data = _content(variant); variant += 1
         slot = f"reel{r}"
         mp4 = reels.build_reel(data, os.path.join(OUT_DIR, slot))
         if mp4:
