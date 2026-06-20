@@ -150,12 +150,28 @@ def post_linkedin_video(video_path: str, commentary: str, title: str = "parkjunh
 
 
 # ---------------------------------------------------------------- Facebook
+def _fb_page_token(page_id: str, token: str) -> str:
+    """FB_PAGE_ACCESS_TOKEN 이 시스템 사용자 토큰이면 페이지 토큰을 받아온다.
+    이미 페이지 토큰이어도 같은 호출로 페이지 토큰을 반환하므로 안전하다."""
+    try:
+        r = requests.get(
+            f"{GRAPH}/{page_id}",
+            params={"fields": "access_token", "access_token": token},
+            timeout=30,
+        )
+        if r.status_code < 300:
+            return r.json().get("access_token", token)
+    except Exception:
+        pass
+    return token
+
+
 def post_facebook(text: str) -> dict:
     page_id = os.environ["FB_PAGE_ID"]
-    token = os.environ["FB_PAGE_ACCESS_TOKEN"]
+    page_token = _fb_page_token(page_id, os.environ["FB_PAGE_ACCESS_TOKEN"])
     r = requests.post(
         f"{GRAPH}/{page_id}/feed",
-        data={"message": text, "access_token": token},
+        data={"message": text, "access_token": page_token},
         timeout=30,
     )
     if r.status_code >= 300:
