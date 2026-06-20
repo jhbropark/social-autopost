@@ -60,11 +60,23 @@ def _li_author(token):
     return f"urn:li:person:{me.json()['sub']}"
 
 
+# LinkedIn /rest/posts 의 commentary 는 little-text 포맷이라 예약문자를 백슬래시로
+# 이스케이프해야 한다. 안 하면 그 지점에서 본문이 잘린다(예: 괄호 '('에서 끊김).
+# 해시태그는 살리려 '#' 만 제외한다(맨 끝에 위치).
+_LI_RESERVED = set("\\(){}[]<>|*~_@")
+
+
+def _li_escape(text: str) -> str:
+    if not text:
+        return text
+    return "".join("\\" + c if c in _LI_RESERVED else c for c in text)
+
+
 def _li_post(token, author, commentary, content=None):
     """공통 게시 호출. content 가 있으면 미디어 포함 게시."""
     body = {
         "author": author,
-        "commentary": commentary,
+        "commentary": _li_escape(commentary),
         "visibility": "PUBLIC",
         "distribution": {"feedDistribution": "MAIN_FEED", "targetEntities": [], "thirdPartyDistributionChannels": []},
         "lifecycleState": "PUBLISHED",
