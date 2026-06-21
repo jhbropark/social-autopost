@@ -1,0 +1,31 @@
+name: Telegram Test
+
+# 실패 알림(원인 요약 → Telegram) 단독 검증. 가짜 실패 로그로 메시지 전송. 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests anthropic
+
+      - name: Send test failure alert
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          printf '%s\n' "❌ instagram (테스트 주제): Facebook 9004: media download failed" "❌ facebook (테스트 주제): 400 invalid token" > _error.txt
+          RUN_DATE=$(TZ=Asia/Seoul date +%F) python notify_failure.py

@@ -29,6 +29,20 @@ REELS = int(os.environ.get("REELS_PER_DAY", "0"))
 LINKEDIN_POSTS = int(os.environ.get("LINKEDIN_POSTS_PER_DAY", "1"))
 FB_POSTS = int(os.environ.get("FB_POSTS_PER_DAY", "1"))
 
+ERR_FILE = "_error.txt"     # 실패 원인 누적(워크플로우 실패 알림 스텝이 읽음)
+_ERRORS = []
+
+
+def _record(msg):
+    print(msg)
+    _ERRORS.append(msg)
+
+
+def _flush_errors():
+    if _ERRORS:
+        with open(ERR_FILE, "w", encoding="utf-8") as f:
+            f.write("\n".join(_ERRORS))
+
 
 def _today_kst():
     return datetime.datetime.utcnow() + datetime.timedelta(hours=9)
@@ -87,7 +101,7 @@ def do_generate():
             data = _content(v)
             n = _render_carousel(str(i), data)
         except Exception as e:
-            print(f"⚠ 캐러셀 #{i + 1} 실패 — 건너뜀: {e}")
+            _record(f"⚠ 캐러셀 #{i + 1} 생성/렌더 실패 — 건너뜀: {e}")
             continue
         plan.append(data)
         print(f"✅ 캐러셀 #{i + 1}: {data.get('topic')} [{n} slides]")
@@ -106,11 +120,12 @@ def do_generate():
                 print(f"⚠ 릴스 영상 실패 → 캐러셀 폴백 #{r + 1}: {data.get('topic')} [{n} slides]")
             plan.append(data)
         except Exception as e:
-            print(f"⚠ 릴스 #{r + 1} 실패 — 건너뜀: {e}")
+            _record(f"⚠ 릴스 #{r + 1} 생성/렌더 실패 — 건너뜀: {e}")
             continue
 
     if not plan:
-        print("❌ 생성된 게시물이 없음 — 발행할 것이 없습니다.")
+        _record("❌ 생성된 게시물이 없음 — 모든 항목 생성 실패로 발행할 것이 없습니다.")
+        _flush_errors()
         sys.exit(1)
 
     with open(PLAN_JSON, "w", encoding="utf-8") as f:
@@ -166,7 +181,7 @@ def do_publish():
             print("✅ instagram:", res)
             data["_links"]["instagram"] = platforms.ig_permalink(res.get("id"))
         except Exception as e:
-            print("❌ instagram:", e); failed = True
+            _record(f"❌ instagram ({data.get('topic')}): {e}"); failed = True
         if i < len(plan) - 1:
             time.sleep(8)
 
@@ -191,7 +206,7 @@ def do_publish():
             if urn.startswith("urn:"):
                 data.setdefault("_links", {})["linkedin"] = f"https://www.linkedin.com/feed/update/{urn}"
         except Exception as e:
-            print("❌ linkedin:", e); failed = True
+            _record(f"❌ linkedin ({data.get('topic')}): {e}"); failed = True
 
     if os.environ.get("FB_PAGE_ACCESS_TOKEN"):
         for data in plan[:FB_POSTS]:
@@ -205,7 +220,7 @@ def do_publish():
                 if pid:
                     data.setdefault("_links", {})["facebook"] = f"https://www.facebook.com/{pid}"
             except Exception as e:
-                print("❌ facebook:", e); failed = True
+                _record(f"❌ facebook ({data.get('topic')}): {e}"); failed = True
     else:
         print("\n⏭️ facebook: FB_PAGE_ACCESS_TOKEN 미설정 — 건너뜀")
 
@@ -219,6 +234,7 @@ def do_publish():
             print(f"🗂  Notion 기록: {str(data.get('topic'))[:30]}")
 
     if failed:
+        _flush_errors()
         sys.exit(1)
 
 
