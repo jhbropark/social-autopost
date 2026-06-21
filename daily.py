@@ -20,11 +20,12 @@ import carousel
 import platforms
 import imagesearch
 import reels
+import notion_sync
 
 OUT_DIR = "out/daily"
 PLAN_JSON = os.path.join(OUT_DIR, "plan.json")
-IG_POSTS = int(os.environ.get("IG_POSTS_PER_DAY", "3"))
-REELS = int(os.environ.get("REELS_PER_DAY", "1"))
+IG_POSTS = int(os.environ.get("IG_POSTS_PER_DAY", "1"))
+REELS = int(os.environ.get("REELS_PER_DAY", "0"))
 LINKEDIN_POSTS = int(os.environ.get("LINKEDIN_POSTS_PER_DAY", "1"))
 FB_POSTS = int(os.environ.get("FB_POSTS_PER_DAY", "1"))
 
@@ -154,13 +155,16 @@ def do_publish():
 
     failed = False
     for i, data in enumerate(plan):
+        data["_links"] = {}
         label = "릴스" if data.get("_type") == "reel" else "캐러셀"
         print(f"\n=== IG {label} #{i + 1}: {data.get('topic')} ===")
         try:
             if data.get("_type") == "reel":
-                print("✅ instagram reel:", platforms.post_reel(_reel_url(data), data["instagram"]["caption"], cover_url=_reel_cover_url(data)))
+                res = platforms.post_reel(_reel_url(data), data["instagram"]["caption"], cover_url=_reel_cover_url(data))
             else:
-                print("✅ instagram:", platforms.post_instagram(data["instagram"]["caption"], _slide_urls(data)))
+                res = platforms.post_instagram(data["instagram"]["caption"], _slide_urls(data))
+            print("✅ instagram:", res)
+            data["_links"]["instagram"] = platforms.ig_permalink(res.get("id"))
         except Exception as e:
             print("❌ instagram:", e); failed = True
         if i < len(plan) - 1:
@@ -178,9 +182,14 @@ def do_publish():
                 # IG 표지/아웃트로는 빼고 LinkedIn 전용으로 교체(가운데 포인트 슬라이드는 재사용)
                 pdf_slides = [li_cover] + [os.path.join(day_dir, s) for s in data["_slides"][1:-1]] + [li_outro]
                 pdf = carousel.slides_to_pdf(pdf_slides, os.path.join(day_dir, "carousel.pdf"))
-                print("✅ linkedin(doc):", platforms.post_linkedin_document(pdf, li_text, title=data.get("topic", "parkjunhyuk.xyz")))
+                res = platforms.post_linkedin_document(pdf, li_text, title=data.get("topic", "parkjunhyuk.xyz"))
+                print("✅ linkedin(doc):", res)
             else:
-                print("✅ linkedin:", platforms.post_linkedin(li_text))
+                res = platforms.post_linkedin(li_text)
+                print("✅ linkedin:", res)
+            urn = res.get("id", "")
+            if urn.startswith("urn:"):
+                data.setdefault("_links", {})["linkedin"] = f"https://www.linkedin.com/feed/update/{urn}"
         except Exception as e:
             print("❌ linkedin:", e); failed = True
 
@@ -189,12 +198,25 @@ def do_publish():
             print(f"\n=== Facebook: {data.get('topic')} ===")
             fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
             try:
-                print("✅ facebook:", platforms.post_facebook(
-                    fb_text, image_url=_fb_image_url(data), link="https://parkjunhyuk.xyz"))
+                res = platforms.post_facebook(
+                    fb_text, image_url=_fb_image_url(data), link="https://parkjunhyuk.xyz")
+                print("✅ facebook:", res)
+                pid = res.get("post_id") or res.get("id")
+                if pid:
+                    data.setdefault("_links", {})["facebook"] = f"https://www.facebook.com/{pid}"
             except Exception as e:
                 print("❌ facebook:", e); failed = True
     else:
         print("\n⏭️ facebook: FB_PAGE_ACCESS_TOKEN 미설정 — 건너뜀")
+
+    # Notion 콘텐츠 대시보드에 기록(토큰 있을 때만)
+    today = _today_kst().strftime("%Y-%m-%d")
+    for data in plan:
+        lk = data.get("_links") or {}
+        cover = _fb_image_url(data) or (_reel_cover_url(data) if data.get("_type") == "reel" else None)
+        if notion_sync.upsert(data, links=lk, status="발행됨" if any(lk.values()) else "실패",
+                              cover_url=cover, date=today):
+            print(f"🗂  Notion 기록: {str(data.get('topic'))[:30]}")
 
     if failed:
         sys.exit(1)

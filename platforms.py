@@ -244,6 +244,18 @@ def _ig_endpoint():
     return GRAPH, fb_token, _ig_user_id(fb_token)
 
 
+def ig_permalink(media_id: str):
+    """게시된 IG 미디어의 공개 영구링크(permalink) 조회. 실패하면 None."""
+    try:
+        base, token, _ = _ig_endpoint()
+        r = requests.get(f"{base}/{media_id}", params={"fields": "permalink", "access_token": token}, timeout=20)
+        if r.status_code < 300:
+            return r.json().get("permalink")
+    except Exception:
+        pass
+    return None
+
+
 def _wait_until_ready(base, container_id, token, attempts=15, delay=4):
     """미디어 컨테이너가 게시 가능(FINISHED) 상태가 될 때까지 폴링.
     IG는 컨테이너 생성이 비동기라, 생성 직후 media_publish 하면

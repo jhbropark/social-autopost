@@ -63,4 +63,7 @@ jobs:
           # Facebook 페이지 게시 + (IG 폴백 경로)
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          # Notion 콘텐츠 대시보드 기록(선택)
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: python daily.py publish
