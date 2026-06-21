@@ -20,6 +20,29 @@ jobs:
       - name: Install deps
         run: pip install requests anthropic
 
+      - name: Show available chat ids (진단)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          t = os.environ["TELEGRAM_BOT_TOKEN"]
+          r = requests.get(f"https://api.telegram.org/bot{t}/getUpdates", timeout=30).json()
+          seen = {}
+          for u in r.get("result", []):
+              msg = u.get("message") or u.get("channel_post") or {}
+              ch = msg.get("chat") or {}
+              if ch.get("id") is not None:
+                  seen[ch["id"]] = f"{ch.get('type')} / {ch.get('title') or ch.get('first_name') or ch.get('username') or ''}"
+          if seen:
+              print("=== 사용 가능한 chat id (이 중 하나를 TELEGRAM_CHAT_ID 로 등록) ===")
+              for cid, who in seen.items():
+                  print(f"  chat_id = {cid}   ({who})")
+          else:
+              print("getUpdates 가 비어 있음 — 봇에게 메시지를 먼저 보낸 뒤 다시 실행하세요.")
+          print("ok:", r.get("ok"), "| 업데이트 수:", len(r.get("result", [])))
+          PY
+
       - name: Send test failure alert
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
