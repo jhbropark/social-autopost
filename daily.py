@@ -81,22 +81,36 @@ def do_generate():
     plan, variant = [], 0
 
     for i in range(carousels):
-        data = _content(variant); variant += 1
-        n = _render_carousel(str(i), data)
+        v = variant; variant += 1
+        try:   # 한 항목 생성·렌더 실패가 전체 발행을 막지 않게 격리
+            data = _content(v)
+            n = _render_carousel(str(i), data)
+        except Exception as e:
+            print(f"⚠ 캐러셀 #{i + 1} 실패 — 건너뜀: {e}")
+            continue
         plan.append(data)
         print(f"✅ 캐러셀 #{i + 1}: {data.get('topic')} [{n} slides]")
 
     for r in range(REELS):
-        data = _content(variant); variant += 1
+        v = variant; variant += 1
         slot = f"reel{r}"
-        mp4 = reels.build_reel(data, os.path.join(OUT_DIR, slot))
-        if mp4:
-            data["_type"], data["_dir"], data["_video"] = "reel", slot, "reel.mp4"
-            print(f"✅ 릴스 #{r + 1}: {data.get('topic')} ({os.path.getsize(mp4) // 1024} KB)")
-        else:   # 영상 실패 시 캐러셀로 폴백
-            n = _render_carousel(slot, data)
-            print(f"⚠ 릴스 영상 실패 → 캐러셀 폴백 #{r + 1}: {data.get('topic')} [{n} slides]")
-        plan.append(data)
+        try:
+            data = _content(v)
+            mp4 = reels.build_reel(data, os.path.join(OUT_DIR, slot))
+            if mp4:
+                data["_type"], data["_dir"], data["_video"] = "reel", slot, "reel.mp4"
+                print(f"✅ 릴스 #{r + 1}: {data.get('topic')} ({os.path.getsize(mp4) // 1024} KB)")
+            else:   # 영상 실패 시 캐러셀로 폴백
+                n = _render_carousel(slot, data)
+                print(f"⚠ 릴스 영상 실패 → 캐러셀 폴백 #{r + 1}: {data.get('topic')} [{n} slides]")
+            plan.append(data)
+        except Exception as e:
+            print(f"⚠ 릴스 #{r + 1} 실패 — 건너뜀: {e}")
+            continue
+
+    if not plan:
+        print("❌ 생성된 게시물이 없음 — 발행할 것이 없습니다.")
+        sys.exit(1)
 
     with open(PLAN_JSON, "w", encoding="utf-8") as f:
         json.dump(plan, f, ensure_ascii=False, indent=2)
