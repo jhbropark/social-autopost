@@ -25,11 +25,17 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python - <<'PY'
-          import generate
+          import re, generate
           d = generate.generate_posts()
+          li = d.get("linkedin", {}).get("text", "")
+          fb = d.get("facebook", {}).get("text", "")
+          facts = d.get("carousel", {}).get("facts", [])
           print("OK topic:", d.get("topic"))
-          print("pillar:", d.get("pillar"))
           print("ig:", (d.get("instagram", {}).get("caption", "")[:40]))
-          print("has fb/li:", bool(d.get("facebook", {}).get("text")), bool(d.get("linkedin", {}).get("text")))
-          print("cover_keyword:", d.get("carousel", {}).get("cover_keyword"))
+          print("--- LinkedIn ---")
+          print(li[:400])
+          print("--- facts ---", facts)
+          # 지어낸 통계 의심 패턴 스캔(N명/N%/N배 등)
+          risky = re.findall(r"\d[\d,\.]*\s*(?:명|%|퍼센트|배|억|만\s*명|만원|원)", li + " " + fb + " " + " ".join(facts))
+          print("의심 수치:", risky if risky else "없음 ✅")
           PY
