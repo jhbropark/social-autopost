@@ -29,6 +29,14 @@ IG_POSTS = int(os.environ.get("IG_POSTS_PER_DAY", "1"))
 REELS = int(os.environ.get("REELS_PER_DAY", "0"))
 LINKEDIN_POSTS = int(os.environ.get("LINKEDIN_POSTS_PER_DAY", "1"))
 FB_POSTS = int(os.environ.get("FB_POSTS_PER_DAY", "1"))
+# 뉴스레터 전환 퍼널: 설정 시 FB 첫 댓글 링크 + IG 캡션 CTA 가 뉴스레터로 향한다.
+NEWSLETTER_URL = os.environ.get("NEWSLETTER_URL", "").strip()
+
+
+def _ig_cta(caption):
+    if NEWSLETTER_URL:
+        return (caption or "") + "\n\n📬 매주 공간·AI·미디어아트 인사이트를 뉴스레터로 — 프로필 링크"
+    return caption
 
 ERR_FILE = "_error.txt"     # 실패 원인 누적(워크플로우 실패 알림 스텝이 읽음)
 _ERRORS = []
@@ -183,9 +191,9 @@ def do_publish():
         print(f"\n=== IG {label} #{i + 1}: {data.get('topic')} ===")
         try:
             if data.get("_type") == "reel":
-                res = platforms.post_reel(_reel_url(data), data["instagram"]["caption"], cover_url=_reel_cover_url(data))
+                res = platforms.post_reel(_reel_url(data), _ig_cta(data["instagram"]["caption"]), cover_url=_reel_cover_url(data))
             else:
-                res = platforms.post_instagram(data["instagram"]["caption"], _slide_urls(data))
+                res = platforms.post_instagram(_ig_cta(data["instagram"]["caption"]), _slide_urls(data))
             print("✅ instagram:", res)
             data["_links"]["instagram"] = platforms.ig_permalink(res.get("id"))
         except Exception as e:
@@ -222,7 +230,7 @@ def do_publish():
             fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
             try:
                 res = platforms.post_facebook(
-                    fb_text, image_url=_fb_image_url(data), link="https://parkjunhyuk.xyz")
+                    fb_text, image_url=_fb_image_url(data), link=NEWSLETTER_URL or "https://parkjunhyuk.xyz")
                 print("✅ facebook:", res)
                 pid = res.get("post_id") or res.get("id")
                 if pid:

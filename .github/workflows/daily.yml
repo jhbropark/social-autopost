@@ -69,6 +69,8 @@ jobs:
           # Telegram 데일리 성공 브리핑(선택)
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # 뉴스레터 전환 퍼널(선택): 설정 시 FB 댓글 링크 + IG 캡션 CTA 가 뉴스레터로
+          NEWSLETTER_URL: ${{ secrets.NEWSLETTER_URL }}
         run: python daily.py publish
 
       # 어느 단계든 실패하면 원인을 요약해 Telegram 으로 알림(설정 시)
