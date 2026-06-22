@@ -29,7 +29,7 @@ def generate(query, width=1024, height=1280):
     token = os.environ.get("KREA_API_KEY")
     if not (token and query):
         return None
-    model = os.environ.get("KREA_MODEL", "bfl/flux-1-dev").strip("/")
+    model = (os.environ.get("KREA_MODEL") or "bfl/flux-1-dev").strip("/")
     headers = {"Authorization": f"Bearer {token}", "User-Agent": UA, "Content-Type": "application/json"}
     try:
         r = requests.post(
