@@ -1,0 +1,45 @@
+name: LinkedIn Orgs
+
+# 관리 중인 LinkedIn 페이지(조직) ID와 토큰 권한 진단. 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  orgs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: List administered organizations
+        env:
+          LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+          LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+          LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import requests, platforms
+          token = platforms._linkedin_token()
+          h = {"Authorization": f"Bearer {token}", "X-Restli-Protocol-Version": "2.0.0",
+               "LinkedIn-Version": "202601"}
+          # 관리자(ADMINISTRATOR)로 등록된 조직 목록 + 이름
+          r = requests.get(
+              "https://api.linkedin.com/v2/organizationalEntityAcls",
+              params={"q": "roleAssignee", "role": "ADMINISTRATOR", "state": "APPROVED",
+                      "projection": "(elements*(organizationalTarget~(id,localizedName,vanityName)))"},
+              headers=h, timeout=30)
+          print("status:", r.status_code)
+          print(r.text[:1500])
+          if r.status_code == 403:
+              print("\n>> 403: 토큰에 조직 권한(rw_organization_admin / w_organization_social)이 없습니다. 재인증 필요.")
+          PY

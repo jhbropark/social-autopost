@@ -53,7 +53,11 @@ def _li_headers(token):
 
 
 def _li_author(token):
-    """게시 작성자 URN(urn:li:person:{sub}). openid/profile 스코프 필요."""
+    """게시 작성자 URN. LINKEDIN_ORG_ID 가 있으면 조직 페이지(urn:li:organization:{id})로 게시
+    — w_organization_social 권한 필요. 없으면 개인 프로필(urn:li:person:{sub})로 게시."""
+    org = os.environ.get("LINKEDIN_ORG_ID")
+    if org:
+        return f"urn:li:organization:{org.split(':')[-1]}"
     me = requests.get("https://api.linkedin.com/v2/userinfo",
                       headers={"Authorization": f"Bearer {token}"}, timeout=30)
     me.raise_for_status()
