@@ -26,6 +26,8 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_IDEAS_DB_ID: ${{ secrets.NOTION_IDEAS_DB_ID }}
+          KREA_API_KEY: ${{ secrets.KREA_API_KEY }}
+          KREA_MODEL: ${{ secrets.KREA_MODEL }}
         run: python imgpreview.py
 
       - name: Commit preview images

@@ -36,6 +36,9 @@ jobs:
           # Ideas Pipeline 소재 연동(선택)
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_IDEAS_DB_ID: ${{ secrets.NOTION_IDEAS_DB_ID }}
+          # Krea AI 표지 이미지 생성(선택) — 있으면 Pexels 대신 AI 생성
+          KREA_API_KEY: ${{ secrets.KREA_API_KEY }}
+          KREA_MODEL: ${{ secrets.KREA_MODEL }}
         run: python daily.py generate
 
       - name: Commit slides (make them publicly fetchable for Instagram)

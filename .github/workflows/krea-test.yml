@@ -1,0 +1,52 @@
+name: Krea Test
+
+# Krea 이미지 생성 단독 검증(모델 경로·API 동작 확인). 생성 이미지 커밋. 수동 실행.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "KREA_MODEL 경로 (예: bfl/flux-1-dev, krea/krea-2-large)"
+        required: false
+        default: "bfl/flux-1-dev"
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests pillow
+
+      - name: Generate one Krea image
+        env:
+          KREA_API_KEY: ${{ secrets.KREA_API_KEY }}
+          KREA_MODEL: ${{ inputs.model }}
+        run: |
+          python - <<'PY'
+          import os, krea_gen
+          if not os.environ.get("KREA_API_KEY"):
+              print("RESULT: ❌ KREA_API_KEY 미설정"); raise SystemExit(0)
+          img = krea_gen.generate("immersive media art exhibition with projection mapping and light")
+          if img is None:
+              print("RESULT: ❌ 생성 실패(로그 확인 — 모델 경로/권한)")
+          else:
+              os.makedirs("out/kreatest", exist_ok=True)
+              img.save("out/kreatest/krea.jpg", "JPEG", quality=90)
+              print("RESULT: ✅ 생성 성공", img.size)
+          PY
+
+      - name: Commit result
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add out/kreatest || true
+          git commit -m "chore: krea test image" || echo "nothing to commit"
+          git push || true

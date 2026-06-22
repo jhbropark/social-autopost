@@ -67,9 +67,18 @@ def _openverse(query, pick=0):
 
 
 def search_image(query, pick=0):
-    """가로형 사진 1장을 PIL.Image(RGB)로. 실패 시 None."""
+    """표지 배경 1장을 PIL.Image(RGB)로. KREA_API_KEY 있으면 AI 생성 우선 → Pexels → Openverse."""
     if not query:
         return None
+    if os.environ.get("KREA_API_KEY"):
+        try:
+            import krea_gen
+            img = krea_gen.generate(query)
+            if img is not None:
+                return img
+            print("⚠ Krea 생성 실패 → Pexels 폴백")
+        except Exception as e:
+            print("⚠ Krea 모듈 오류 → Pexels 폴백:", e)
     key = os.environ.get("PEXELS_API_KEY")
     img = _pexels(query, key, pick) if key else None
     if img is None:
