@@ -119,10 +119,11 @@ _CONTENT_TOOL = {
 }
 
 
-def generate_posts(target=None, variant=0, idea=None) -> dict:
+def generate_posts(target=None, variant=0, idea=None, ideas_list=None) -> dict:
     today = target or _today_kst()
     weekday = today.weekday()
     theme = config.WEEKLY_THEMES[weekday]
+    corner = theme.split("—")[0].strip()   # 「현장 노트」 같은 코너명
     # 날짜 기반 순환 + variant 오프셋 (같은 날 여러 개 만들 때 기둥/시리즈를 다르게)
     base = today.timetuple().tm_yday + variant
     pillar = config.CONTENT_PILLARS[base % len(config.CONTENT_PILLARS)]
@@ -147,7 +148,19 @@ def generate_posts(target=None, variant=0, idea=None) -> dict:
 
     import ideas as _ideas
     idea_block = ""
-    if idea:
+    if ideas_list:
+        items = "\n".join(
+            f"- {it['idea']}" + (f" ({', '.join(it.get('format', []))})" if it.get("format") else "")
+            for it in ideas_list
+        )
+        idea_block = (
+            f"\n[이번 주 위클리 큐레이션 — 아래 {len(ideas_list)}개 실제 아이디어를 '한 편의 다이제스트'로 묶어라]\n"
+            f"{items}\n"
+            "각 항목을 한 줄 코멘트와 함께 소개하는 큐레이션으로 작성한다. "
+            "carousel.points 를 이 항목들로 채워라(각 point.title=항목명 축약, body=한 줄 통찰). "
+            "본문(IG·FB·LinkedIn)도 이 항목들을 묶어 '이번 주 주목할 것'으로 정리한다. 지어내지 말 것.\n"
+        )
+    elif idea:
         idea_block = (
             "\n[오늘의 실제 소재 — 반드시 이 실제 프로젝트/아이디어를 바탕으로 쓸 것]\n"
             f"{_ideas.as_brief(idea)}\n"
@@ -161,10 +174,11 @@ def generate_posts(target=None, variant=0, idea=None) -> dict:
 {idea_block}
 이 하나의 소재를 세 플랫폼의 역할에 맞게 변주해서 작성해줘. 같은 핵심 메시지, 다른 형식.
 
+★코너명 고정 노출: 모든 채널(IG·FB·LinkedIn) 글의 **맨 첫 줄**에 코너명 "{corner}" 만 단독으로 쓰고, 줄바꿈한 뒤 본문을 시작한다. (다른 시리즈/라벨을 본문 위에 겹쳐 쓰지 말 것.)
+
 [Instagram] 포지션: {roles['instagram']['position']} — "{roles['instagram']['question']}"
   스타일: {roles['instagram']['style']}
   분량: {roles['instagram']['length']}
-  IG 시리즈 라벨: "{series}" 를 본문 끝부분에 넣을 것.
   줄바꿈: 한 문단은 1~3줄로 짧게, 문단 사이는 빈 줄(\\n\\n)로 나눠 읽기 쉽게. 문장 중간에서 어색하게 끊지 말 것.
   영어 병기(글로벌 도달): 한국어 본문 뒤에 빈 줄 두 개(\\n\\n) → 영어 2~3줄 핵심 요약 → 빈 줄 → 해시태그 순으로. 영어는 번역투 없이 자연스럽게.
 
@@ -179,9 +193,14 @@ def generate_posts(target=None, variant=0, idea=None) -> dict:
 그리고 Instagram **캐러셀(여러 장 스와이프)** 슬라이드 텍스트도 만들어줘.
 구조: 표지 1장 + 포인트 5장 + 아웃트로(코드가 자동 생성). 저장·체류율을 높이는 교육형 캐러셀.
   - badge: 알약형 카테고리 배지. 영문 대문자 1~2단어 (예: "SPACE NOTE", "MEDIA ART", "AI CREATIVE")
-  - cover_bold: 표지 헤드라인(볼드) 한 줄. 한국어 12자 이내. 그 자체로 뜻이 통하는 도입 또는 질문.
+  - cover_bold: 표지 헤드라인(볼드) 한 줄. 한국어 12자 이내. **스크롤을 멈추는 후킹**이어야 한다 — 다음 중 하나:
+    ① 통념을 뒤집는 단언/역설("...해야 한다는 건 틀렸다", "...하지 않기로 했다")
+    ② 구체적 호기심 갭(스와이프해야 풀리는 질문 — 단 반드시 구체적 대상/상황에 앵커, 막연 금지)
+    ③ 또렷한 약속/반전.
+    밋밋한 중립 서술·설명문 금지. (단 뜻은 명확해야 — 난해·말장난은 여전히 금지.)
   - cover_rest: 표지 보조 설명 1줄 배열(원소 1개). 16자 이내. cover_bold를 자연스럽게 잇는 짧은 보충.
-  - cover_keyword: 표지에서 가장 크게 박히는 핵심 키워드. 한국어 7자 이내. 명사구나 짧은 단언으로, 그 줄만 봐도 무슨 주제인지 즉시 알 수 있게.
+  - cover_keyword: 표지에서 가장 크게 박히는 한 방. 한국어 7자 이내. **결정적 단언이나 반전**을 담을 것.
+    밋밋한 분류 라벨(예: 금지 "키네틱 화면", "빛의 설계", "생성형 파사드" 같은 카테고리명) 금지 — 그 한 줄이 약속·통찰·반전이 되게.
   ※ 표지 카피 규칙(중요): 세 줄을 억지로 한 문장으로 이어붙이지 말 것. 각 줄이 독립적으로 읽혀도 자연스럽고 문법이 맞아야 한다.
     표지만 보고도 '무엇에 관한 글'인지 바로 이해돼야 한다. 도치·생략·말장난으로 호기심만 부풀리는 난해한 카피 금지(예: 금지 "공간 디자이너처럼 AI를 / 다루는 사람은 왜 결과물이 다를까 / 동선이 답이다" — 뜻이 모호함). 쉽고 또렷하게.
   - caption: 푸터 캡션 "{series} · parkjunhyuk.xyz"

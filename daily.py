@@ -107,8 +107,14 @@ def do_generate():
     def _content(v):
         if seed is not None:
             return dict(seed[v] if v < len(seed) else seed[-1])
-        # Ideas Pipeline에서 실제 아이디어 1개를 소재로(날짜+variant로 회전). 없으면 None→요일포맷만으로.
-        idea = ideas.pick_idea(today.timetuple().tm_yday + v)
+        seq = today.timetuple().tm_yday + v
+        if today.weekday() == 6:   # 일요일 = 위클리 큐레이션(아이디어 여러 개 묶음)
+            lst = ideas.pick_ideas(5, seq)
+            if lst:
+                print(f"💡 위클리 큐레이션 소재 {len(lst)}개")
+            return generate.generate_posts(target=today, variant=v, ideas_list=lst or None)
+        # 그 외 요일: 실제 아이디어 1개를 소재로(날짜+variant 회전). 없으면 요일포맷만으로.
+        idea = ideas.pick_idea(seq)
         if idea:
             print(f"💡 소재: {idea['idea']} [{idea.get('stage')}]")
         return generate.generate_posts(target=today, variant=v, idea=idea)

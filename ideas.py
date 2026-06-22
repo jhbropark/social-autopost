@@ -70,6 +70,17 @@ def pick_idea(seq=0):
     return ideas[seq % len(ideas)]
 
 
+def pick_ideas(n=5, seq=0):
+    """위클리 큐레이션용 — 비-Archive 아이디어 중 seq부터 n개를 회전 선택."""
+    pool = [i for i in fetch_ideas() if i.get("stage") != "Archive"]
+    if not pool:
+        return []
+    pool.sort(key=lambda i: i["idea"])
+    n = min(n, len(pool))
+    start = seq % len(pool)
+    return [pool[(start + k) % len(pool)] for k in range(n)]
+
+
 def as_brief(idea):
     """프롬프트에 넣을 소재 브리프 텍스트."""
     if not idea:

@@ -14,8 +14,14 @@ def main():
     monday = now - datetime.timedelta(days=now.weekday())
     for wd in range(7):
         target = monday + datetime.timedelta(days=wd)
-        idea = ideas.pick_idea(target.timetuple().tm_yday)
-        d = generate.generate_posts(target=target, idea=idea)
+        seq = target.timetuple().tm_yday
+        if wd == 6:   # 일요일 = 위클리 큐레이션
+            lst = ideas.pick_ideas(5, seq)
+            idea = {"idea": f"(큐레이션 {len(lst)}개: " + ", ".join(i["idea"] for i in lst) + ")"}
+            d = generate.generate_posts(target=target, ideas_list=lst or None)
+        else:
+            idea = ideas.pick_idea(seq)
+            d = generate.generate_posts(target=target, idea=idea)
         cz = d.get("carousel", {})
         print("\n========== [" + WD[wd] + "요일] ==========")
         print("소재(Idea):", idea["idea"] if idea else "(없음)")
