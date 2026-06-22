@@ -1,0 +1,45 @@
+name: Notion Test
+
+# Notion 대시보드 기록만 단독 검증(소셜 게시 없음). 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Write a sample row to Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          python - <<'PY'
+          import notion_sync
+          item = {
+              "topic": "노션 연동 테스트 — 자동 기록 확인",
+              "instagram": {"caption": "IG 캡션 샘플입니다."},
+              "facebook": {"text": "Facebook 본문 샘플입니다."},
+              "linkedin": {"text": "LinkedIn 본문 샘플입니다."},
+          }
+          links = {
+              "instagram": "https://instagram.com/parkjunhyukxyz",
+              "linkedin": "https://www.linkedin.com/in/",
+              "facebook": "https://facebook.com",
+          }
+          cover = "https://raw.githubusercontent.com/jhbropark/social-autopost/master/out/daily/0/fb_card.jpg"
+          nid = notion_sync.upsert(item, links=links, status="검토", cover_url=cover, date="2026-06-22")
+          print("notion page id:", nid)
+          print("RESULT:", "✅ 성공" if nid else "❌ 실패(토큰/DB공유 확인)")
+          PY
