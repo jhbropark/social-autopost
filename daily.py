@@ -52,9 +52,16 @@ def _today_kst():
 def _attach_hero(data, day_dir):
     cz = data["carousel"]
     hp = os.path.join(day_dir, "_hero.jpg")
-    img = imagesearch.search_image(data.get("image_query") or data.get("topic"))
+    query = data.get("image_query") or data.get("topic") or ""
+    # 항상 첫 결과(pick=0)만 쓰면 비슷한 쿼리에 같은 사진이 반복됨 → 날짜+쿼리로 인덱스를 돌려 매일 다른 사진.
+    pick = (_today_kst().timetuple().tm_yday + len(str(query)) + len(day_dir)) % 15
+    img = imagesearch.search_image(query, pick=pick)
+    if img is None and pick != 0:        # 그래도 못 받으면 첫 결과로 재시도
+        img = imagesearch.search_image(query, pick=0)
     if img is not None:
         img.save(hp, "JPEG", quality=88)
+    elif os.path.exists(hp):
+        os.remove(hp)                    # 새 사진 못 받으면 지난 사진 재사용 금지(중복 방지)
     if os.path.exists(hp):
         cz["top_image"] = hp
     else:

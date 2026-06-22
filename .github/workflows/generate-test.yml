@@ -38,4 +38,7 @@ jobs:
           # 지어낸 통계 의심 패턴 스캔(N명/N%/N배 등)
           risky = re.findall(r"\d[\d,\.]*\s*(?:명|%|퍼센트|배|억|만\s*명|만원|원)", li + " " + fb + " " + " ".join(facts))
           print("의심 수치:", risky if risky else "없음 ✅")
+          ig = d.get("instagram", {}).get("caption", "")
+          print("LI가 JSON래퍼로 시작:", li.strip().startswith("{"))
+          print("'해시태그' 단어 노출:", ("해시태그" in li) or ("해시태그" in ig))
           PY

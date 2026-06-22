@@ -48,16 +48,24 @@ def _clean_field(val, field):
         text = val
         s = val.strip()
         if s.startswith("{") and (f'"{field}"' in s):
+            extracted = None
             try:
                 obj = json.loads(s)
                 if isinstance(obj, dict) and field in obj:
-                    text = obj[field]
+                    extracted = obj[field]
             except Exception:
-                pass
+                # 실제 줄바꿈이 든 JSON유사 문자열은 json.loads 가 실패 → 정규식으로 내부만 추출
+                m = re.search(r'"' + re.escape(field) + r'"\s*:\s*"(.*)"\s*\}?\s*$', s, re.S)
+                if m:
+                    extracted = m.group(1).replace('\\"', '"')
+            if isinstance(extracted, str):
+                text = extracted
     if not isinstance(text, str):
         text = str(text)
     if "\\n" in text:
         text = text.replace("\\r\\n", "\n").replace("\\n", "\n")
+    # 모델이 '해시태그#키워드'처럼 '해시태그' 단어를 붙이는 경우 제거
+    text = re.sub(r"해시\s*태그\s*(?=#)", "", text)
     return text.strip()
 
 
@@ -131,7 +139,8 @@ def generate_posts(target=None, variant=0) -> dict:
         "인원수·배수·금액·연도 같은 구체 수치를 지어내 사실처럼 단정하면 그것은 거짓이다. "
         "검증 가능한 수치가 없으면 숫자를 쓰지 말고, 본인의 1인칭 경험·관찰을 정성적으로 서술하라. "
         "예시가 꼭 필요하면 '가령', '예를 들어'로 가정임을 분명히 밝혀라. "
-        "'평균 N명', 'N% 증가' 같은 구체 통계를 근거 없이 만들어내는 것을 절대 금지한다."
+        "'평균 N명', 'N% 증가' 같은 구체 통계를 근거 없이 만들어내는 것을 절대 금지한다. "
+        "해시태그는 '#키워드' 형식으로만 쓰고, '해시태그'라는 단어 자체를 본문에 넣지 마라."
     )
 
     user = f"""오늘 날짜: {today.strftime('%Y-%m-%d (%A)')}
