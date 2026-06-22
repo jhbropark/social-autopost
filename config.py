@@ -74,4 +74,5 @@ IG_SERIES = [
 
 BRAND_TAGLINE = "기술·공간·브랜드를 연결해 새로운 경험을 만드는 사람"
 BRAND_HANDLE = "parkjunhyuk.xyz"
-CAREER = "CJ → SILO → STUDIO GALE → SM"
+# SILO→SILOLab 으로 정정. SILOLab·STUDIO GALE 는 중복되는 공간·경험 작업이라 하나로 합쳐 표기.
+CAREER = "CJ → SILOLab → SM"

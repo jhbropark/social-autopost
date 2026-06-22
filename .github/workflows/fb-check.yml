@@ -1,0 +1,43 @@
+name: FB Check
+
+# 새 Facebook 대상에 현재 토큰으로 접근/게시 가능한지 진단. 수동 실행.
+on:
+  workflow_dispatch:
+    inputs:
+      target_id:
+        description: "확인할 Facebook 페이지/계정 ID"
+        required: true
+        default: "61590968786090"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install deps
+        run: pip install requests
+
+      - name: Inspect token access
+        env:
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          TARGET: ${{ inputs.target_id }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          GRAPH = "https://graph.facebook.com/v21.0"
+          token = os.environ["FB_PAGE_ACCESS_TOKEN"]
+          target = os.environ["TARGET"]
+
+          r = requests.get(f"{GRAPH}/me", params={"access_token": token, "fields": "id,name"}, timeout=30)
+          print("== /me ==", r.status_code, r.text[:300])
+
+          r = requests.get(f"{GRAPH}/me/accounts", params={"access_token": token, "fields": "id,name"}, timeout=30)
+          print("== /me/accounts (관리 페이지) ==", r.status_code, r.text[:800])
+
+          r = requests.get(f"{GRAPH}/{target}", params={"access_token": token, "fields": "name,category,access_token"}, timeout=30)
+          print(f"== /{target} ==", r.status_code, r.text[:500])
+          ok = (r.status_code < 300) and bool(r.json().get("access_token"))
+          print("RESULT:", "✅ 이 토큰으로 게시 가능" if ok else "❌ 토큰이 이 페이지를 관리하지 않음 → 시스템사용자 할당/새 토큰 필요")
+          PY
