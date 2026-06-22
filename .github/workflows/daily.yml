@@ -33,6 +33,9 @@ jobs:
           IG_POSTS_PER_DAY: "1"
           REELS_PER_DAY: "0"
           LINKEDIN_POSTS_PER_DAY: "1"
+          # Ideas Pipeline 소재 연동(선택)
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_IDEAS_DB_ID: ${{ secrets.NOTION_IDEAS_DB_ID }}
         run: python daily.py generate
 
       - name: Commit slides (make them publicly fetchable for Instagram)

@@ -22,6 +22,7 @@ import imagesearch
 import reels
 import notion_sync
 import telegram_notify as tg
+import ideas
 
 OUT_DIR = "out/daily"
 PLAN_JSON = os.path.join(OUT_DIR, "plan.json")
@@ -106,7 +107,11 @@ def do_generate():
     def _content(v):
         if seed is not None:
             return dict(seed[v] if v < len(seed) else seed[-1])
-        return generate.generate_posts(target=today, variant=v)
+        # Ideas Pipeline에서 실제 아이디어 1개를 소재로(날짜+variant로 회전). 없으면 None→요일포맷만으로.
+        idea = ideas.pick_idea(today.timetuple().tm_yday + v)
+        if idea:
+            print(f"💡 소재: {idea['idea']} [{idea.get('stage')}]")
+        return generate.generate_posts(target=today, variant=v, idea=idea)
 
     carousels = max(0, IG_POSTS - REELS)
     plan, variant = [], 0

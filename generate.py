@@ -119,7 +119,7 @@ _CONTENT_TOOL = {
 }
 
 
-def generate_posts(target=None, variant=0) -> dict:
+def generate_posts(target=None, variant=0, idea=None) -> dict:
     today = target or _today_kst()
     weekday = today.weekday()
     theme = config.WEEKLY_THEMES[weekday]
@@ -145,10 +145,20 @@ def generate_posts(target=None, variant=0) -> dict:
         "하나의 경험으로만 언급하고, 특정 회사명은 굳이 쓰지 않아도 된다(쓸 경우에도 한 곳만)."
     )
 
-    user = f"""오늘 날짜: {today.strftime('%Y-%m-%d (%A)')}
-요일 테마: {theme}
-오늘의 콘텐츠 기둥: {pillar}
+    import ideas as _ideas
+    idea_block = ""
+    if idea:
+        idea_block = (
+            "\n[오늘의 실제 소재 — 반드시 이 실제 프로젝트/아이디어를 바탕으로 쓸 것]\n"
+            f"{_ideas.as_brief(idea)}\n"
+            "이건 박준혁 본인이 실제로 다룬/구상한 작업이다. 지어내지 말고 이 내용에 근거해, "
+            "요일 포맷의 시선으로 풀어라. (이 소재가 곧 '오늘의 소재'다.)\n"
+        )
 
+    user = f"""오늘 날짜: {today.strftime('%Y-%m-%d (%A)')}
+요일 포맷: {theme}
+오늘의 콘텐츠 기둥: {pillar}
+{idea_block}
 이 하나의 소재를 세 플랫폼의 역할에 맞게 변주해서 작성해줘. 같은 핵심 메시지, 다른 형식.
 
 [Instagram] 포지션: {roles['instagram']['position']} — "{roles['instagram']['question']}"
