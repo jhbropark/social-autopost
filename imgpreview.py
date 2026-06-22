@@ -1,0 +1,45 @@
+"""
+실제 아이디어 소재로 콘텐츠를 생성하고, 이미지(캐러셀·FB카드·LinkedIn카드)를 렌더해
+out/imgpreview/ 에 저장한다(게시 없음). 이미지 생성 결과 확인용.
+"""
+import os
+import datetime
+
+import ideas
+import generate
+import carousel
+import imagesearch
+
+OUT = "out/imgpreview"
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    today = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
+    idea = ideas.pick_idea(today.timetuple().tm_yday)
+    print("소재:", idea["idea"] if idea else "(없음)")
+    d = generate.generate_posts(target=today, idea=idea)
+    cz = d["carousel"]
+    print("TOPIC:", d.get("topic"))
+    print("표지:", cz.get("cover_bold"), "/", cz.get("cover_keyword"))
+
+    # 표지 배경 사진(Pexels, 날짜로 회전)
+    pick = today.timetuple().tm_yday % 15
+    img = imagesearch.search_image(d.get("image_query") or d.get("topic"), pick=pick)
+    if img is not None:
+        hp = os.path.join(OUT, "_hero.jpg")
+        img.save(hp, "JPEG", quality=88)
+        cz["top_image"] = hp
+        print("hero:", "OK")
+    else:
+        print("hero:", "없음(그라데이션 폴백)")
+
+    slides = carousel.render_carousel(cz, out_dir=OUT)
+    carousel.render_fb_card(cz, os.path.join(OUT, "fb_card.jpg"))
+    carousel.render_li_cover(cz, os.path.join(OUT, "li_cover.jpg"))
+    carousel.render_li_outro(cz, os.path.join(OUT, "li_outro.jpg"))
+    print("렌더 완료:", len(slides), "슬라이드 + fb_card + li_cover + li_outro")
+
+
+if __name__ == "__main__":
+    main()
