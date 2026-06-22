@@ -1,0 +1,28 @@
+name: Content Preview
+
+# 요일 포맷별 7일치 콘텐츠를 실제 Ideas Pipeline 소재로 생성(게시 없음). 수동 실행.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests anthropic
+
+      - name: Generate 7-day preview
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_IDEAS_DB_ID: ${{ secrets.NOTION_IDEAS_DB_ID }}
+        run: python preview.py
