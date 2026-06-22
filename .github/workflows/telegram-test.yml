@@ -52,3 +52,20 @@ jobs:
         run: |
           printf '%s\n' "❌ instagram (테스트 주제): Facebook 9004: media download failed" "❌ facebook (테스트 주제): 400 invalid token" > _error.txt
           RUN_DATE=$(TZ=Asia/Seoul date +%F) python notify_failure.py
+
+      - name: Send sample daily briefing
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import telegram_notify as tg
+          text = ("☀️ <b>parkjunhyuk 데일리</b> · 테스트\n\n"
+                  "오늘의 글 — <b>공간이 IP가 되는 구조</b>\n"
+                  "✅Instagram · ✅LinkedIn · ✅Facebook")
+          tg.send(text, buttons=[
+              ("Instagram", "https://instagram.com/parkjunhyukxyz"),
+              ("LinkedIn", "https://www.linkedin.com/in/"),
+              ("Facebook", "https://facebook.com"),
+          ])
+          PY

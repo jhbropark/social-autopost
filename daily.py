@@ -21,6 +21,7 @@ import platforms
 import imagesearch
 import reels
 import notion_sync
+import telegram_notify as tg
 
 OUT_DIR = "out/daily"
 PLAN_JSON = os.path.join(OUT_DIR, "plan.json")
@@ -236,6 +237,31 @@ def do_publish():
     if failed:
         _flush_errors()
         sys.exit(1)
+
+    _send_briefing(plan, today)
+
+
+def _send_briefing(plan, date):
+    """발행 성공 시 'Morning Briefing' 데일리 요약(HTML + 게시물 버튼) 전송."""
+    items = [d for d in plan if (d.get("_links") or {})]
+    if not items:
+        return
+    d0 = items[0]
+    lk = d0.get("_links") or {}
+    status = " · ".join(
+        ("✅" if lk.get(key) else "▫️") + name
+        for name, key in (("Instagram", "instagram"), ("LinkedIn", "linkedin"), ("Facebook", "facebook"))
+    )
+    text = (
+        f"☀️ <b>parkjunhyuk 데일리</b> · {tg.esc(date)}\n\n"
+        f"오늘의 글 — <b>{tg.esc(str(d0.get('topic'))[:80])}</b>\n"
+        f"{status}"
+    )
+    tg.send(text, buttons=[
+        ("Instagram", lk.get("instagram")),
+        ("LinkedIn", lk.get("linkedin")),
+        ("Facebook", lk.get("facebook")),
+    ])
 
 
 if __name__ == "__main__":

@@ -66,6 +66,9 @@ jobs:
           # Notion 콘텐츠 대시보드 기록(선택)
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          # Telegram 데일리 성공 브리핑(선택)
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python daily.py publish
 
       # 어느 단계든 실패하면 원인을 요약해 Telegram 으로 알림(설정 시)
