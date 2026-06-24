@@ -95,7 +95,17 @@ def main():
         parts.append("검수: " + (tg.esc("; ".join(flags)) if flags else "이상 없음"))
 
     parts.append(f"\n종합: {'이상 없음 ✅' if total == 0 else f'⚠️ {total}건 확인 필요'}")
-    tg.send("\n".join(parts), buttons=[("📲 대시보드에서 보기", DASH)])
+
+    # 게시 링크 버튼(있으면) + 대시보드
+    links = {}
+    for item in plan:
+        lk = item.get("_links") or {}
+        for k in ("instagram", "linkedin", "facebook"):
+            if lk.get(k) and k not in links:
+                links[k] = lk[k]
+    buttons = [(n, links.get(k)) for n, k in (("IG", "instagram"), ("LinkedIn", "linkedin"), ("FB", "facebook"))]
+    buttons.append(("📲 대시보드", DASH))
+    tg.send("\n".join(parts), buttons=buttons)
 
 
 if __name__ == "__main__":

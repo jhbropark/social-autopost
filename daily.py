@@ -21,7 +21,6 @@ import platforms
 import imagesearch
 import reels
 import notion_sync
-import telegram_notify as tg
 import ideas
 
 OUT_DIR = "out/daily"
@@ -260,34 +259,17 @@ def do_publish():
                               cover_url=cover, date=today):
             print(f"🗂  Notion 기록: {str(data.get('topic'))[:30]}")
 
+    # _links(게시 링크) 포함해 plan.json 갱신 — 검수(review) 단계가 링크 버튼에 사용.
+    try:
+        with open(PLAN_JSON, "w", encoding="utf-8") as f:
+            json.dump(plan, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("plan 갱신 실패:", e)
+
     if failed:
         _flush_errors()
         sys.exit(1)
-
-    _send_briefing(plan, today)
-
-
-def _send_briefing(plan, date):
-    """발행 성공 시 'Morning Briefing' 데일리 요약(HTML + 게시물 버튼) 전송."""
-    items = [d for d in plan if (d.get("_links") or {})]
-    if not items:
-        return
-    d0 = items[0]
-    lk = d0.get("_links") or {}
-    status = " · ".join(
-        ("✅" if lk.get(key) else "▫️") + name
-        for name, key in (("Instagram", "instagram"), ("LinkedIn", "linkedin"), ("Facebook", "facebook"))
-    )
-    text = (
-        f"☀️ <b>parkjunhyuk 데일리</b> · {tg.esc(date)}\n\n"
-        f"오늘의 글 — <b>{tg.esc(str(d0.get('topic'))[:80])}</b>\n"
-        f"{status}"
-    )
-    tg.send(text, buttons=[
-        ("Instagram", lk.get("instagram")),
-        ("LinkedIn", lk.get("linkedin")),
-        ("Facebook", lk.get("facebook")),
-    ])
+    # 데일리 텔레그램 알림은 워크플로우의 'Content review' 스텝(review.py)으로 일원화함.
 
 
 if __name__ == "__main__":
