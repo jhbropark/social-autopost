@@ -26,12 +26,12 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Generate content + media (1일 1게시물 — IG/LinkedIn/FB 각 1)
+      - name: Generate content + media (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          IG_POSTS_PER_DAY: "1"
-          REELS_PER_DAY: "0"
+          IG_POSTS_PER_DAY: "2"
+          REELS_PER_DAY: "1"
           LINKEDIN_POSTS_PER_DAY: "1"
           # Ideas Pipeline 소재 연동(선택)
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
@@ -49,11 +49,11 @@ jobs:
           git commit -m "chore: daily posts $(date -u +%F)" || echo "nothing to commit"
           git push
 
-      - name: Publish (1일 1게시물 — IG/LinkedIn/FB 각 1)
+      - name: Publish (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
         env:
           IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/daily"
           CACHE_BUST: ${{ github.run_id }}
-          IG_POSTS_PER_DAY: "1"
+          IG_POSTS_PER_DAY: "2"
           LINKEDIN_POSTS_PER_DAY: "1"
           FB_POSTS_PER_DAY: "1"
           # 자동 갱신(권장): refresh_token + client 자격증명
