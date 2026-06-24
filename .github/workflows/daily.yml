@@ -79,6 +79,15 @@ jobs:
           NEWSLETTER_URL: ${{ secrets.NEWSLETTER_URL }}
         run: python daily.py publish
 
+      # 발행 성공 시 콘텐츠를 검수해 결과를 Telegram 으로 발송
+      - name: Content review (Telegram)
+        if: success()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: RUN_DATE=$(TZ=Asia/Seoul date +%F) python review.py
+
       # 어느 단계든 실패하면 원인을 요약해 Telegram 으로 알림(설정 시)
       - name: Notify failure (Telegram)
         if: failure()
