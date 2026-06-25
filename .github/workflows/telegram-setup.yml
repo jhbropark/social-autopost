@@ -1,0 +1,35 @@
+name: Telegram Setup
+
+# 봇 이름(알림 발신자 제목)을 설정한다. setMyName. 수동 실행.
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "봇 표시 이름 (알림 제목)"
+        required: true
+        default: "sns.parkjunhyukxyz"
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install deps
+        run: pip install requests
+
+      - name: Set bot name
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          NEW_NAME: ${{ inputs.name }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          t = os.environ["TELEGRAM_BOT_TOKEN"]; name = os.environ["NEW_NAME"]
+          r = requests.post(f"https://api.telegram.org/bot{t}/setMyName", data={"name": name}, timeout=30)
+          print("setMyName:", r.status_code, r.text[:200])
+          me = requests.get(f"https://api.telegram.org/bot{t}/getMe", timeout=30).json()
+          print("현재 봇 이름:", me.get("result", {}).get("first_name"))
+          print("RESULT:", "✅ 변경됨" if me.get("result", {}).get("first_name") == name else "⚠️ 확인 필요")
+          PY
