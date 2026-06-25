@@ -14,13 +14,18 @@ import requests
 API = "https://api.telegram.org"
 
 
+# 모든 텔레그램 알림 맨 위에 붙는 제목(브랜드 식별)
+TITLE = os.environ.get("TELEGRAM_TITLE", "sns.parkjunhyukxyz")
+
+
 def esc(s):
     """HTML 모드에서 안전하도록 & < > 만 이스케이프."""
     return html.escape(str(s if s is not None else ""), quote=False)
 
 
 def send(html_text, buttons=None):
-    """html_text: <b> 등 허용 태그가 든 본문. buttons: [(텍스트, url), ...] (url None이면 제외)."""
+    """html_text: <b> 등 허용 태그가 든 본문. buttons: [(텍스트, url), ...] (url None이면 제외).
+    메시지 맨 위에 제목(TITLE)을 자동으로 붙인다."""
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
     if not (token and chat):
@@ -28,7 +33,7 @@ def send(html_text, buttons=None):
         return None
     data = {
         "chat_id": chat,
-        "text": html_text,
+        "text": f"<b>{esc(TITLE)}</b>\n{html_text}",
         "parse_mode": "HTML",
         "disable_web_page_preview": "true",
     }
