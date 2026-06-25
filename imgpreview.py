@@ -38,7 +38,23 @@ def main():
     carousel.render_fb_card(cz, os.path.join(OUT, "fb_card.jpg"))
     carousel.render_li_cover(cz, os.path.join(OUT, "li_cover.jpg"))
     carousel.render_li_outro(cz, os.path.join(OUT, "li_outro.jpg"))
-    print("렌더 완료:", len(slides), "슬라이드 + fb_card + li_cover + li_outro")
+
+    # 릴스 0초 후크 카드(영상 첫 프레임 디자인) 미리보기 — 히어로 위에 합성
+    try:
+        from PIL import Image as _I
+        print("릴스 후크:", cz.get("reel_hook"))
+        hook = carousel.render_reel_card(cz, "hook")
+        base = _I.new("RGB", (1080, 1920), (12, 14, 18))
+        if cz.get("top_image") and os.path.exists(cz["top_image"]):
+            ph = _I.open(cz["top_image"]).convert("RGB")
+            rr = max(1080 / ph.width, 1920 / ph.height)
+            ph = ph.resize((int(ph.width * rr), int(ph.height * rr)))
+            base.paste(ph.crop((0, 0, 1080, 1920)))
+        base.paste(hook, (0, 0), hook)
+        base.save(os.path.join(OUT, "reel_hook.jpg"), quality=90)
+    except Exception as e:
+        print("reel_hook 실패:", e)
+    print("렌더 완료:", len(slides), "슬라이드 + fb_card + li_cover + li_outro + reel_hook")
 
 
 if __name__ == "__main__":

@@ -77,6 +77,8 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           # 뉴스레터 전환 퍼널(선택): 설정 시 FB 댓글 링크 + IG 캡션 CTA 가 뉴스레터로
           NEWSLETTER_URL: ${{ secrets.NEWSLETTER_URL }}
+          # 댓글→DM 리드젠(선택): 설정 시 IG/릴스 캡션에 '댓글에 KEYWORD 남기면 DM' 추가
+          LEADGEN_KEYWORD: ${{ secrets.LEADGEN_KEYWORD }}
         run: python daily.py publish
 
       # 발행 성공 시 콘텐츠를 검수해 결과를 Telegram 으로 발송

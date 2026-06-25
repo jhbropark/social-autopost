@@ -31,12 +31,17 @@ LINKEDIN_POSTS = int(os.environ.get("LINKEDIN_POSTS_PER_DAY", "1"))
 FB_POSTS = int(os.environ.get("FB_POSTS_PER_DAY", "1"))
 # 뉴스레터 전환 퍼널: 설정 시 FB 첫 댓글 링크 + IG 캡션 CTA 가 뉴스레터로 향한다.
 NEWSLETTER_URL = os.environ.get("NEWSLETTER_URL", "").strip()
+# 댓글→DM 리드젠: 설정 시 IG/릴스 캡션에 "댓글에 'KEYWORD' 남기면 DM" CTA 추가(직접 발송 필요).
+LEADGEN_KEYWORD = os.environ.get("LEADGEN_KEYWORD", "").strip()
 
 
 def _ig_cta(caption):
+    out = caption or ""
+    if LEADGEN_KEYWORD:
+        out += f"\n\n💬 댓글에 '{LEADGEN_KEYWORD}' 남기면 전체 정리본을 DM으로 보내드려요"
     if NEWSLETTER_URL:
-        return (caption or "") + "\n\n📬 매주 공간·AI·미디어아트 인사이트를 뉴스레터로 — 프로필 링크"
-    return caption
+        out += "\n\n📬 매주 공간·AI·미디어아트 인사이트를 뉴스레터로 — 프로필 링크"
+    return out
 
 ERR_FILE = "_error.txt"     # 실패 원인 누적(워크플로우 실패 알림 스텝이 읽음)
 _ERRORS = []

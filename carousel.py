@@ -420,19 +420,27 @@ def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
     center("parkjunhyuk.xyz", M._font(M.F_SERIF, 42), 150, M.FG)
 
     if kind == "hook":
+        # 0초 후크: 질문형(reel_hook) 대형 텍스트 + 두꺼운 외곽선(영상 위 대비). 없으면 cover_bold.
         f_badge = M._font(M.F_CJK_BOLD, 34)
-        f_bold = M._font(M.F_CJK_BOLD, 80)
-        f_key = M._font(M.F_CJK_XBOLD, 148)
-        bold_lines = M._wrap(d, data.get("cover_bold", ""), f_bold, maxw)
-        key_lines = M._wrap(d, data.get("cover_keyword", ""), f_key, maxw)
+        hook_txt = (data.get("reel_hook") or data.get("cover_bold") or "").strip()
+        size = 132
+        f_hook = M._font(M.F_CJK_XBOLD, size)
+        hook_lines = M._wrap(d, hook_txt, f_hook, maxw)
+        while len(hook_lines) > 4 and size > 92:      # 길면 단계 축소
+            size -= 12
+            f_hook = M._font(M.F_CJK_XBOLD, size)
+            hook_lines = M._wrap(d, hook_txt, f_hook, maxw)
+        lh = int(size * 1.12)
         asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 28
-        total = bh + 30 + len(bold_lines) * 96 + 24 + len(key_lines) * 158
-        y = int(h * 0.52 - total / 2)
+        total = bh + 44 + len(hook_lines) * lh
+        y = int(h * 0.50 - total / 2)
         badge = data.get("badge", "").upper()
         bw = d.textlength(badge, font=f_badge) + 56
-        M._pill(d, (w - bw) / 2, y, badge, f_badge); y += bh + 30
-        y = center_block(bold_lines, f_bold, y, M.HEAD_SOFT, 96) + 24
-        center_block(key_lines, f_key, y, M.FG, 158)
+        M._pill(d, (w - bw) / 2, y, badge, f_badge); y += bh + 44
+        for ln in hook_lines:
+            x = (w - d.textlength(ln, font=f_hook)) / 2
+            d.text((x, y), ln, font=f_hook, fill=M.FG, stroke_width=7, stroke_fill=(8, 10, 13))
+            y += lh
 
     elif kind == "point":
         f_num = M._font(M.F_CJK_BOLD, 110)

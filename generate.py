@@ -99,6 +99,7 @@ _CONTENT_TOOL = {
                     "cover_accent": _S,
                     "cover_rest": {"type": "array", "items": _S},
                     "cover_keyword": _S,
+                    "reel_hook": _S,
                     "facts": {"type": "array", "items": _S},
                     "caption": _S,
                     "points": {
@@ -198,6 +199,7 @@ def generate_posts(target=None, variant=0, idea=None, ideas_list=None) -> dict:
     ② 구체적 호기심 갭(스와이프해야 풀리는 질문 — 단 반드시 구체적 대상/상황에 앵커, 막연 금지)
     ③ 또렷한 약속/반전.
     밋밋한 중립 서술·설명문 금지. (단 뜻은 명확해야 — 난해·말장난은 여전히 금지.)
+  - reel_hook: 릴스 0초 후크용 짧은 질문 한 줄(16자 이내). 호기심을 자극하는 질문형("왜 ~할까?", "~하면 어떻게 될까?")으로 스크롤을 멈추게. 소재와 직결되게.
   - cover_rest: 표지 보조 설명 1줄 배열(원소 1개). 16자 이내. cover_bold를 자연스럽게 잇는 짧은 보충.
   - cover_keyword: 표지에서 가장 크게 박히는 한 방. 한국어 7자 이내. **결정적 단언이나 반전**을 담을 것.
     밋밋한 분류 라벨(예: 금지 "키네틱 화면", "빛의 설계", "생성형 파사드" 같은 카테고리명) 금지 — 그 한 줄이 약속·통찰·반전이 되게.
