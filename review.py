@@ -16,6 +16,27 @@ import telegram_notify as tg
 PLAN = "out/daily/plan.json"
 DASH = "https://app.notion.com/p/37787cba93974a40a72ab0de6b39805e"
 
+# AI 티 패턴(im-not-strange-ai 기준) — (이름, 정규식, 플래그 임계 횟수)
+_TELLS = [
+    ("전자/후자", r"전자[는의가]|후자[는의가]", 1),
+    ("것이다", r"것이다|것이고|것이며", 1),
+    ("연결+쉼표", r"(?:지만|으며|하며|하고|되고|어서|아서|면서),", 1),
+    ("상투구", r"결론적으로|주목할\s*만하|시사하는\s*바|본질적으로|혁신적|압도적|파격적|획기적", 1),
+    ("헤징", r"할\s*수\s*있을\s*것으로\s*보인다|할\s*것으로\s*보인다|수\s*있을\s*것이다", 1),
+    ("문두접속사", r"(?m)^\s*(?:또한|따라서|게다가|그러므로|즉)[ ,]", 2),
+    ("매우/정말", r"매우|정말로", 2),
+]
+
+
+def _ai_tells(allt):
+    """AI 어투 패턴을 스캔해 임계 이상인 항목을 ' 이름×횟수'로 반환."""
+    out = []
+    for name, pat, thr in _TELLS:
+        n = len(re.findall(pat, allt))
+        if n >= thr:
+            out.append(f"{name}×{n}")
+    return out
+
 
 def _texts(item):
     return {
@@ -32,6 +53,10 @@ def _checks(item, texts):
     nums = re.findall(r"\d[\d,\.]*\s*(?:명|%|퍼센트|배|억|만\s*명|만원|원)", allt)
     if nums:
         flags.append("의심 수치 " + ", ".join(nums[:4]))
+    # AI 어투(번역투·것이다·헤징 등) — 본문 3종만 스캔(facts 제외)
+    tells = _ai_tells(" ".join(texts.values()))
+    if tells:
+        flags.append("AI티 " + ", ".join(tells))
     for ch, t in texts.items():
         s = t.strip()
         if s.startswith("{") or '"text"' in s:
