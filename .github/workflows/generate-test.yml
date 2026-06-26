@@ -27,18 +27,36 @@ jobs:
           python - <<'PY'
           import re, generate
           d = generate.generate_posts()
+          ig = d.get("instagram", {}).get("caption", "")
           li = d.get("linkedin", {}).get("text", "")
           fb = d.get("facebook", {}).get("text", "")
           facts = d.get("carousel", {}).get("facts", [])
           print("OK topic:", d.get("topic"))
-          print("ig:", (d.get("instagram", {}).get("caption", "")[:40]))
+          print("--- Instagram ---")
+          print(ig[:500])
           print("--- LinkedIn ---")
           print(li[:400])
           print("--- facts ---", facts)
           # 지어낸 통계 의심 패턴 스캔(N명/N%/N배 등)
           risky = re.findall(r"\d[\d,\.]*\s*(?:명|%|퍼센트|배|억|만\s*명|만원|원)", li + " " + fb + " " + " ".join(facts))
           print("의심 수치:", risky if risky else "없음 ✅")
-          ig = d.get("instagram", {}).get("caption", "")
           print("LI가 JSON래퍼로 시작:", li.strip().startswith("{"))
           print("'해시태그' 단어 노출:", ("해시태그" in li) or ("해시태그" in ig))
+          # === AI 티 스캔(im-not-strange-ai 기준) ===
+          allt = "\n".join([ig, fb, li])
+          tells = {
+            "전자/후자(번역투)":      re.findall(r"전자[는의가]|후자[는의가]", allt),
+            "것이다/것이고(형식명사)":  re.findall(r"것이다|것이고|것이며", allt),
+            "연결어미+쉼표(C-11)":    re.findall(r"(?:지만|으며|하며|하고|되고|어서|아서|면서),", allt),
+            "삭제관용구":            re.findall(r"결론적으로|주목할\s*만하|시사하는\s*바|본질적으로|혁신적|압도적|파격적|획기적", allt),
+            "다중헤징":              re.findall(r"할\s*수\s*있을\s*것으로\s*보인다|할\s*것으로\s*보인다|수\s*있을\s*것이다", allt),
+            "문두접속사":            re.findall(r"(?m)^\s*(?:또한|따라서|게다가|그러므로|즉)[ ,]", allt),
+            "매우/정말(F-1)":        re.findall(r"매우|정말로", allt),
+          }
+          print("=== AI 티 스캔 ===")
+          flagged = 0
+          for k, v in tells.items():
+              if v: flagged += 1
+              print(f"  {k}: {'✅' if not v else '⚠️ %d회 %s' % (len(v), v[:5])}")
+          print(f"=== 종합: {'전부 통과 ✅' if flagged==0 else str(flagged)+'개 항목 플래그 ⚠️'} ===")
           PY
