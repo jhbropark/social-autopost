@@ -51,6 +51,7 @@ def fetch_ideas():
                 "idea": title,
                 "notes": _txt((pr.get("Notes") or {}).get("rich_text")),
                 "target": _txt((pr.get("Target") or {}).get("rich_text")),
+                "hook": _txt((pr.get("Hook") or {}).get("rich_text")),
                 "format": _ms(pr.get("Format")),
                 "tech": _ms(pr.get("Tech")),
                 "stage": _sel(pr.get("Stage")),
@@ -86,6 +87,8 @@ def as_brief(idea):
     if not idea:
         return ""
     parts = [f"아이디어: {idea['idea']}"]
+    if idea.get("hook"):
+        parts.append("후킹메시지(표지·릴스 후크의 출발점): " + idea["hook"])
     if idea.get("format"):
         parts.append("형식: " + ", ".join(idea["format"]))
     if idea.get("tech"):

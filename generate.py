@@ -180,6 +180,8 @@ def generate_posts(target=None, variant=0, idea=None, ideas_list=None) -> dict:
             f"{_ideas.as_brief(idea)}\n"
             "이건 박준혁 본인이 실제로 다룬/구상한 작업이다. 지어내지 말고 이 내용에 근거해, "
             "요일 포맷의 시선으로 풀어라. (이 소재가 곧 '오늘의 소재'다.)\n"
+            "소재에 '후킹메시지'가 있으면 그 메시지를 cover_bold와 reel_hook의 출발점으로 삼아라 — "
+            "그대로 복붙하지 말고 표지(12자 이내)·릴스 후크(18자 이내) 규칙에 맞게 다듬되, 핵심 후킹 각도는 살려라.\n"
         )
 
     user = f"""오늘 날짜: {today.strftime('%Y-%m-%d (%A)')}
