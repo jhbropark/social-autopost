@@ -60,3 +60,36 @@ jobs:
               print(f"  {k}: {'✅' if not v else '⚠️ %d회 %s' % (len(v), v[:5])}")
           print(f"=== 종합: {'전부 통과 ✅' if flagged==0 else str(flagged)+'개 항목 플래그 ⚠️'} ===")
           PY
+
+      - name: Rotation check (실제 Notion 소재로 날짜별 회전 검증)
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_IDEAS_DB_ID: ${{ secrets.NOTION_IDEAS_DB_ID }}
+        run: |
+          python - <<'PY'
+          import ideas
+          pool = [i for i in ideas.fetch_ideas() if i.get("stage") != "Archive"]
+          pool.sort(key=lambda i: i["idea"])
+          N = len(pool)
+          print("비-Archive 소재 수:", N)
+          if not N:
+              print("⚠ 소재 풀이 비어 회전 검증 불가(NOTION 시크릿/공유 확인)"); raise SystemExit(0)
+          IG_POSTS, REELS = 2, 1                       # daily.yml 운영값
+          per_day = max(1, max(0, IG_POSTS - REELS) + REELS)
+          sel = lambda seq: pool[seq % N]["idea"]
+          def run(label, seqfn):
+              print(f"\n=== {label} ===")
+              prev, dups = set(), 0
+              for yday in range(175, 186):             # 06-24 부근 ~11일
+                  car, reel = sel(seqfn(yday, 0)), sel(seqfn(yday, 1))
+                  ov = {car, reel} & prev
+                  if ov: dups += 1
+                  mark = "  <== 어제와 중복!" if ov else ""
+                  print(f"  yday {yday}: 캐러셀={car[:22]:22} | 릴스={reel[:22]:22}{mark}")
+                  prev = {car, reel}
+              print(f"  >> 연속일 중복: {dups}일")
+              return dups
+          old = run("옛 공식  seq=yday+v", lambda y, v: y + v)
+          new = run("새 공식  seq=yday*per_day+v", lambda y, v: y * per_day + v)
+          print(f"\n=== 결과: 옛 {old}일 → 새 {new}일 {'✅ 중복 해소' if new == 0 else '⚠️ 여전히 중복'} ===")
+          PY
