@@ -85,15 +85,21 @@ def build_reel(data, out_dir):
     스톡영상 검색 실패 시 None. (daily.py 등에서 재사용)"""
     os.makedirs(out_dir, exist_ok=True)
     cz = data["carousel"]
-    vq = data.get("image_query") or data.get("topic")
-    print("🔎 video query:", vq)
+    base_q = data.get("image_query") or data.get("topic")
+    # 릴스 영상은 '작품 안에 사람 실루엣'이 위치성·저장을 높인다(표지 사진과 달리 인물 허용).
+    # 인물 포함 footage 를 먼저 찾고, 부족하면 기본 쿼리로 폴백한다.
+    queries = [f"{base_q} people silhouette", base_q]
+    print("🔎 video query:", queries[0], "→ 폴백:", base_q)
 
     # 서로 다른 스톡 클립 최대 3개(컷 전환용)
     srcs = []
-    for pick in range(4):
-        p = imagesearch.search_video(vq, os.path.join(out_dir, f"_src{len(srcs)}.mp4"), pick=pick)
-        if p:
-            srcs.append(p)
+    for q in queries:
+        for pick in range(4):
+            p = imagesearch.search_video(q, os.path.join(out_dir, f"_src{len(srcs)}.mp4"), pick=pick)
+            if p:
+                srcs.append(p)
+            if len(srcs) >= 3:
+                break
         if len(srcs) >= 3:
             break
     if not srcs:
