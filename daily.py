@@ -108,10 +108,14 @@ def do_generate():
             seed = json.load(f)
         print(f"🌱 시드 콘텐츠({len(seed)}개) 사용 — Claude API 호출 건너뜀")
 
+    # 하루에 쓰는 서로 다른 소재 수. 인덱스를 이만큼씩 띄워야 날짜 윈도우가 겹치지 않는다
+    # (예전엔 seq=yday+v 라 어제 릴스 소재가 오늘 캐러셀로 재사용돼 며칠씩 중복됐다).
+    per_day = max(1, max(0, IG_POSTS - REELS) + REELS)
+
     def _content(v):
         if seed is not None:
             return dict(seed[v] if v < len(seed) else seed[-1])
-        seq = today.timetuple().tm_yday + v
+        seq = today.timetuple().tm_yday * per_day + v
         if today.weekday() == 6:   # 일요일 = 위클리 큐레이션(아이디어 여러 개 묶음)
             lst = ideas.pick_ideas(5, seq)
             if lst:
