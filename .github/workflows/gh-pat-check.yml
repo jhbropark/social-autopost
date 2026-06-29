@@ -1,0 +1,32 @@
+name: GH_PAT Check
+
+# GH_PAT(시크릿 쓰기용 PAT) 유효성·권한 점검. 토큰 값은 출력하지 않음.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate GH_PAT (value never printed)
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "❌ GH_PAT 미설정"; exit 0; fi
+          echo "PAT 길이: ${#GH_TOKEN}"
+          case "$GH_TOKEN" in
+            github_pat_*) echo "PAT 유형: fine-grained ✅" ;;
+            ghp_*)        echo "PAT 유형: classic ✅" ;;
+            *)            echo "PAT 유형: ⚠️ 알 수 없음(github_pat_/ghp_ 로 시작 안 함 — 잘렸거나 오타)" ;;
+          esac
+          echo "--- 1) 토큰 자체 유효성 (/user) ---"
+          if gh api user -q '.login'; then echo "✅ 토큰 유효"; else echo "❌ 토큰 무효(401) — 값이 틀렸거나 만료"; fi
+          echo "--- 2) Secrets 쓰기 권한 (public-key 조회) ---"
+          if gh api "repos/${GITHUB_REPOSITORY}/actions/secrets/public-key" -q '.key_id' >/dev/null 2>&1; then
+            echo "✅ Secrets 접근 OK — 자동 갱신 가능"
+          else
+            echo "❌ Secrets 접근 불가 — 'Secrets: Read and write' 권한 + 이 repo 접근 확인 필요"
+          fi
