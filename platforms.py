@@ -241,10 +241,11 @@ def _ig_endpoint():
     """게시에 사용할 (base_url, token, ig_user_id) 결정.
     INSTAGRAM_ACCESS_TOKEN 이 있으면 Instagram 로그인 API(graph.instagram.com)를 쓴다
     — FB 페이지·비즈니스 불필요. 없으면 FB 페이지 토큰(graph.facebook.com)으로 폴백."""
-    ig_token = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
+    # .strip(): gh secret set 시 섞일 수 있는 공백·줄바꿈을 제거(없으면 "Cannot parse access token" 400)
+    ig_token = (os.environ.get("INSTAGRAM_ACCESS_TOKEN") or "").strip()
     if ig_token:
-        return IG_GRAPH, ig_token, os.environ["IG_USER_ID"]
-    fb_token = os.environ["FB_PAGE_ACCESS_TOKEN"]
+        return IG_GRAPH, ig_token, os.environ["IG_USER_ID"].strip()
+    fb_token = os.environ["FB_PAGE_ACCESS_TOKEN"].strip()
     return GRAPH, fb_token, _ig_user_id(fb_token)
 
 

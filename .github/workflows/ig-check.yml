@@ -1,0 +1,41 @@
+name: IG Token Check
+
+# INSTAGRAM_ACCESS_TOKEN 유효성만 검증(게시·생성 없음). 토큰 값은 출력하지 않음.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install requests
+      - name: Validate Instagram token (no posting, token value never printed)
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          raw = os.environ.get("INSTAGRAM_ACCESS_TOKEN") or ""
+          tok = raw.strip()
+          uid = (os.environ.get("IG_USER_ID") or "").strip()
+          print("토큰 길이:", len(tok))
+          print("앞뒤 공백/줄바꿈 있었나:", raw != tok, "| 내부 공백 있나:", any(c in tok for c in " \n\r\t"))
+          print("따옴표로 감싸졌나:", tok[:1] in "\"'" or tok[-1:] in "\"'")
+          print("IG_USER_ID 길이:", len(uid))
+          if not tok:
+              print("❌ 토큰이 비어 있음 — 시크릿 미설정"); raise SystemExit(0)
+          r = requests.get(f"https://graph.instagram.com/v21.0/{uid}",
+                           params={"fields": "username,account_type", "access_token": tok}, timeout=20)
+          print("HTTP:", r.status_code)
+          print("응답:", r.text[:300])
+          print("결과:", "✅ 토큰 정상" if r.status_code == 200 else "⚠️ 토큰/요청 문제")
+          PY
