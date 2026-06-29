@@ -1,0 +1,42 @@
+name: Refresh IG Token
+
+# Instagram 로그인 장기 토큰(60일)을 만료 전에 자동 갱신해 '영구 사용'한다.
+# graph.instagram.com/refresh_access_token 가 새 60일 토큰을 발급 → 시크릿을 교체.
+# 필요: 시크릿 GH_PAT (Secrets 쓰기 권한 PAT), INSTAGRAM_ACCESS_TOKEN(유효한 IGAA 토큰).
+on:
+  schedule:
+    - cron: "0 1 1 * *"      # 매월 1일 (토큰 60일 < 30일마다 갱신이라 안전)
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh long-lived Instagram token & update secret
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}        # Secrets 쓰기 권한이 있는 PAT
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "❌ GH_PAT 시크릿 없음 — 가이드 참고해 등록 필요"; exit 1; fi
+          pip install requests -q
+          python - <<'PY' > new_token.txt
+          import os, requests, sys
+          tok = (os.environ.get("INSTAGRAM_ACCESS_TOKEN") or "").strip()
+          r = requests.get("https://graph.instagram.com/refresh_access_token",
+                           params={"grant_type": "ig_refresh_token", "access_token": tok}, timeout=20)
+          d = r.json()
+          if r.status_code == 200 and d.get("access_token"):
+              sys.stdout.write(d["access_token"])           # 새 토큰만(개행 없이) 파일로
+              sys.stderr.write(f"OK expires_in={d.get('expires_in')}\n")
+          else:
+              sys.stderr.write(f"refresh 실패 {r.status_code}: {r.text[:200]}\n"); sys.exit(1)
+          PY
+          gh secret set INSTAGRAM_ACCESS_TOKEN -R "$GITHUB_REPOSITORY" --body "$(cat new_token.txt)"
+          rm -f new_token.txt
+          echo "✅ INSTAGRAM_ACCESS_TOKEN 갱신 완료 — 만료 60일 연장"
