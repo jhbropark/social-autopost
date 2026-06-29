@@ -35,6 +35,12 @@ jobs:
 
           print("=== 경로 A: 인스타 로그인 토큰 (graph.instagram.com) ===")
           print("토큰 길이:", len(ig), "| IG_USER_ID 길이:", len(uid))
+          kind = ("IGAA(인스타 장기 ✅정답)" if ig.startswith("IGAA")
+                  else "IGQ(인스타 단기 — 교환필요)" if ig.startswith("IGQ")
+                  else "EAA(페이스북 토큰 ❌)" if ig.startswith("EAA")
+                  else "EAB/EAC(페이스북 ❌)" if ig[:3] in ("EAB", "EAC")
+                  else f"알 수 없음(첫3자 영숫자={ig[:3].isalnum()})")
+          print("토큰 종류 판별:", kind)
           if ig and uid:
               r = requests.get(f"https://graph.instagram.com/v21.0/{uid}",
                                params={"fields": "username,account_type", "access_token": ig}, timeout=20)
