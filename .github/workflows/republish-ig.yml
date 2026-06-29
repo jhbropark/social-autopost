@@ -1,0 +1,32 @@
+name: Republish IG only
+
+# 커밋된 out/daily/plan.json 로 '인스타그램에만' 재게시(생성 없음, LinkedIn/FB 건너뜀).
+# 토큰 복구 후 그날치 IG만 다시 올릴 때 사용. Claude 비용 0.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  pub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Publish Instagram only (uses committed plan.json)
+        env:
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/daily"
+          CACHE_BUST: ${{ github.run_id }}
+          IG_POSTS_PER_DAY: "2"
+          LINKEDIN_POSTS_PER_DAY: "0"     # LinkedIn 건너뜀(이미 게시됨)
+          FB_POSTS_PER_DAY: "0"           # FB 건너뜀(FB 토큰도 주지 않음)
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          NEWSLETTER_URL: ${{ secrets.NEWSLETTER_URL }}
+          LEADGEN_KEYWORD: ${{ secrets.LEADGEN_KEYWORD }}
+        run: python daily.py publish
