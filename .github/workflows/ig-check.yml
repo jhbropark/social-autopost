@@ -1,6 +1,7 @@
 name: IG Token Check
 
-# INSTAGRAM_ACCESS_TOKEN 유효성만 검증(게시·생성 없음). 토큰 값은 출력하지 않음.
+# INSTAGRAM_ACCESS_TOKEN(인스타 로그인 경로)와 FB 페이지 토큰(무기한) 경로를 모두 점검.
+# 게시·생성 없음. 토큰 값은 절대 출력하지 않음.
 on:
   workflow_dispatch: {}
 
@@ -17,25 +18,52 @@ jobs:
           python-version: "3.12"
       - name: Install deps
         run: pip install requests
-      - name: Validate Instagram token (no posting, token value never printed)
+      - name: Validate token paths (no posting, token values never printed)
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: |
           python - <<'PY'
           import os, requests
-          raw = os.environ.get("INSTAGRAM_ACCESS_TOKEN") or ""
-          tok = raw.strip()
+
+          ig = (os.environ.get("INSTAGRAM_ACCESS_TOKEN") or "").strip()
           uid = (os.environ.get("IG_USER_ID") or "").strip()
-          print("토큰 길이:", len(tok))
-          print("앞뒤 공백/줄바꿈 있었나:", raw != tok, "| 내부 공백 있나:", any(c in tok for c in " \n\r\t"))
-          print("따옴표로 감싸졌나:", tok[:1] in "\"'" or tok[-1:] in "\"'")
-          print("IG_USER_ID 길이:", len(uid))
-          if not tok:
-              print("❌ 토큰이 비어 있음 — 시크릿 미설정"); raise SystemExit(0)
-          r = requests.get(f"https://graph.instagram.com/v21.0/{uid}",
-                           params={"fields": "username,account_type", "access_token": tok}, timeout=20)
-          print("HTTP:", r.status_code)
-          print("응답:", r.text[:300])
-          print("결과:", "✅ 토큰 정상" if r.status_code == 200 else "⚠️ 토큰/요청 문제")
+          fb = (os.environ.get("FB_PAGE_ACCESS_TOKEN") or "").strip()
+          pid = (os.environ.get("FB_PAGE_ID") or "").strip()
+
+          print("=== 경로 A: 인스타 로그인 토큰 (graph.instagram.com) ===")
+          print("토큰 길이:", len(ig), "| IG_USER_ID 길이:", len(uid))
+          if ig and uid:
+              r = requests.get(f"https://graph.instagram.com/v21.0/{uid}",
+                               params={"fields": "username,account_type", "access_token": ig}, timeout=20)
+              print("HTTP:", r.status_code, "| 응답:", r.text[:200])
+              print("판정:", "✅ 경로 A 사용 가능" if r.status_code == 200 else "❌ 경로 A 불가")
+          else:
+              print("판정: ⏭️ 토큰 또는 IG_USER_ID 미설정")
+
+          print("\n=== 경로 B: 페이스북 페이지 토큰 (graph.facebook.com, 무기한) ===")
+          print("FB 토큰 길이:", len(fb), "| FB_PAGE_ID 길이:", len(pid))
+          okB = False
+          if fb and pid:
+              # 1) 페이지에 연결된 IG 비즈니스 계정 조회
+              r1 = requests.get(f"https://graph.facebook.com/v21.0/{pid}",
+                                params={"fields": "instagram_business_account", "access_token": fb}, timeout=20)
+              acc = (r1.json() or {}).get("instagram_business_account", {})
+              ig_id = acc.get("id") if isinstance(acc, dict) else None
+              print("페이지→IG 계정 HTTP:", r1.status_code, "| IG 계정 연결:", "있음("+ig_id+")" if ig_id else "없음")
+              # 2) FB 토큰으로 IG 계정 정보 읽기(게시 권한 동반 여부 신호)
+              if ig_id:
+                  r2 = requests.get(f"https://graph.facebook.com/v21.0/{ig_id}",
+                                    params={"fields": "username,account_type", "access_token": fb}, timeout=20)
+                  print("IG 계정 읽기 HTTP:", r2.status_code, "| 응답:", r2.text[:200])
+                  okB = r2.status_code == 200
+              # 3) 토큰 권한 스코프 확인
+              r3 = requests.get("https://graph.facebook.com/v21.0/me/permissions",
+                                params={"access_token": fb}, timeout=20)
+              perms = [p["permission"] for p in (r3.json().get("data") or []) if p.get("status") == "granted"]
+              need = ["instagram_basic", "instagram_content_publish", "pages_show_list"]
+              print("필요 권한 보유:", {p: (p in perms) for p in need})
+          print("판정:", "✅ 경로 B(무기한 FB토큰)로 인스타 게시 가능성 높음" if okB else "⚠️ 경로 B 추가 확인 필요")
           PY
