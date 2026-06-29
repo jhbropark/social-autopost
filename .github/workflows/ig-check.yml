@@ -46,6 +46,12 @@ jobs:
                                params={"fields": "username,account_type", "access_token": ig}, timeout=20)
               print("HTTP:", r.status_code, "| 응답:", r.text[:200])
               print("판정:", "✅ 경로 A 사용 가능" if r.status_code == 200 else "❌ 경로 A 불가")
+              # 토큰 자체 검증: /me (IG_USER_ID 무관). 여기서 진짜 user_id 확인.
+              for ver in ["", "/v21.0"]:
+                  rm = requests.get(f"https://graph.instagram.com{ver}/me",
+                                    params={"fields": "user_id,username,account_type", "access_token": ig}, timeout=20)
+                  tag = ver or "(버전없음)"
+                  print(f"/me{tag} HTTP:", rm.status_code, "| 응답:", rm.text[:200])
           else:
               print("판정: ⏭️ 토큰 또는 IG_USER_ID 미설정")
 
