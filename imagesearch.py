@@ -89,13 +89,15 @@ def search_image(query, pick=0):
 PEXELS_VIDEO = "https://api.pexels.com/videos/search"
 
 
-def _pexels_video_link(query, key, pick=0):
-    """세로형 스톡 영상 mp4 링크 1개를 고른다(720~1920 높이 선호)."""
+def _pexels_video_link(query, key, pick=0, exclude=None):
+    """세로형 스톡 영상 mp4 링크 1개를 고른다(720~1920 높이 선호).
+    pick 인덱스부터 순환 탐색하며 exclude(이미 쓴 링크 집합)에 있는 영상은 건너뛴다
+    — pick 을 날짜로 돌리지 않으면 검색 순위가 고정이라 매일 같은 클립이 뽑힌다."""
     try:
         r = requests.get(
             PEXELS_VIDEO,
             headers={"Authorization": key, "User-Agent": UA},
-            params={"query": query, "orientation": "portrait", "size": "medium", "per_page": 12},
+            params={"query": query, "orientation": "portrait", "size": "medium", "per_page": 30},
             timeout=40,
         )
         if r.status_code >= 300:
@@ -103,24 +105,31 @@ def _pexels_video_link(query, key, pick=0):
         vids = r.json().get("videos", [])
         if not vids:
             return None
-        v = vids[pick % len(vids)]
-        files = [f for f in v.get("video_files", []) if f.get("file_type") == "video/mp4" and f.get("link")]
-        if not files:
-            return None
-        files.sort(key=lambda f: (f.get("height") or 0))
-        chosen = next((f for f in files if (f.get("height") or 0) >= 1200), files[-1])
-        return chosen["link"]
+        n = len(vids)
+        for off in range(n):
+            v = vids[(pick + off) % n]
+            files = [f for f in v.get("video_files", []) if f.get("file_type") == "video/mp4" and f.get("link")]
+            if not files:
+                continue
+            files.sort(key=lambda f: (f.get("height") or 0))
+            chosen = next((f for f in files if (f.get("height") or 0) >= 1200), files[-1])
+            link = chosen["link"]
+            if exclude and link in exclude:
+                continue
+            return link
+        return None
     except Exception:
         return None
 
 
-def search_video(query, out_path, pick=0):
+def search_video(query, out_path, pick=0, exclude=None):
     """주제 키워드로 세로 스톡 영상 mp4를 out_path에 내려받고 경로 반환. 실패 시 None.
-    영상은 Pexels(키 필요)만 사용 — 키 없으면 None."""
+    영상은 Pexels(키 필요)만 사용 — 키 없으면 None.
+    exclude 집합을 넘기면 이미 받은 영상은 제외하고, 성공 시 이번 링크를 집합에 추가한다."""
     key = os.environ.get("PEXELS_API_KEY")
     if not key or not query:
         return None
-    link = _pexels_video_link(query, key, pick)
+    link = _pexels_video_link(query, key, pick, exclude=exclude)
     if not link:
         return None
     try:
@@ -131,6 +140,8 @@ def search_video(query, out_path, pick=0):
             for chunk in r.iter_content(8192):
                 if chunk:
                     fh.write(chunk)
+        if exclude is not None:
+            exclude.add(link)
         return out_path
     except Exception:
         return None
