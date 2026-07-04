@@ -81,6 +81,18 @@ jobs:
           LEADGEN_KEYWORD: ${{ secrets.LEADGEN_KEYWORD }}
         run: python daily.py publish
 
+      # 발행 링크가 담긴 plan.json 을 커밋 — 같은 날 재실행 시 중복 발행 가드가 이걸 읽는다.
+      # (부분 실패여도 성공한 채널 링크는 기록 → 재시도 시 성공한 채널은 건너뜀)
+      - name: Commit publish state (dedup guard)
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase -q || true
+          git add out/daily/plan.json
+          git commit -m "chore: record publish links $(date -u +%F)" || echo "nothing to commit"
+          git push -q || true
+
       # 발행 성공 시 콘텐츠를 검수해 결과를 Telegram 으로 발송
       - name: Content review (Telegram)
         if: success()
