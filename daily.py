@@ -108,6 +108,19 @@ def do_generate():
             seed = json.load(f)
         print(f"🌱 시드 콘텐츠({len(seed)}개) 사용 — Claude API 호출 건너뜀")
 
+    # 오늘치가 이미 발행돼 있으면(plan에 오늘 날짜 + 게시 링크) 재생성하지 않는다
+    # — 수동 발행 뒤 같은 날 스케줄 재실행으로 인한 중복 발행 방지(시드는 예외: 의도적 수동).
+    if seed is None:
+        try:
+            with open(PLAN_JSON, encoding="utf-8") as f:
+                prev = json.load(f)
+            tstr = today.strftime("%Y-%m-%d")
+            if prev and any((p.get("topic_meta") or {}).get("date") == tstr and (p.get("_links") or {}) for p in prev):
+                print(f"⏭️ {tstr} 콘텐츠가 이미 발행됨 — 재생성 건너뜀(plan.json 유지)")
+                return prev
+        except Exception:
+            pass
+
     # 하루에 쓰는 서로 다른 소재 수. 인덱스를 이만큼씩 띄워야 날짜 윈도우가 겹치지 않는다
     # (예전엔 seq=yday+v 라 어제 릴스 소재가 오늘 캐러셀로 재사용돼 며칠씩 중복됐다).
     per_day = max(1, max(0, IG_POSTS - REELS) + REELS)
@@ -205,8 +218,11 @@ def do_publish():
 
     failed = False
     for i, data in enumerate(plan):
-        data["_links"] = {}
+        data["_links"] = data.get("_links") or {}
         label = "릴스" if data.get("_type") == "reel" else "캐러셀"
+        if data["_links"].get("instagram"):
+            print(f"\n⏭️ IG {label} 이미 발행됨 — 건너뜀: {data.get('topic')}")
+            continue
         print(f"\n=== IG {label} #{i + 1}: {data.get('topic')} ===")
         try:
             if data.get("_type") == "reel":
@@ -221,6 +237,9 @@ def do_publish():
             time.sleep(8)
 
     for data in plan[:LINKEDIN_POSTS]:
+        if (data.get("_links") or {}).get("linkedin"):
+            print(f"\n⏭️ LinkedIn 이미 발행됨 — 건너뜀: {data.get('topic')}")
+            continue
         print(f"\n=== LinkedIn: {data.get('topic')} ===")
         li_text = data.get("linkedin", {}).get("text", "")
         try:
@@ -245,6 +264,9 @@ def do_publish():
 
     if os.environ.get("FB_PAGE_ACCESS_TOKEN"):
         for data in plan[:FB_POSTS]:
+            if (data.get("_links") or {}).get("facebook"):
+                print(f"\n⏭️ Facebook 이미 발행됨 — 건너뜀: {data.get('topic')}")
+                continue
             print(f"\n=== Facebook: {data.get('topic')} ===")
             fb_text = data.get("facebook", {}).get("text", "") or data.get("linkedin", {}).get("text", "")
             try:

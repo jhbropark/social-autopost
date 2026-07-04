@@ -46,47 +46,70 @@ def _wordmark(d):
     d.text((W - PAD - w, 60), mark, font=f, fill=M.FG)
 
 
+def _fill_photo(w, h, photo_path):
+    """사진을 w×h 프레임에 가득 채워(fill-crop) 반환."""
+    ph = Image.open(photo_path).convert("RGB")
+    r = max(w / ph.width, h / ph.height)
+    ph = ph.resize((int(ph.width * r) + 1, int(ph.height * r) + 1))
+    x, y = (ph.width - w) // 2, (ph.height - h) // 2
+    return ph.crop((x, y, x + w, y + h))
+
+
 def render_cover(data, path):
-    # 표지 상단: 검색된 주제 사진(top_image). 없으면 단색 글로우 패널로 폴백.
-    img = M._top_panel(_base(), top_image=data.get("top_image"))
+    """표지 — 매거진 스타일: 풀블리드 사진 + 하단 그라데이션 스크림 +
+    좌하단 흰 볼드 헤드라인(cover_bold/cover_keyword 두 줄) + 작은 서브캡션(cover_rest).
+    (marketingfactory_ 스터디 반영: 사진이 배경 전체, 타이포만으로 통일감.)"""
+    top = data.get("top_image")
+    if top and os.path.exists(top):
+        img = _fill_photo(W, H, top)
+    else:
+        img = _base().convert("RGB")          # 사진 폴백: 기존 그라데이션
+    # 스크림: 하단(텍스트) 강하게 + 상단(워드마크·배지) 살짝
+    ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(ov)
+    for y in range(H):
+        a = 0
+        if y < int(H * 0.14):
+            a = int(130 * (1 - y / (H * 0.14)))
+        if y > int(H * 0.48):
+            a = max(a, min(215, int(225 * ((y - H * 0.48) / (H * 0.52)) ** 1.15)))
+        if a:
+            sd.line([(0, y), (W, y)], fill=(8, 10, 13, a))
+    img = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
     d = ImageDraw.Draw(img)
     _wordmark(d)
 
     badge = data["badge"].upper()
     bold, rest, keyword = data["cover_bold"], data.get("cover_rest", []), data["cover_keyword"]
     maxw = W - PAD * 2
-    y_start, y_limit = 600, H - PAD - 130     # 본문 영역(힌트/푸터 위 여백)
+    sub = (rest[0] if rest else "").strip()
 
-    # 텍스트가 길면 폰트를 단계적으로 축소해 세로 영역을 넘지 않게 맞춘다(fit-to-box)
-    for scale in (1.0, 0.92, 0.85, 0.78, 0.72, 0.66):
-        f_badge = M._font(M.F_CJK_BOLD, 32)
-        f_bold = M._font(M.F_CJK_BOLD, int(78 * scale))
-        f_soft = M._font(M.F_CJK_REG, int(60 * scale))
-        f_key = M._font(M.F_CJK_XBOLD, int(124 * scale))
-        lh_bold, lh_soft, lh_key = int(94 * scale), int(74 * scale), int(136 * scale)
-        bold_lines = M._wrap(d, bold, f_bold, maxw)
-        rest_lines = [ln for raw in rest for ln in M._wrap(d, raw, f_soft, maxw)]
-        key_lines = M._wrap(d, keyword, f_key, maxw)
-        asc, dsc = f_badge.getmetrics()
-        total = (asc + dsc + 28) + 34 + len(bold_lines) * lh_bold \
-            + len(rest_lines) * lh_soft + 16 + len(key_lines) * lh_key
-        if total <= y_limit - y_start:
+    # 헤드라인 = cover_bold + cover_keyword 를 같은 크기 두 줄처럼(매거진 헤드라인)
+    for size in (84, 78, 72, 66, 60):
+        f_head = M._font(M.F_CJK_XBOLD, size)
+        head_lines = M._wrap(d, bold, f_head, maxw) + M._wrap(d, keyword, f_head, maxw)
+        if len(head_lines) <= 3:
             break
+    lh = int(size * 1.22)
+    f_sub = M._font(M.F_CJK_REG, 36)
+    f_badge = M._font(M.F_CJK_BOLD, 30)
+    asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 24
 
-    y = M._pill(d, PAD, y_start, badge, f_badge) + 34
-    for line in bold_lines:
-        d.text((PAD, y), line, font=f_bold, fill=M.FG); y += lh_bold
-    for line in rest_lines:
-        d.text((PAD, y), line, font=f_soft, fill=M.HEAD_SOFT); y += lh_soft
-    y += 16
-    for line in key_lines:
-        d.text((PAD, y), line, font=f_key, fill=M.FG); y += lh_key
+    # 좌하단 앵커(아래에서 위로 쌓기)
+    y_end = H - PAD - 76                       # 힌트 라인 위
+    total = bh + 30 + len(head_lines) * lh + (16 + 48 if sub else 0)
+    y = y_end - total
+    y = M._pill(d, PAD, y, badge, f_badge) + 30
+    for line in head_lines:
+        d.text((PAD, y), line, font=f_head, fill=M.FG); y += lh
+    if sub:
+        y += 16
+        d.text((PAD, y), sub, font=f_sub, fill=(214, 218, 224))
     # 스와이프 힌트
     f_hint = M._font(M.F_CJK_BOLD, 30)
     hint = "밀어서 보기  →"
     hw = d.textlength(hint, font=f_hint)
-    d.text((W - PAD - hw, H - PAD - 70), hint, font=f_hint, fill=ACCENT)
-    _footer(d, data["caption"], "01")
+    d.text((W - PAD - hw, H - PAD - 40), hint, font=f_hint, fill=M.FG)
     img.save(path, "JPEG", quality=92)
     return path
 
@@ -398,13 +421,24 @@ def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
     kind: 'hook' | 'point' | 'cta'."""
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     sd = ImageDraw.Draw(img)
-    for y in range(h):                       # 가독성 스크림(중앙 강조 + 상단 워드마크)
-        a = 60
-        if 560 < y < 1400:
-            a = 125
-        if y < 280:
-            a = max(a, int(155 * (1 - y / 280)))
-        sd.line([(0, y), (w, y)], fill=(8, 10, 13, a))
+    if kind == "hook":
+        # 표지와 동일한 매거진 스크림: 하단 강하게 + 상단 살짝
+        for y in range(h):
+            a = 0
+            if y < 280:
+                a = int(140 * (1 - y / 280))
+            if y > int(h * 0.52):
+                a = max(a, min(220, int(230 * ((y - h * 0.52) / (h * 0.48)) ** 1.15)))
+            if a:
+                sd.line([(0, y), (w, y)], fill=(8, 10, 13, a))
+    else:
+        for y in range(h):                   # 가독성 스크림(중앙 강조 + 상단 워드마크)
+            a = 60
+            if 560 < y < 1400:
+                a = 125
+            if y < 280:
+                a = max(a, int(155 * (1 - y / 280)))
+            sd.line([(0, y), (w, y)], fill=(8, 10, 13, a))
     d = ImageDraw.Draw(img)
     PADc = 80
     maxw = w - PADc * 2
@@ -420,27 +454,30 @@ def render_reel_card(data, kind, n=None, title=None, body=None, w=1080, h=1920):
     center("parkjunhyuk.xyz", M._font(M.F_SERIF, 42), 150, M.FG)
 
     if kind == "hook":
-        # 0초 후크: 질문형(reel_hook) 대형 텍스트 + 두꺼운 외곽선(영상 위 대비). 없으면 cover_bold.
-        f_badge = M._font(M.F_CJK_BOLD, 34)
+        # 0초 후크 — 표지(캐러셀)와 동일한 디자인 언어: 좌하단 정렬 대형 헤드라인
+        # + 작은 서브캡션(cover_rest) + 소형 배지. (marketingfactory_ 스터디 반영)
         hook_txt = (data.get("reel_hook") or data.get("cover_bold") or "").strip()
-        size = 132
-        f_hook = M._font(M.F_CJK_XBOLD, size)
-        hook_lines = M._wrap(d, hook_txt, f_hook, maxw)
-        while len(hook_lines) > 4 and size > 92:      # 길면 단계 축소
-            size -= 12
+        rest = data.get("cover_rest", [])
+        sub = (rest[0] if rest else "").strip()
+        for size in (112, 102, 92, 84):
             f_hook = M._font(M.F_CJK_XBOLD, size)
             hook_lines = M._wrap(d, hook_txt, f_hook, maxw)
-        lh = int(size * 1.12)
-        asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 28
-        total = bh + 44 + len(hook_lines) * lh
-        y = int(h * 0.50 - total / 2)
-        badge = data.get("badge", "").upper()
-        bw = d.textlength(badge, font=f_badge) + 56
-        M._pill(d, (w - bw) / 2, y, badge, f_badge); y += bh + 44
+            if len(hook_lines) <= 3:
+                break
+        lh = int(size * 1.18)
+        f_sub = M._font(M.F_CJK_REG, 42)
+        f_badge = M._font(M.F_CJK_BOLD, 32)
+        asc, dsc = f_badge.getmetrics(); bh = asc + dsc + 26
+        y_end = 1500                          # 하단 20% 안전영역(IG UI) 위
+        total = bh + 34 + len(hook_lines) * lh + (18 + 56 if sub else 0)
+        y = y_end - total
+        y = M._pill(d, PADc, y, data.get("badge", "").upper(), f_badge) + 34
         for ln in hook_lines:
-            x = (w - d.textlength(ln, font=f_hook)) / 2
-            d.text((x, y), ln, font=f_hook, fill=M.FG, stroke_width=7, stroke_fill=(8, 10, 13))
+            d.text((PADc, y), ln, font=f_hook, fill=M.FG, stroke_width=3, stroke_fill=(8, 10, 13))
             y += lh
+        if sub:
+            y += 18
+            d.text((PADc, y), sub, font=f_sub, fill=(214, 218, 224))
 
     elif kind == "point":
         f_num = M._font(M.F_CJK_BOLD, 110)
