@@ -66,7 +66,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DaeancbjZAk/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7480088878498885632",
+      "facebook": "https://www.facebook.com/1140846082456388_122105757279366256"
+    }
   },
   {
     "topic": "국가유산 미디어아트 전국 12지역 전수분석 — 2026 올가을 프로젝션 맵핑 케이스 시리즈",
@@ -126,6 +131,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DaeaxfyEd_T/"
+    }
   }
 ]
