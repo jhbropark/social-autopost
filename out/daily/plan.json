@@ -67,7 +67,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7480811184665849856",
+      "facebook": "https://www.facebook.com/1140846082456388_122106211527366256"
+    }
   },
   {
     "topic": "발주처를 위한 드론쇼·프로젝션·LED 매체 결정 가이드",
@@ -127,6 +131,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DajjQQ2AuOu/"
+    }
   }
 ]
