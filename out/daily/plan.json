@@ -67,7 +67,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DaoqboajQRs/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7481530765676040192",
+      "facebook": "https://www.facebook.com/1140846082456388_122106591729366256"
+    }
   },
   {
     "topic": "아나모픽 키네틱 디스플레이 — 레일 위에서 움직이며 보는 위치마다 다른 그림을 보여주는 인터랙티브 LED 작업 구상",
@@ -128,6 +133,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DaoqebmjW3F/"
+    }
   }
 ]
