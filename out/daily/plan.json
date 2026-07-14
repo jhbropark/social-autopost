@@ -67,7 +67,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DawX0cylmVA/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482615909346607104",
+      "facebook": "https://www.facebook.com/1140846082456388_122107196229366256"
+    }
   },
   {
     "topic": "AI 생성형 미디어 파사드 — 건물 외벽이 매일 밤 AI로 새로운 영상을 만들어낸다",
@@ -128,6 +133,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DawX8IBkgYX/"
+    }
   }
 ]
