@@ -34,6 +34,11 @@ def main():
     else:
         print("hero:", "없음(그라데이션 폴백)")
 
+    # 포인트 슬라이드 배경 이미지(4컷 만화식 연속) — daily 와 동일 로직
+    import daily
+    daily._attach_point_images(d, OUT)
+    print("포인트 이미지:", [os.path.basename(p.get("image", "-")) for p in cz.get("points", [])])
+
     slides = carousel.render_carousel(cz, out_dir=OUT)
     carousel.render_fb_card(cz, os.path.join(OUT, "fb_card.jpg"))
     carousel.render_li_cover(cz, os.path.join(OUT, "li_cover.jpg"))
