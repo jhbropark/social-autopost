@@ -114,15 +114,60 @@ def render_cover(data, path):
     return path
 
 
+def _scrim(img):
+    """표지와 동일한 스크림(하단 강·상단 약)을 이미지 위에 얹어 반환."""
+    ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(ov)
+    for y in range(H):
+        a = 0
+        if y < int(H * 0.14):
+            a = int(120 * (1 - y / (H * 0.14)))
+        if y > int(H * 0.46):
+            a = max(a, min(220, int(228 * ((y - H * 0.46) / (H * 0.54)) ** 1.12)))
+        if a:
+            sd.line([(0, y), (W, y)], fill=(8, 10, 13, a))
+    return Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
+
+
 def render_point(data, point, n, total, path):
+    photo = point.get("image")
+    if photo and os.path.exists(photo):
+        # 매거진 통일(4컷 만화식 연속): 풀블리드 사진 + 스크림 + 좌상단 큰 번호 + 좌하단 타이틀/바디.
+        img = _scrim(_fill_photo(W, H, photo))
+        d = ImageDraw.Draw(img)
+        _wordmark(d)
+        d.text((PAD, 92), f"{n:02d}", font=M._font(M.F_CJK_XBOLD, 128), fill=ACCENT)
+        maxw = W - PAD * 2
+        size = 60
+        for size in (60, 54, 48):
+            f_title = M._font(M.F_CJK_XBOLD, size)
+            title_lines = M._wrap(d, point["title"], f_title, maxw)
+            if len(title_lines) <= 2:
+                break
+        f_body = M._font(M.F_CJK_REG, 38)
+        lh_t = int(size * 1.2)
+        body_lines = M._wrap_sentences(d, point["body"], f_body, maxw)
+        total_h = len(title_lines) * lh_t + 20 + len(body_lines) * 54
+        y = (H - PAD - 30) - total_h
+        for line in title_lines:
+            d.text((PAD, y), line, font=f_title, fill=M.FG); y += lh_t
+        y += 20
+        for line in body_lines:
+            d.text((PAD, y), line, font=f_body, fill=(214, 218, 224)); y += 54
+        idx = f"{n} / {total}"
+        f_idx = M._font(M.F_CJK_BOLD, 30)
+        iw = d.textlength(idx, font=f_idx)
+        d.text((W - PAD - iw, 108), idx, font=f_idx, fill=M.FG)
+        img.save(path, "JPEG", quality=92)
+        return path
+
+    # 폴백: 이미지 없으면 기존 그라데이션 레이아웃
     img = _base()
     d = ImageDraw.Draw(img)
     f_num = M._font(M.F_CJK_BOLD, 150)
     f_title = M._font(M.F_CJK_BOLD, 58)
     f_body = M._font(M.F_CJK_REG, 40)
-    # 큰 번호
     d.text((PAD, 250), f"{n:02d}", font=f_num, fill=ACCENT)
-    # 얇은 구분선
     d.line([(PAD, 460), (PAD + 120, 460)], fill=ACCENT, width=4)
     y = 540
     for line in M._wrap(d, point["title"], f_title, W - PAD * 2):

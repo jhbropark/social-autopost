@@ -81,6 +81,28 @@ def _attach_hero(data, day_dir):
         cz.pop("top_image", None)
 
 
+def _attach_point_images(data, day_dir):
+    """포인트 슬라이드 각각에 관련 배경 이미지를 붙인다(4컷 만화식 연속 장면).
+    표지와 같은 톤으로 통일하려 공통 스타일 접미사를 붙이고, 포인트별 image_query 로 검색·생성.
+    실패한 포인트는 image 미설정 → 렌더러가 그라데이션으로 폴백."""
+    cz = data["carousel"]
+    pts = cz.get("points", [])
+    base = data.get("image_query") or data.get("topic") or ""
+    style = "dark cinematic, moody volumetric light, consistent color palette, no text, no logo, no watermark"
+    yday = _today_kst().timetuple().tm_yday
+    for i, pt in enumerate(pts):
+        pq = (pt.get("image_query") or "").strip() or base
+        img = imagesearch.search_image(f"{pq}, {style}", pick=(yday + i * 3) % 15)
+        if img is None:                      # 폴백: 표지 소재로 재시도(각 포인트 다른 pick)
+            img = imagesearch.search_image(base, pick=(yday + i * 5 + 7) % 15)
+        if img is not None:
+            p = os.path.join(day_dir, f"_pt{i+1}.jpg")
+            img.save(p, "JPEG", quality=88)
+            pt["image"] = p
+        else:
+            pt.pop("image", None)
+
+
 def _render_carousel(slot, data):
     day_dir = os.path.join(OUT_DIR, slot)
     os.makedirs(day_dir, exist_ok=True)
@@ -88,6 +110,7 @@ def _render_carousel(slot, data):
         if f.endswith(".jpg") and not f.startswith("_"):
             os.remove(os.path.join(day_dir, f))
     _attach_hero(data, day_dir)
+    _attach_point_images(data, day_dir)
     slides = carousel.render_carousel(data["carousel"], out_dir=day_dir)
     # 페이스북용 카드(주제 헤드라인을 사진 위에 얹어 글과 연결)
     carousel.render_fb_card(data["carousel"], os.path.join(day_dir, "fb_card.jpg"))
