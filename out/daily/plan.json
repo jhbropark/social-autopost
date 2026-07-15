@@ -67,7 +67,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482977268860968960",
+      "facebook": "https://www.facebook.com/1140846082456388_122107384383366256"
+    }
   },
   {
     "topic": "Digital Aquarium — 실내·실외 센서 데이터로 만드는 인터랙티브 디지털 수족관",
@@ -128,6 +132,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Day8RN2DTPF/"
+    }
   }
 ]
