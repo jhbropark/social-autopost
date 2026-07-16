@@ -1,61 +1,71 @@
 [
   {
-    "topic": "AR 전시 콘텐츠 — 모바일 AR로 숨은 이야기를 꺼내는 전시 관람 실험",
-    "image_query": "AR museum installation dark exhibition space light",
+    "topic": "Gaussian Splatting으로 스마트폰 하나로 한옥·유적을 통째 3D 캡처하는 입문 워크플로",
+    "image_query": "traditional Korean hanok courtyard 3D scan digital",
     "instagram": {
-      "caption": "「AI 실험실」\n\n전시물은 말이 없다.\n휴대폰을 들이대면, 숨겨뒀던 이야기가 흘러나온다.\n\n전시 공간에 모바일 AR을 붙이는 실험을 하고 있다.\n관람객이 작품 앞에 서서 카메라를 켜는 순간,\n설계자가 심어둔 정보가 화면 위로 올라온다.\n\n안내판보다 훨씬 많은 맥락을, 방해 없이 전달할 수 있다.\n아직 초안 단계지만 — 가능성은 꽤 또렷하다.\n\n\nExhibits are silent. But point your phone, and the hidden story unfolds.\nI'm experimenting with mobile AR layered onto physical installations.\nStill a draft — but the potential is clear.\n\n#미디어아트 #AR전시 #모바일AR #전시기획 #공간경험 #디지털아트 #인터랙션디자인",
-      "series": "Before → After"
+      "caption": "「공간 해부」\n\n스마트폰 하나로 한옥을 통째 3D로 떴다.\n직접 해봤다.\n\n사진 수백 장을 돌며 찍고,\nGaussian Splatting 알고리즘이 공간을 재조립한다.\n\n결과물은 사진도, 영상도 아니다.\n걸어들어갈 수 있는 공간의 복제본이다.\n\n유산을 보존하는 방식이 달라지고 있다.\n\n\nI captured a traditional Korean hanok using Gaussian Splatting — just a smartphone and hundreds of photos.\nThe result isn't a scan. It's a space you can walk into.\nHeritage preservation is changing.\n\n#가우시안스플래팅 #문화재디지털화 #한옥 #3D캡처 #미디어아트 #공간해부 #AIcreative #디지털유산",
+      "series": "Creative Director's Notebook"
     },
     "facebook": {
-      "text": "「AI 실험실」\n\n전시장에서 안내판을 끝까지 읽은 적이 몇 번이나 있었나.\n\n대부분의 관람객은 작품 앞에 잠깐 서다가, 안내판을 슬쩍 보고, 다음 작품으로 넘어간다. 설계자가 담아둔 맥락의 절반도 전달되지 않는 채로.\n\n그 간극을 좁힐 방법을 찾다가, 모바일 AR을 전시에 붙이는 실험을 시작했다. 전시물 자체는 그대로 두고, 관람객이 카메라를 들이대는 순간 숨겨둔 이야기가 화면 위로 올라오는 구조다. 제품의 핵심 차별점이나 설계 배경 같은 정보를, 별도 공간을 차지하지 않고 작품에 직접 얹을 수 있다.\n\n아직 초안 단계다. 기술보다 먼저 정해야 할 게 있다는 걸 실험하면서 배웠다. '어떤 정보를 보여줄 것인가'가 아니라 '관람객이 카메라를 들고 싶게 만들 것인가'가 진짜 질문이다. AR은 도구일 뿐이고, 사람이 손을 들게 만드는 건 결국 공간의 분위기와 작품의 밀도다.\n\n전시 공간에서 AR을 써봤다면 — 관람객을 실제로 멈추게 한 순간이 언제였나?"
+      "text": "「공간 해부」\n\n문화재 앞에서 스마트폰을 꺼내 든 적이 있다. 기념사진을 찍으려는 게 아니었다.\n\n공간을 통째로 떠보고 싶었다.\n\nGaussian Splatting은 수백 장의 사진에서 공간의 밀도를 재구성하는 기술이다. 포인트 클라우드보다 훨씬 부드럽고, 촬영 장비도 스마트폰 하나면 된다. 진입 장벽이 낮다는 뜻이 아니다. 누구든 시작할 수 있다는 뜻이다.\n\n직접 한옥 한 채를 대상으로 촬영 워크플로를 짜봤다. 동선, 겹침 비율, 빛 조건 — 공간을 제대로 재조립하려면 사진을 찍기 전에 공간을 먼저 읽어야 했다. 그 과정이 전시 동선 설계와 놀랍도록 닮아 있었다.\n\n결과물은 파일이 아니다. 시간이 멈춘 공간이다. 방문자가 떠난 뒤에도 그 한옥은 어딘가에 서 있다.\n\n유산을 기록한다는 말의 의미가 달라지는 순간이었다.\n\n문화재 보존 담당자나 공간 기획자라면 이 워크플로를 어디에 먼저 써보고 싶은가?"
     },
     "linkedin": {
-      "text": "「AI 실험실」\n\n안내판이 길수록 읽히지 않는다는 걸, 전시 현장에서 반복해서 봤다.\n\n전시물 앞에 서는 시간은 짧다. 그 짧은 시간 안에 설계자의 의도를 전달하려면, 전달 방식 자체를 바꿔야 한다.\n\n지금 실험하는 건 모바일 AR을 전시에 붙이는 방식이다. 작품 앞에서 카메라를 켜면, 해당 전시물의 핵심 정보와 숨은 맥락이 화면 위에 올라온다. 별도 공간이나 추가 인쇄물 없이, 작품과 정보가 한 화면에 겹친다.\n\n이 구조가 흥미로운 이유는 하나다. 관람객이 '찾는' 행위를 하게 된다는 점이다. 수동으로 읽는 것과 카메라를 들어 직접 발견하는 것은 체감이 다르다. 정보의 양이 같아도, 기억에 남는 정도가 달라진다.\n\n아직 초안 단계라 다듬어야 할 부분이 많다. 가장 먼저 붙잡은 질문은 기술 구현이 아니었다. '관람객이 카메라를 들 이유가 있는가'였다. AR은 그 이유가 명확할 때만 작동한다. 공간의 밀도와 작품의 힘이 먼저고, 기술은 그 다음이다.\n\n\" 도구는 경험을 만들지 않는다. 경험을 만드는 건 맥락이다.\"\n\n#미디어아트 #AR전시 #공간경험 #전시기획 #디지털아트"
+      "text": "「공간 해부」\n\n스마트폰으로 문화재를 3D로 떴다. 장비가 없어서가 아니라, 없어도 되는지 확인하고 싶었다.\n\nGaussian Splatting은 수백 장의 사진으로 공간의 부피와 질감을 재조립하는 방식이다.\n라이다 스캐너나 드론 없이, 스마트폰 카메라만으로 한옥 한 채를 통째 캡처하는 워크플로를 직접 구성해봤다.\n\n핵심은 알고리즘이 아니었다.\n촬영 동선이었다.\n\n공간을 어떻게 읽고, 어떤 순서로 돌고, 사진이 얼마나 겹쳐야 하는지 — 그 판단이 결과물의 질을 결정했다. 전시 공간을 설계할 때 관람 동선을 짜는 일과 구조가 같았다.\n\n유산·공간 업계에서 이 기술이 흥미로운 이유는 따로 있다.\n기록의 문턱이 낮아졌기 때문이 아니라, 기록의 성격이 달라졌기 때문이다.\n사진은 순간을 자르지만, 3D 캡처는 공간을 통째로 보존한다. 방문자가 없어도, 건물이 허물어져도 그 공간은 남는다.\n\n\"기술이 바뀌면 보존의 정의도 바뀐다.\"\n\n문화재청, 지자체 유산팀, 공간 아카이빙 프로젝트를 기획하는 분들께 이 워크플로가 유용한 첫 레퍼런스가 될 수 있다고 생각한다.\n\n#가우시안스플래팅 #문화재디지털화 #공간해부 #AIcreative #디지털유산"
     },
     "carousel": {
       "badge": "AI CREATIVE",
-      "cover_bold": "전시가 말을 꺼낼 때",
-      "cover_accent": "말을 꺼낼 때",
+      "cover_bold": "스마트폰으로 문화재를",
+      "cover_accent": "스마트폰으로",
       "cover_rest": [
-        "모바일 AR로 숨은 이야기 꺼내기"
+        "3D로 통째 뜨는 법"
       ],
-      "cover_keyword": "AR이 답이다",
+      "cover_keyword": "직접 해봤다",
       "facts": [
-        "작품에 카메라를 대면 맥락이 열린다",
-        "안내판 없이도 정보를 얹을 수 있다",
-        "관람객이 '찾는' 경험이 기억을 바꾼다"
+        "장비 없이 공간 전체 캡처 가능",
+        "촬영 동선이 결과 품질을 결정",
+        "기록이 아니라 공간 복제다"
       ],
-      "caption": "Before → After · parkjunhyuk.xyz",
+      "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
+      "reel_hook": "스마트폰으로 한옥을 통째 3D로",
       "points": [
         {
-          "title": "안내판의 한계",
-          "body": "전시물 앞에 서는 시간은 짧다. 긴 설명은 대부분 읽히지 않고 넘어간다."
+          "title": "이 기술이 뭔가",
+          "body": "수백 장의 사진으로 공간 전체를 재조립한다. 사진도 아니고 영상도 아닌, 걸어들어갈 수 있는 공간 복제본이다.",
+          "image_query": "traditional Korean hanok courtyard digital 3D reconstruction wide",
+          "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "AR을 붙이면 달라진다",
-          "body": "카메라를 들이대는 순간, 작품 위로 숨겨둔 정보가 올라온다. 공간을 건드리지 않아도 된다."
+          "title": "장비는 뭐가 필요한가",
+          "body": "스마트폰 하나면 시작할 수 있다. 라이다 스캐너나 드론 없이도 공간 전체를 담는 게 가능하다.",
+          "image_query": "smartphone held up inside Korean hanok wooden interior",
+          "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "관람객이 직접 찾게 된다",
-          "body": "수동으로 읽는 것과 직접 발견하는 것은 체감이 다르다. 기억에 남는 깊이가 달라진다."
+          "title": "촬영 동선이 핵심이다",
+          "body": "어떤 순서로 돌고, 사진을 얼마나 겹치느냐가 결과 품질을 결정한다. 알고리즘보다 사람의 판단이 먼저다.",
+          "image_query": "person walking slowly around traditional courtyard photographing architecture",
+          "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "기술보다 먼저 정할 것",
-          "body": "어떤 정보를 보여줄지보다, 카메라를 들고 싶게 만들 것인지가 진짜 질문이다."
+          "title": "빛 조건을 먼저 읽어라",
+          "body": "그림자가 강하면 질감이 뭉개진다. 흐린 날 오전이 한옥 캡처에 가장 안정적이었다.",
+          "image_query": "soft diffused morning light on Korean hanok roof tile texture",
+          "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "공간의 힘이 먼저다",
-          "body": "AR은 도구다. 작품과 공간의 밀도가 없으면, 기술은 작동하지 않는다."
+          "title": "결과물의 쓰임새",
+          "body": "건물이 허물어져도 공간은 남는다. 유산 보존, 전시 아카이빙, 가상 방문 — 활용 범위가 넓다.",
+          "image_query": "immersive 3D virtual tour of ancient Korean wooden architecture interior",
+          "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "전시는 보여주는 것만이 아니다.\n숨겨둬야 꺼내고 싶어진다.",
-      "reel_hook": "카메라를 켜자 전시가 말했다",
+      "outro_line": "문화재 앞에서 스마트폰을 꺼내드는 행위가 달라지고 있다.\n기념사진이 아니라 공간의 복제가 시작되는 순간이다.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「AI 실험실」 — 이번 주 시도한 AI 크리에이티브 실험이나 도구 하나와 그 결과·배운 점. (Designing with AI식)",
-      "pillar": "Media Art (공간·전시·인터랙션·공공미디어)",
-      "date": "2026-07-15"
+      "theme": "「공간 해부」 — 좋은 공간·전시 사례 하나를 골라 '왜 작동하는가'를 구조로 해부. (Dezeen·Frame식 케이스 분석)",
+      "pillar": "AI Creative (AI 영상·디자인·워크플로우)",
+      "date": "2026-07-16"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -67,74 +77,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482977268860968960",
-      "facebook": "https://www.facebook.com/1140846082456388_122107384383366256"
-    }
+    ]
   },
   {
-    "topic": "Digital Aquarium — 실내·실외 센서 데이터로 만드는 인터랙티브 디지털 수족관",
-    "image_query": "underwater light installation dark aquarium",
+    "topic": "인터랙티브 테이블 — 관람객이 손을 올리는 순간 테이블이 반응하는 디지털 아트",
+    "image_query": "interactive table light touch exhibition dark room",
     "instagram": {
-      "caption": "「AI 실험실」\n\n물고기가 당신을 따라다닌다.\n\n센서가 사람의 움직임을 읽고,\n그 데이터가 수조 속 물고기를 살아 움직이게 한다.\n\n이번에 구상 중인 디지털 아쿠아리움 실험이다.\n실내외 센서 데이터를 영상과 사운드에 연결하면\n관람객이 의도하지 않아도 '연출자'가 된다.\n\n화면이 아니라 공간이 반응한다는 감각 —\n그걸 만드는 게 요즘 내 관심사다.\n\n\nSensors read your movement. Fish follow. The space becomes alive without anyone directing it — that's the experiment I'm working on.\n\n#디지털아트 #인터랙티브아트 #몰입형전시 #미디어아트 #공간경험 #AI크리에이티브 #디지털아쿠아리움",
-      "series": "Creative Director's Notebook"
+      "series": "Space Inspiration",
+      "caption": "「공간 해부」\n\n손을 올렸을 뿐인데 테이블이 반응했다.\n그 순간 관람객은 구경꾼이 아니었다.\n\n좋은 인터랙션은 '기술을 느끼게' 하지 않는다.\n사람이 그 공간의 주인이 됐다고 느끼게 한다.\n\n테이블 하나로 그 경험을 만들 수 있다.\n\n\nThe moment a hand touches the surface, the table responds.\nThe visitor becomes the author of the space, not just a viewer.\nOne object. One interaction. A completely different experience.\n\n#인터랙티브아트 #전시기획 #공간경험 #미디어아트 #브랜드경험 #디지털아트 #공간해부 #parkjunhyuk"
     },
     "facebook": {
-      "text": "「AI 실험실」\n\n전시장에 들어선 관람객이 화면 앞에 서자, 물고기들이 그쪽으로 헤엄쳐 갔다.\n\n지금 구상 중인 디지털 아쿠아리움 프로젝트 이야기다.\n\n센서가 사람의 위치와 움직임을 읽는다. 그 데이터가 실시간으로 영상 엔진에 들어가고, 화면 속 물고기 떼가 관람객의 동선을 따라 방향을 바꾼다. 사운드도 같이 움직인다. 관람객은 아무것도 조작하지 않는다. 그냥 서 있거나 걸을 뿐인데, 공간이 반응한다.\n\n이 감각이 흥미로운 이유가 있다.\n\n대부분의 인터랙티브 전시는 관람객에게 '조작'을 요구한다. 버튼을 누르거나, 손을 흔들거나. 하지만 그 순간 사람은 장치를 의식하기 시작한다. 장치가 보이면 마법은 깨진다.\n\n센서 기반 연동이 다른 건, 관람객이 자신이 연출자라는 걸 모른 채 공간을 바꿔나간다는 점이다. 그게 몰입의 핵심이라고 생각한다.\n\n실내 센서와 실외 환경 데이터를 함께 쓰면 더 입체적인 반응이 가능하다. 바람이 불면 물살이 거세지고, 사람이 몰리면 물고기 떼도 짙어지는 식으로.\n\n아직 초안 단계라 실제로 어떻게 구현될지는 열려 있다. 그래서 오히려 지금이 재밌다.\n\n당신이 경험한 전시 중, 아무것도 하지 않았는데 공간이 반응했다고 느낀 순간이 있었나요?"
+      "text": "「공간 해부」\n\n테이블에 손을 얹는 순간, 전시가 달라진다.\n\n나는 오랫동안 공간에 기술을 심는 작업을 해왔다. 그 과정에서 확인한 게 있다. 사람들은 '보는 것'보다 '내가 뭔가를 일으켰다'는 감각에 훨씬 오래 머문다는 것.\n\n인터랙티브 테이블은 단순하다. 손을 올리면 표면이 반응한다. 기술 자체는 복잡하지 않아도 된다. 중요한 건 '반응하는 타이밍'과 '무엇이 달라지는가'다. 그 두 가지가 맞아떨어질 때, 관람객은 연출자가 된다.\n\n대부분의 전시는 관람객을 '수신자'로 둔다. 동선을 따라 걷고, 설명을 읽고, 나간다. 그런데 테이블 하나가 그 구도를 뒤집는다. 손이 닿으면 공간이 달라진다. 그 경험은 설명 없이 전달된다.\n\n브랜드 공간에서도 같은 원리가 작동한다. 방문자가 '내가 이 공간에 영향을 줬다'고 느끼는 순간, 그 브랜드는 기억에 자리를 잡는다.\n\n지금 기획 중인 전시나 팝업에서, 관람객에게 '능동적인 역할'을 주는 장치가 있나요?"
     },
     "linkedin": {
-      "text": "「AI 실험실」\n\n관람객이 아무것도 누르지 않았는데 공간이 반응했다 — 그게 진짜 인터랙션이라고 나는 생각한다.\n\n지금 디지털 아쿠아리움 프로젝트를 구상 중이다.\n\n실내외 센서 데이터를 영상 엔진과 사운드에 실시간으로 연결한다. 관람객이 공간 안에서 움직이면, 화면 속 물고기 떼가 그 방향으로 따라온다. 조작 없이, 안내 없이.\n\n공간 경험을 여러 해 만들어오면서 하나를 배웠다.\n\n'버튼을 눌러 반응이 나오는 구조'와 '존재만으로 공간이 바뀌는 구조'는 관람객이 느끼는 감각의 결이 완전히 다르다. 전자는 장치를 경험하게 하고, 후자는 공간을 경험하게 한다.\n\n센서 연동 인터랙션이 흥미로운 이유가 여기 있다. 관람객이 자신이 연출자라는 걸 의식하지 못한 채 공간을 바꿔간다. 몰입은 그 무의식의 틈에서 생긴다.\n\n실외 환경 데이터를 더하면 레이어가 늘어난다. 가령 외부 바람 데이터가 수조 안 물살의 세기에 영향을 주고, 시간대별 조도 변화가 물고기 색감을 바꾸는 식이다.\n\n아직 초안 단계라 기술 스택도, 공간 규모도 열려 있다. 그 불확정성이 지금 이 단계를 가장 흥미롭게 만든다.\n\n\"가장 좋은 인터페이스는 인터페이스가 없는 것이다\" — 이 프로젝트가 계속 돌아오는 문장이다.\n\n#인터랙티브아트 #몰입형전시 #미디어아트 #공간경험디자인 #AICreative"
+      "text": "「공간 해부」\n\n손 하나가 닿았을 뿐인데, 그 공간의 분위기가 바뀌었다.\n\n인터랙티브 테이블을 구상하면서 가장 먼저 물었던 건 기술이 아니었다. '사람이 무엇을 했을 때 가장 자연스럽게 참여하는가'였다.\n\n테이블은 누구나 손을 올린다. 전시 공간에서도 마찬가지다. 별도의 설명이나 안내 없이 사람들은 본능적으로 표면에 손을 가져간다. 그 자연스러운 동작에 반응을 붙이는 순간, 관람객은 구경꾼에서 연출자로 바뀐다.\n\n브랜드 경험 설계에서 인터랙션이 중요한 이유가 여기 있다. 사람은 자신이 영향을 준 공간을 더 오래 기억한다. 수동적으로 본 것은 빠르게 잊히지만, 내가 '뭔가를 일으킨' 경험은 다르게 남는다.\n\n기술의 복잡도가 관건이 아니다. 반응의 타이밍과 결과가 얼마나 직관적이냐가 경험의 질을 결정한다. 화려한 장치보다 '내가 했더니 이렇게 됐다'는 인과가 명확할 때 사람들은 더 몰입한다.\n\n가령 팝업 공간이라면, 테이블 하나만으로도 방문자가 브랜드와 처음 '대화'한 순간을 만들 수 있다. 그 첫 접점이 일방적인 전달이냐, 쌍방향 반응이냐 — 그 차이가 공간의 인상을 가른다.\n\n\"좋은 인터랙션은 기술을 느끼게 하지 않는다. 사람이 공간의 주인이 됐다고 느끼게 한다.\"\n\n#브랜드경험 #공간기획 #인터랙티브디자인 #미디어아트 #BrandExperience #ExperienceDesign"
     },
     "carousel": {
-      "badge": "AI CREATIVE",
-      "cover_bold": "물고기가 날 따라온다",
-      "cover_accent": "날 따라온다",
+      "badge": "SPACE ANATOMY",
+      "cover_bold": "테이블이 반응한다",
+      "cover_accent": "반응한다",
+      "cover_keyword": "관람객이 연출자",
       "cover_rest": [
-        "센서가 만드는 살아있는 수족관"
+        "손을 올리는 순간 공간이 달라지는 이유"
       ],
-      "cover_keyword": "공간이 반응",
       "facts": [
-        "조작 없이 공간이 반응한다",
-        "센서가 물고기를 살린다",
-        "관람객이 곧 연출자다"
+        "수동 관람은 빠르게 잊힌다",
+        "자연 동작에 반응이 붙을 때 몰입",
+        "인과가 명확할수록 경험이 남는다"
       ],
-      "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
-      "reel_hook": "물고기가 진짜 당신을 따라옵니다",
+      "caption": "Space Inspiration · parkjunhyuk.xyz",
+      "reel_hook": "손 하나로 전시가 바뀌었다",
       "points": [
         {
-          "title": "왜 버튼이 없는가",
-          "body": "조작 순간 장치가 보인다. 장치가 보이면 몰입은 깨진다."
+          "title": "왜 테이블인가",
+          "body": "테이블은 설명 없이도 손이 간다. 가장 자연스러운 동작에 반응을 붙이면 참여가 시작된다.",
+          "image_query": "glowing interactive table surface dark exhibition space"
         },
         {
-          "title": "센서가 하는 일",
-          "body": "사람의 위치와 움직임을 읽어 영상 엔진에 실시간으로 넘긴다."
+          "title": "구경꾼이 연출자로",
+          "body": "반응이 생기는 순간 관람객의 역할이 바뀐다. 보는 사람이 아니라 공간을 움직이는 사람이 된다.",
+          "image_query": "hand touching illuminated table art installation closeup"
         },
         {
-          "title": "물고기가 움직이는 법",
-          "body": "관람객 동선을 데이터로 받아 물고기 떼가 방향과 속도를 바꾼다."
+          "title": "타이밍이 경험을 가른다",
+          "body": "기술의 복잡도가 아니라 반응 속도와 결과의 명확함이 몰입의 깊이를 결정한다.",
+          "image_query": "light pattern spreading across interactive table surface"
         },
         {
-          "title": "실외 데이터도 쓴다",
-          "body": "바람 세기, 시간대 조도가 수조 안 물살과 색감에 영향을 준다."
+          "title": "브랜드 공간에서도 같다",
+          "body": "방문자가 '내가 이 공간에 영향을 줬다'고 느끼는 순간, 그 브랜드는 기억에 자리 잡는다.",
+          "image_query": "visitors engaging with glowing interactive table in branded space"
         },
         {
-          "title": "몰입이 생기는 순간",
-          "body": "내가 연출자인 줄 모른 채 공간을 바꾼다. 그 틈에서 몰입이 온다."
+          "title": "일방 전달 vs 쌍방 반응",
+          "body": "말로 설명하는 전시보다 손으로 경험한 공간이 오래 남는다. 첫 접점의 방향이 인상을 가른다.",
+          "image_query": "wide shot of interactive table glowing in dark exhibition room"
         }
       ],
-      "outro_line": "아직 초안이라 모든 게 열려 있다.\n그래서 지금이 가장 재밌는 단계다."
+      "outro_line": "좋은 인터랙션은 기술을 앞세우지 않는다.\n사람이 공간의 주인이 됐다고 느끼게 할 뿐이다."
     },
     "topic_meta": {
-      "theme": "「AI 실험실」 — 이번 주 시도한 AI 크리에이티브 실험이나 도구 하나와 그 결과·배운 점. (Designing with AI식)",
-      "pillar": "AI Creative (AI 영상·디자인·워크플로우)",
-      "date": "2026-07-15"
+      "theme": "「공간 해부」 — 좋은 공간·전시 사례 하나를 골라 '왜 작동하는가'를 구조로 해부. (Dezeen·Frame식 케이스 분석)",
+      "pillar": "Brand Experience (브랜딩·고객 경험·공간 브랜딩)",
+      "date": "2026-07-16"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/Day8RN2DTPF/"
-    }
+    "_video": "reel.mp4"
   }
 ]
