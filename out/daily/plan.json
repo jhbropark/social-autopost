@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Da1iSpKEv3r/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483342465832456192",
+      "facebook": "https://www.facebook.com/1140846082456388_122107588695366256"
+    }
   },
   {
     "topic": "인터랙티브 테이블 — 관람객이 손을 올리는 순간 테이블이 반응하는 디지털 아트",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Da1iVy0iQ9f/"
+    }
   }
 ]
