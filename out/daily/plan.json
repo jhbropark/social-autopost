@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Da4Ha9HoCii/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483705769423478784",
+      "facebook": "https://www.facebook.com/1140846082456388_122107797057366256"
+    }
   },
   {
     "topic": "NIGHT WALK — 미디어아트 야간 산책로 기획 초안 (프로젝션·LED·사운드로 걷는 사람이 빛을 깨우는 공간)",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Da4HiuYDVX4/"
+    }
   }
 ]
