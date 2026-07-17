@@ -1,71 +1,71 @@
 [
   {
-    "topic": "Gaussian Splatting으로 스마트폰 하나로 한옥·유적을 통째 3D 캡처하는 입문 워크플로",
-    "image_query": "traditional Korean hanok courtyard 3D scan digital",
+    "topic": "NEXT FESTIVAL — 차세대 빛축제 포맷 컨셉 설계 중",
+    "image_query": "projection light festival night outdoor",
     "instagram": {
-      "caption": "「공간 해부」\n\n스마트폰 하나로 한옥을 통째 3D로 떴다.\n직접 해봤다.\n\n사진 수백 장을 돌며 찍고,\nGaussian Splatting 알고리즘이 공간을 재조립한다.\n\n결과물은 사진도, 영상도 아니다.\n걸어들어갈 수 있는 공간의 복제본이다.\n\n유산을 보존하는 방식이 달라지고 있다.\n\n\nI captured a traditional Korean hanok using Gaussian Splatting — just a smartphone and hundreds of photos.\nThe result isn't a scan. It's a space you can walk into.\nHeritage preservation is changing.\n\n#가우시안스플래팅 #문화재디지털화 #한옥 #3D캡처 #미디어아트 #공간해부 #AIcreative #디지털유산",
-      "series": "Creative Director's Notebook"
+      "caption": "「메이킹」\n\n불꽃놀이는 한 번 터지고 끝난다.\n빛은 공간에 머물며 이야기를 만든다.\n\n지금 새로운 빛축제 포맷을 구상하고 있다.\nProjection, 레이저, 사운드를 하나의 흐름으로 엮어\n관객이 그냥 보는 게 아니라 안으로 들어오게.\n\n아직 컨셉 단계. 그래서 더 재밌다.\n\n#빛축제 #미디어아트 #공간브랜딩 #프로젝션맵핑 #페스티벌기획 #브랜드경험 #lightfestival",
+      "series": "Space Inspiration"
     },
     "facebook": {
-      "text": "「공간 해부」\n\n문화재 앞에서 스마트폰을 꺼내 든 적이 있다. 기념사진을 찍으려는 게 아니었다.\n\n공간을 통째로 떠보고 싶었다.\n\nGaussian Splatting은 수백 장의 사진에서 공간의 밀도를 재구성하는 기술이다. 포인트 클라우드보다 훨씬 부드럽고, 촬영 장비도 스마트폰 하나면 된다. 진입 장벽이 낮다는 뜻이 아니다. 누구든 시작할 수 있다는 뜻이다.\n\n직접 한옥 한 채를 대상으로 촬영 워크플로를 짜봤다. 동선, 겹침 비율, 빛 조건 — 공간을 제대로 재조립하려면 사진을 찍기 전에 공간을 먼저 읽어야 했다. 그 과정이 전시 동선 설계와 놀랍도록 닮아 있었다.\n\n결과물은 파일이 아니다. 시간이 멈춘 공간이다. 방문자가 떠난 뒤에도 그 한옥은 어딘가에 서 있다.\n\n유산을 기록한다는 말의 의미가 달라지는 순간이었다.\n\n문화재 보존 담당자나 공간 기획자라면 이 워크플로를 어디에 먼저 써보고 싶은가?"
+      "text": "「메이킹」\n\n불꽃놀이를 기획한다고 상상한 적이 있다. 터지는 순간은 눈부시지만, 연기가 가시면 아무것도 남지 않는다.\n\n지금 구상 중인 빛축제는 그 반대편에 서 있다.\n\n폭발 대신 흐름. 순간 대신 체류. 관객이 멀찍이 서서 구경하는 게 아니라, 빛이 만든 공간 안으로 직접 걸어 들어오는 경험을 설계하고 싶었다.\n\nProjection, 레이저, 사운드를 각각 쓰는 건 이미 많은 행사가 한다. 내가 집중하는 건 세 가지를 하나의 '서사'로 묶는 방식이다. 빛이 켜지고 소리가 따라오는 게 아니라, 공간 전체가 하나의 리듬으로 숨 쉬는 구조.\n\n아직 컨셉 단계다. 도면도, 연출 타임라인도 아직 없다. 그냥 머릿속에서 이리저리 굴리는 중이다. 그런데 이 단계가 사실 가장 솔직한 시간이기도 하다. 아무것도 확정되지 않았기 때문에 뭐든 될 수 있으니까.\n\n빛축제에서 기억에 남은 장면이 있다면, 그게 어떤 순간이었는지 궁금하다. 눈이 아니라 몸으로 느꼈던 적 있나요?"
     },
     "linkedin": {
-      "text": "「공간 해부」\n\n스마트폰으로 문화재를 3D로 떴다. 장비가 없어서가 아니라, 없어도 되는지 확인하고 싶었다.\n\nGaussian Splatting은 수백 장의 사진으로 공간의 부피와 질감을 재조립하는 방식이다.\n라이다 스캐너나 드론 없이, 스마트폰 카메라만으로 한옥 한 채를 통째 캡처하는 워크플로를 직접 구성해봤다.\n\n핵심은 알고리즘이 아니었다.\n촬영 동선이었다.\n\n공간을 어떻게 읽고, 어떤 순서로 돌고, 사진이 얼마나 겹쳐야 하는지 — 그 판단이 결과물의 질을 결정했다. 전시 공간을 설계할 때 관람 동선을 짜는 일과 구조가 같았다.\n\n유산·공간 업계에서 이 기술이 흥미로운 이유는 따로 있다.\n기록의 문턱이 낮아졌기 때문이 아니라, 기록의 성격이 달라졌기 때문이다.\n사진은 순간을 자르지만, 3D 캡처는 공간을 통째로 보존한다. 방문자가 없어도, 건물이 허물어져도 그 공간은 남는다.\n\n\"기술이 바뀌면 보존의 정의도 바뀐다.\"\n\n문화재청, 지자체 유산팀, 공간 아카이빙 프로젝트를 기획하는 분들께 이 워크플로가 유용한 첫 레퍼런스가 될 수 있다고 생각한다.\n\n#가우시안스플래팅 #문화재디지털화 #공간해부 #AIcreative #디지털유산"
+      "text": "「메이킹」\n\n빛축제를 기획할 때 대부분의 질문은 '얼마나 크게 쏠 것인가'에서 출발한다.\n나는 요즘 다른 질문을 먼저 한다. '관객이 얼마나 오래 머물 것인가'.\n\n지금 NEXT FESTIVAL이라는 이름으로 새로운 빛축제 포맷을 구상하고 있다.\nProjection, 레이저, 사운드를 결합하되, 세 기술이 각자 빛나는 쇼가 아니라 하나의 공간 경험으로 수렴하는 구조다.\n\n기존 빛축제의 한계는 명확하다.\n관객은 정해진 동선 위에서 눈으로만 소비하고 떠난다.\n브랜드나 지자체는 '규모'를 성과 지표로 삼고, 다음 해에 더 큰 스케일을 요구한다.\n결국 경험보다 스펙 경쟁이 된다.\n\n내가 다르게 접근하는 지점은 공간의 '체류 설계'다.\n빛이 터지는 순간이 아니라, 빛 안에 머무는 시간을 디자인하는 것.\n가령 하나의 구역에서 관객이 사운드 변화를 감지하고 움직임을 바꾸도록 유도한다면, 그 축제는 보는 것이 아니라 경험하는 것이 된다.\n\n아직 컨셉 단계다. 하지만 포맷의 방향은 또렷하다.\n\n\"좋은 공간은 관객을 머물게 한다. 좋은 경험은 관객이 스스로 남는다.\"\n\n빛 기술이 아무리 발전해도 결국 남는 건 그 안에서 내가 어떤 감각을 가졌느냐다.\n축제를 '기술 전시'가 아닌 '감각 설계'로 보는 시선이 이 프로젝트의 출발점이다.\n\n#빛축제 #브랜드경험 #LightFestival #공간브랜딩 #BrandExperience #미디어아트"
     },
     "carousel": {
-      "badge": "AI CREATIVE",
-      "cover_bold": "스마트폰으로 문화재를",
-      "cover_accent": "스마트폰으로",
+      "badge": "FESTIVAL FORMAT",
+      "cover_bold": "다음 빛축제는 다르다",
+      "cover_accent": "다르다",
+      "cover_keyword": "체류가 경험",
       "cover_rest": [
-        "3D로 통째 뜨는 법"
+        "보는 축제에서 머무는 축제로"
       ],
-      "cover_keyword": "직접 해봤다",
       "facts": [
-        "장비 없이 공간 전체 캡처 가능",
-        "촬영 동선이 결과 품질을 결정",
-        "기록이 아니라 공간 복제다"
+        "빛은 머물 때 경험이 된다",
+        "기술이 아니라 서사가 중심",
+        "체류 설계가 브랜드를 만든다"
       ],
-      "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
-      "reel_hook": "스마트폰으로 한옥을 통째 3D로",
+      "caption": "Space Inspiration · parkjunhyuk.xyz",
+      "reel_hook": "불꽃놀이는 끝났다, 다음은 이것",
       "points": [
         {
-          "title": "이 기술이 뭔가",
-          "body": "수백 장의 사진으로 공간 전체를 재조립한다. 사진도 아니고 영상도 아닌, 걸어들어갈 수 있는 공간 복제본이다.",
-          "image_query": "traditional Korean hanok courtyard digital 3D reconstruction wide",
+          "title": "왜 빛축제가 식상해졌나",
+          "body": "관객은 보고 떠난다. 연출은 점점 커지지만 기억에 남는 장면은 줄었다.",
+          "image_query": "outdoor light festival crowd watching projection night",
           "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "장비는 뭐가 필요한가",
-          "body": "스마트폰 하나면 시작할 수 있다. 라이다 스캐너나 드론 없이도 공간 전체를 담는 게 가능하다.",
-          "image_query": "smartphone held up inside Korean hanok wooden interior",
+          "title": "세 가지 기술을 엮는 방법",
+          "body": "Projection, 레이저, 사운드를 따로 쓰지 않는다. 하나의 리듬으로 공간 전체가 숨 쉬게 한다.",
+          "image_query": "laser and projection mapping combined on building facade night",
           "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "촬영 동선이 핵심이다",
-          "body": "어떤 순서로 돌고, 사진을 얼마나 겹치느냐가 결과 품질을 결정한다. 알고리즘보다 사람의 판단이 먼저다.",
-          "image_query": "person walking slowly around traditional courtyard photographing architecture",
+          "title": "관객을 안으로 끌어들이기",
+          "body": "동선을 따라 걷다가 빛 안에 서는 순간을 만든다. 구경꾼이 아니라 참여자가 된다.",
+          "image_query": "visitors walking inside immersive light installation outdoor",
           "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "빛 조건을 먼저 읽어라",
-          "body": "그림자가 강하면 질감이 뭉개진다. 흐린 날 오전이 한옥 캡처에 가장 안정적이었다.",
-          "image_query": "soft diffused morning light on Korean hanok roof tile texture",
+          "title": "체류 시간이 성과다",
+          "body": "얼마나 크게 쐈느냐보다 얼마나 오래 머물렀느냐가 이 축제의 기준이 된다.",
+          "image_query": "people lingering inside glowing light environment festival night",
           "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "결과물의 쓰임새",
-          "body": "건물이 허물어져도 공간은 남는다. 유산 보존, 전시 아카이빙, 가상 방문 — 활용 범위가 넓다.",
-          "image_query": "immersive 3D virtual tour of ancient Korean wooden architecture interior",
+          "title": "컨셉에서 포맷으로",
+          "body": "아직 도면은 없다. 그래도 방향은 정해졌다. 축제를 감각 설계로 다시 짓는 것.",
+          "image_query": "design sketch concept board light festival planning studio",
           "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "문화재 앞에서 스마트폰을 꺼내드는 행위가 달라지고 있다.\n기념사진이 아니라 공간의 복제가 시작되는 순간이다.",
+      "outro_line": "빛은 터지는 순간이 아니라 머무는 시간에 기억된다.\n이 축제는 그 시간을 설계하는 중이다.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「공간 해부」 — 좋은 공간·전시 사례 하나를 골라 '왜 작동하는가'를 구조로 해부. (Dezeen·Frame식 케이스 분석)",
-      "pillar": "AI Creative (AI 영상·디자인·워크플로우)",
-      "date": "2026-07-16"
+      "theme": "「메이킹」 — 진행 중 프로젝트의 제작 과정·스케치·결정의 비하인드. (Creative Lives식 과정 공개)",
+      "pillar": "Brand Experience (브랜딩·고객 경험·공간 브랜딩)",
+      "date": "2026-07-17"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -77,80 +77,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "instagram": "https://www.instagram.com/p/Da1iSpKEv3r/",
-      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7483342465832456192",
-      "facebook": "https://www.facebook.com/1140846082456388_122107588695366256"
-    }
+    ]
   },
   {
-    "topic": "인터랙티브 테이블 — 관람객이 손을 올리는 순간 테이블이 반응하는 디지털 아트",
-    "image_query": "interactive table light touch exhibition dark room",
+    "topic": "NIGHT WALK — 미디어아트 야간 산책로 기획 초안 (프로젝션·LED·사운드로 걷는 사람이 빛을 깨우는 공간)",
+    "image_query": "projection mapping night trail outdoor walkway light",
     "instagram": {
-      "series": "Space Inspiration",
-      "caption": "「공간 해부」\n\n손을 올렸을 뿐인데 테이블이 반응했다.\n그 순간 관람객은 구경꾼이 아니었다.\n\n좋은 인터랙션은 '기술을 느끼게' 하지 않는다.\n사람이 그 공간의 주인이 됐다고 느끼게 한다.\n\n테이블 하나로 그 경험을 만들 수 있다.\n\n\nThe moment a hand touches the surface, the table responds.\nThe visitor becomes the author of the space, not just a viewer.\nOne object. One interaction. A completely different experience.\n\n#인터랙티브아트 #전시기획 #공간경험 #미디어아트 #브랜드경험 #디지털아트 #공간해부 #parkjunhyuk"
+      "caption": "「메이킹」\n\n밤의 산책로를 작품으로 만들고 있다.\n\n걷는 사람이 빛을 깨운다.\n발자국마다 소리가 달라진다.\n멈추면 공간이 숨을 쉰다.\n\n지자체 야간관광 제안을 위한 드래프트 단계.\n프로젝션과 LED, 사운드를 엮어\n'산책 그 자체'가 전시가 되는 구조를 짜고 있다.\n\nNight Walk는 보러 가는 전시가 아니다.\n걸어야 완성되는 작품이다.\n\n\nTurning an ordinary walking trail into a living artwork at night.\nVisitors don't just watch — their footsteps trigger light and sound.\nStill drafting, but the idea is already walking on its own.\n\n#NightWalk #미디어아트 #프로젝션매핑 #야간관광 #공간경험 #빛의공간 #메이킹",
+      "series": "AI for Creators"
     },
     "facebook": {
-      "text": "「공간 해부」\n\n테이블에 손을 얹는 순간, 전시가 달라진다.\n\n나는 오랫동안 공간에 기술을 심는 작업을 해왔다. 그 과정에서 확인한 게 있다. 사람들은 '보는 것'보다 '내가 뭔가를 일으켰다'는 감각에 훨씬 오래 머문다는 것.\n\n인터랙티브 테이블은 단순하다. 손을 올리면 표면이 반응한다. 기술 자체는 복잡하지 않아도 된다. 중요한 건 '반응하는 타이밍'과 '무엇이 달라지는가'다. 그 두 가지가 맞아떨어질 때, 관람객은 연출자가 된다.\n\n대부분의 전시는 관람객을 '수신자'로 둔다. 동선을 따라 걷고, 설명을 읽고, 나간다. 그런데 테이블 하나가 그 구도를 뒤집는다. 손이 닿으면 공간이 달라진다. 그 경험은 설명 없이 전달된다.\n\n브랜드 공간에서도 같은 원리가 작동한다. 방문자가 '내가 이 공간에 영향을 줬다'고 느끼는 순간, 그 브랜드는 기억에 자리를 잡는다.\n\n지금 기획 중인 전시나 팝업에서, 관람객에게 '능동적인 역할'을 주는 장치가 있나요?"
+      "text": "「메이킹」\n\n기획 초안을 쓰다가 문득, 이 작업이 '전시'인지 '길'인지 헷갈렸다.\n\n보통 미디어아트는 보러 간다. 작품이 있고 관객이 온다. 그런데 Night Walk는 다르다. 길 자체가 작품이고, 걷는 사람이 없으면 작품도 없다.\n\n지금 드래프트 단계다. 지자체 야간관광을 대상으로, 산책로에 프로젝션과 LED, 사운드를 심어 걷는 동선이 곧 감상이 되는 구조를 설계하고 있다.\n\n핵심은 '반응'이다. 빛이 먼저 켜져 있는 게 아니라, 사람이 지나가면서 빛이 따라 켜진다. 멈추면 소리가 바뀐다. 같은 길을 혼자 걸을 때와 여럿이 걸을 때 전혀 다른 장면이 된다.\n\n이걸 기획하면서 가장 어려운 건 기술이 아니었다. '걸음의 속도'를 어떻게 감지하고, 어느 순간에 반응을 주느냐 — 그 타이밍 설계가 전부였다. 너무 빠르면 연출이 깨지고, 너무 느리면 그냥 장식이 된다.\n\n좋은 공간 경험은 결국 타이밍이다. 건축도, 전시도, 테마파크도 마찬가지다.\n\n당신이 밤에 이 길을 걷는다면, 어느 순간 발걸음을 멈추게 하고 싶은가?"
     },
     "linkedin": {
-      "text": "「공간 해부」\n\n손 하나가 닿았을 뿐인데, 그 공간의 분위기가 바뀌었다.\n\n인터랙티브 테이블을 구상하면서 가장 먼저 물었던 건 기술이 아니었다. '사람이 무엇을 했을 때 가장 자연스럽게 참여하는가'였다.\n\n테이블은 누구나 손을 올린다. 전시 공간에서도 마찬가지다. 별도의 설명이나 안내 없이 사람들은 본능적으로 표면에 손을 가져간다. 그 자연스러운 동작에 반응을 붙이는 순간, 관람객은 구경꾼에서 연출자로 바뀐다.\n\n브랜드 경험 설계에서 인터랙션이 중요한 이유가 여기 있다. 사람은 자신이 영향을 준 공간을 더 오래 기억한다. 수동적으로 본 것은 빠르게 잊히지만, 내가 '뭔가를 일으킨' 경험은 다르게 남는다.\n\n기술의 복잡도가 관건이 아니다. 반응의 타이밍과 결과가 얼마나 직관적이냐가 경험의 질을 결정한다. 화려한 장치보다 '내가 했더니 이렇게 됐다'는 인과가 명확할 때 사람들은 더 몰입한다.\n\n가령 팝업 공간이라면, 테이블 하나만으로도 방문자가 브랜드와 처음 '대화'한 순간을 만들 수 있다. 그 첫 접점이 일방적인 전달이냐, 쌍방향 반응이냐 — 그 차이가 공간의 인상을 가른다.\n\n\"좋은 인터랙션은 기술을 느끼게 하지 않는다. 사람이 공간의 주인이 됐다고 느끼게 한다.\"\n\n#브랜드경험 #공간기획 #인터랙티브디자인 #미디어아트 #BrandExperience #ExperienceDesign"
+      "text": "「메이킹」\n\n야간 산책로를 기획할 때 가장 먼저 버린 생각이 있다. '빛을 예쁘게 설치하면 된다'는 발상이다.\n\n지금 드래프트 중인 Night Walk는 프로젝션·LED·사운드를 산책로에 심어, 걷는 사람의 움직임이 빛과 소리를 깨우는 구조다. 지자체 야간관광 제안을 위한 기획이다.\n\n이 작업에서 가장 오래 붙잡고 있는 문제는 기술 스펙이 아니다. '언제 반응하느냐'다.\n\n관람객이 걸음을 멈추는 타이밍, 두 사람이 나란히 걸을 때와 혼자 걸을 때의 속도 차이, 아이와 어른의 보폭 — 이 모든 변수가 연출의 밀도를 결정한다. 장치를 촘촘하게 심는 것보다, 반응 시점을 어디에 두느냐가 경험의 질을 가른다.\n\n공간 기획에서 기술은 수단이다. 사람의 행동 패턴을 먼저 그려야 장치가 제 역할을 한다. 야간관광 콘텐츠가 대부분 '설치해놓고 보는' 구조에 머무는 이유가 여기 있다. 걷는 사람을 작품의 일부로 만들려면, 공간 설계자가 먼저 그 길을 수백 번 걸어봐야 한다.\n\n\"경험 설계는 사람의 동선을 먼저 읽는 일이다.\"\n\n야간관광 프로그램을 기획하는 분들께 묻고 싶다. 지금의 콘텐츠가 관람객을 '참여자'로 만드는가, 아니면 '구경꾼'으로 두는가.\n\n#NightWalk #미디어아트 #야간관광 #공간경험 #ExperienceDesign #지자체콘텐츠"
     },
     "carousel": {
-      "badge": "SPACE ANATOMY",
-      "cover_bold": "테이블이 반응한다",
-      "cover_accent": "반응한다",
-      "cover_keyword": "관람객이 연출자",
+      "badge": "NIGHT WALK",
+      "cover_bold": "걷기 전엔 빛이 없다",
+      "cover_accent": "빛이 없다",
       "cover_rest": [
-        "손을 올리는 순간 공간이 달라지는 이유"
+        "산책로가 작품이 되는 5가지 설계 원칙"
       ],
+      "cover_keyword": "걸어야 완성",
       "facts": [
-        "수동 관람은 빠르게 잊힌다",
-        "자연 동작에 반응이 붙을 때 몰입",
-        "인과가 명확할수록 경험이 남는다"
+        "반응 타이밍이 연출 전부다",
+        "장치보다 동선 설계가 먼저",
+        "구경꾼 말고 참여자로 만든다"
       ],
-      "caption": "Space Inspiration · parkjunhyuk.xyz",
-      "reel_hook": "손 하나로 전시가 바뀌었다",
+      "caption": "AI for Creators · parkjunhyuk.xyz",
+      "reel_hook": "걸음이 빛을 켜는 순간",
       "points": [
         {
-          "title": "왜 테이블인가",
-          "body": "테이블은 설명 없이도 손이 간다. 가장 자연스러운 동작에 반응을 붙이면 참여가 시작된다.",
-          "image_query": "glowing interactive table surface dark exhibition space"
+          "title": "목적지가 아닌 이동이 전시",
+          "body": "보러 가는 게 아니라 걷는 행위 자체가 작품이 된다. 동선이 곧 감상의 순서다.",
+          "image_query": "night walkway projection light glowing path forest"
         },
         {
-          "title": "구경꾼이 연출자로",
-          "body": "반응이 생기는 순간 관람객의 역할이 바뀐다. 보는 사람이 아니라 공간을 움직이는 사람이 된다.",
-          "image_query": "hand touching illuminated table art installation closeup"
+          "title": "반응 타이밍이 경험을 가른다",
+          "body": "빛이 너무 빨리 켜지면 연출이 깨진다. 한 박자 늦춰야 걷는 사람이 스스로 발견한 기분을 느낀다.",
+          "image_query": "person walking illuminated trail light activating footsteps night"
         },
         {
-          "title": "타이밍이 경험을 가른다",
-          "body": "기술의 복잡도가 아니라 반응 속도와 결과의 명확함이 몰입의 깊이를 결정한다.",
-          "image_query": "light pattern spreading across interactive table surface"
+          "title": "혼자 걸을 때와 달라진다",
+          "body": "같은 길이라도 혼자일 때와 여럿일 때 빛의 밀도와 소리가 달라진다. 매번 다른 작품이 된다.",
+          "image_query": "group of people walking glowing outdoor path night projection"
         },
         {
-          "title": "브랜드 공간에서도 같다",
-          "body": "방문자가 '내가 이 공간에 영향을 줬다'고 느끼는 순간, 그 브랜드는 기억에 자리 잡는다.",
-          "image_query": "visitors engaging with glowing interactive table in branded space"
+          "title": "소리가 공간의 깊이를 만든다",
+          "body": "멈추면 소리가 바뀐다. 발걸음 속도에 따라 사운드 레이어가 달라져 공간이 살아있는 것처럼 느껴진다.",
+          "image_query": "sound waves light installation outdoor night ambient atmosphere"
         },
         {
-          "title": "일방 전달 vs 쌍방 반응",
-          "body": "말로 설명하는 전시보다 손으로 경험한 공간이 오래 남는다. 첫 접점의 방향이 인상을 가른다.",
-          "image_query": "wide shot of interactive table glowing in dark exhibition room"
+          "title": "지자체가 '운영'할 수 있어야 한다",
+          "body": "화려한 설치도 운영 인력과 유지비가 감당 안 되면 결국 꺼진다. 설계 단계부터 운영 현실을 함께 짠다.",
+          "image_query": "outdoor light installation maintenance night public park urban"
         }
       ],
-      "outro_line": "좋은 인터랙션은 기술을 앞세우지 않는다.\n사람이 공간의 주인이 됐다고 느끼게 할 뿐이다."
+      "outro_line": "Night Walk는 아직 드래프트다.\n그래서 지금이 가장 많은 걸 바꿀 수 있는 시간이다."
     },
     "topic_meta": {
-      "theme": "「공간 해부」 — 좋은 공간·전시 사례 하나를 골라 '왜 작동하는가'를 구조로 해부. (Dezeen·Frame식 케이스 분석)",
-      "pillar": "Brand Experience (브랜딩·고객 경험·공간 브랜딩)",
-      "date": "2026-07-16"
+      "theme": "「메이킹」 — 진행 중 프로젝트의 제작 과정·스케치·결정의 비하인드. (Creative Lives식 과정 공개)",
+      "pillar": "Creative Leadership (팀 운영·PM·디렉팅)",
+      "date": "2026-07-17"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/Da1iVy0iQ9f/"
-    }
+    "_video": "reel.mp4"
   }
 ]
