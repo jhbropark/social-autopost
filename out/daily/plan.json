@@ -1,71 +1,71 @@
 [
   {
-    "topic": "Sora 종료 이후 디렉터가 실제 쓰는 AI 영상 모델 4종 비교 (파사드 루프 기준)",
-    "image_query": "AI video generation screen dark studio monitor glow",
+    "topic": "위클리 큐레이션 — 공간·AI·미디어아트에서 주목할 것 5가지 (Future City)",
+    "image_query": "digital projection mapping heritage building night",
     "instagram": {
-      "caption": "「창작 노트」\n\nSora가 사라졌다.\n2026년 4월, 조용히 문을 닫았다.\n\n그러자 현장에서 쓰는 도구가 다시 보이기 시작했다.\n\n파사드 루프 하나를 기준으로 Veo 3.1, Kling 3.0, Seedance 2.0, Runway를 나란히 돌려봤다.\n결과가 꽤 달랐다.\n\n캐러셀에 정리했으니 저장해두고 참고하세요.\n\n\nSora quietly shut down in April 2026.\nI tested Veo 3.1, Kling 3.0, Seedance 2.0, and Runway side by side on a facade loop.\nThe differences were real.\n\n#AI영상 #생성AI #미디어아트 #파사드 #디렉터노트 #AIcreative #Runway #Kling",
-      "series": "AI for Creators"
+      "caption": "「위클리 큐레이션」\n\n이번 주 공간·미디어아트에서 눈에 걸린 것들.\n\n01. TD ↔ UE5 하이브리드\n두 엔진을 같이 쓰면 실시간 연출의 폭이 완전히 달라진다.\n\n02. 상설 몰입 전시관\n일회성 팝업이 아니라 도시에 영구 착지하는 디지털 아트.\n\n03. 메타버스형 가상 체험\n물리 공간 밖에서도 경험을 설계할 수 있다는 게 요즘 화두다.\n\n04. 국가유산 미디어아트 전국 분석\n12개 지역을 직접 들여다봤을 때, 포맷 편차가 생각보다 컸다.\n\n05. 야간 프로젝션 시리즈화\n한 번 쓰고 끝내기엔 아깝다. 콘텐츠를 시리즈로 만들어야 유산이 된다.\n\n\nThings I'm watching this week — immersive tech, heritage projection, and the question of permanence in digital art.\nOne insight: a series outlasts a single show.\n\n#미디어아트 #프로젝션맵핑 #몰입전시 #국가유산 #디지털아트 #퓨처시티 #위클리큐레이션",
+      "series": "1 Minute Media Art"
     },
     "facebook": {
-      "text": "「창작 노트」\n\nSora가 없어진 날, 나는 딱히 당황하지 않았다.\n\n2026년 4월, Sora가 서비스를 종료했다. 주변 반응은 둘로 나뉘었다. 아쉬워하는 사람과, 원래 잘 안 쓰고 있었던 사람. 나는 후자였다.\n\n실제로 파사드 루프처럼 반복 재생이 중요한 작업에서 Sora는 루프 연결이 어색했다. 화려한 데모 영상과 실무의 요구 사이에는 늘 간격이 있다.\n\nSora 이후 나는 네 가지 모델을 파사드 루프라는 같은 조건 위에 올려놨다. Veo 3.1, Kling 3.0, Seedance 2.0, Runway.\n\n결과는 제각각이었다. 모션의 자연스러움, 루프 연결의 매끄러움, 프롬프트 반응 속도 — 같은 기준으로 재봤을 때 강점이 겹치는 모델이 없었다. 잘하는 영역이 서로 달랐다.\n\n디렉터 입장에서 중요한 건 '어느 모델이 최고냐'가 아니다. 어떤 장면에, 어떤 조건에, 어느 도구를 꺼낼지 아는 것이다. 도구가 하나일 때보다 여럿일 때 판단이 더 중요해진다.\n\nSora가 닫힌 게 기회였다고 생각한다. 하나에 의존하지 않는 습관을 다시 점검하게 됐으니까.\n\n당신은 지금 쓰는 AI 영상 도구가 사라지면, 바로 다음 선택지가 있나요?"
+      "text": "「위클리 큐레이션」\n\n프로젝션 결과물을 보고 '예쁘네'로 끝난 적이 있다. 그게 계속 마음에 걸렸다.\n\n단발로 끝나는 미디어아트는 공간에 흔적을 남기지 않는다. 기억은 남을 수 있지만, 그다음이 없으면 경험으로 쌓이지 않는다. 이번 주 들여다본 다섯 가지 흐름이 다 그 지점과 연결된다.\n\nTouchDesigner와 Unreal Engine 5를 함께 쓰는 셋업이 조용히 퍼지고 있다. 두 도구의 강점이 다른데 붙여쓰면 연출 레이어가 한 단계 두꺼워진다.\n\nteamLab식 상설관 모델도 다시 주목받는다. 팝업이 아니라 도시 안에 고정된 디지털 아트 공간 — 콘텐츠가 물리 장소와 함께 시간을 쌓는 구조다.\n\n가상 체험 월드는 물리 공간의 확장인지, 별도 경험인지 아직 답이 없다. 그 경계를 어디에 그을지가 설계의 핵심이다.\n\n전국 12개 지역 국가유산 미디어아트를 들여다보니 포맷 편차가 컸다. 같은 '프로젝션 맵핑'이라는 이름 아래 완성도 차이가 꽤 벌어져 있었다.\n\n그래서 야간 프로젝션 시리즈화가 중요하다. 한 번 만들고 해체하는 것과, 시즌마다 돌아오는 것은 유산이 되는 방식 자체가 다르다.\n\n이번 주 공간을 들여다보며 계속 든 질문 — 디지털 아트가 '행사'가 아니라 '장소'가 되려면 무엇이 달라야 할까?"
     },
     "linkedin": {
-      "text": "「창작 노트」\n\nSora가 사라진 뒤, 나는 오히려 선택지가 선명해졌다.\n\n2026년 4월 Sora 서비스가 종료됐다. 많은 크리에이터가 당황했지만, 솔직히 파사드 루프처럼 반복 재생이 핵심인 작업에서 Sora는 처음부터 아쉬운 도구였다.\n\n그래서 나는 실제로 현장에서 대안이 되는 네 가지 모델을 같은 조건 위에서 비교해봤다.\nVeo 3.1, Kling 3.0, Seedance 2.0, Runway.\n\n파사드 루프를 기준으로 삼은 이유가 있다.\n루프는 까다롭다. 처음과 끝이 자연스럽게 이어져야 하고, 모션이 반복돼도 피로하지 않아야 한다. 데모 영상에서 잘 보이는 모델이 이 조건에서도 강하다는 보장은 없다.\n\n결과적으로 네 도구의 강점은 겹치지 않았다.\n모션 자연스러움이 뛰어난 모델이 루프 연결에서 약했고, 프롬프트 반응이 빠른 모델이 색감 일관성에서 흔들렸다.\n\n\"도구는 도구일 뿐이다\"라는 말은 반만 맞다. 어떤 조건에서 어떤 도구를 꺼낼지 판단하는 능력이 디렉터의 실력이다.\n\nSora 종료는 하나의 도구에 의존하던 습관을 점검하는 계기가 됐다. 그리고 그게 나쁘지 않았다.\n\n#AI영상 #미디어아트 #CreativeDirector #생성AI #Runway"
+      "text": "「위클리 큐레이션」\n\n미디어아트 현장을 오래 보다 보면 한 가지가 반복된다. 콘텐츠는 좋은데 한 번으로 끝난다.\n\n이번 주 눈에 걸린 흐름 다섯 가지를 정리했다.\n\n첫째, TouchDesigner와 Unreal Engine 5를 병행하는 하이브리드 셋업이 늘고 있다. 실시간 연출과 고화질 렌더링을 한 파이프라인 안에서 다루는 방식인데, 결과물의 밀도가 달라진다.\n\n둘째, 상설 몰입 전시관 수요다. 팝업은 화제성이 있지만 도시 경험으로 정착하지 못한다. 고정된 공간이 있어야 콘텐츠가 시간과 함께 쌓인다.\n\n셋째, 메타버스형 가상 체험 월드는 물리 공간 설계와 다른 문법을 요구한다. 동선 대신 '진입 동기'를 설계해야 한다.\n\n넷째, 전국 12개 지역 국가유산 미디어아트를 전수 분석한 결과, 같은 포맷이라도 콘텐츠 기획 수준 차이가 컸다. 기술 인프라보다 기획이 먼저라는 게 다시 확인됐다.\n\n다섯째, 야간 프로젝션 시리즈화다. 단발 이벤트가 아니라 매 시즌 돌아오는 콘텐츠로 설계하면 장소 자체의 가치가 높아진다.\n\n\"기술이 공간을 바꾸는 게 아니라, 반복이 공간을 만든다.\"\n\n미디어아트가 도시 경험으로 자리 잡으려면 지속성 설계가 먼저다. 기획 단계에서 '몇 회 시리즈로 갈 것인가'를 묻지 않는 프로젝트는 대부분 행사로 끝난다.\n\n#미디어아트 #몰입전시 #프로젝션맵핑 #국가유산 #FutureCity #디지털공공예술"
     },
     "carousel": {
-      "badge": "AI CREATIVE",
-      "cover_bold": "Sora 닫혔다",
-      "cover_accent": "Sora 닫혔다",
+      "badge": "WEEKLY CURATION",
+      "cover_bold": "한 번으로 끝낼 건가요",
+      "cover_accent": "한 번으로 끝낼",
+      "cover_keyword": "지속이 유산",
       "cover_rest": [
-        "그래서 디렉터들이 지금 쓰는 4개"
+        "이번 주 미디어아트 흐름 5가지"
       ],
-      "cover_keyword": "지금 쓰는 4개",
-      "reel_hook": "Sora 사라진 뒤 바뀐 것",
-      "caption": "AI for Creators · parkjunhyuk.xyz",
       "facts": [
-        "강점이 겹치는 모델은 없었다",
-        "루프 조건이 실력을 가린다",
-        "도구 선택이 디렉팅의 일부다"
+        "기술보다 기획이 먼저다",
+        "상설이 팝업을 이긴다",
+        "시리즈가 장소를 만든다"
       ],
+      "caption": "1 Minute Media Art · parkjunhyuk.xyz",
+      "reel_hook": "한 번 쓰고 끝낸 전시, 아깝지 않나요",
       "points": [
         {
-          "title": "Sora가 문을 닫은 이유",
-          "body": "2026년 4월 Sora가 종료됐다. 데모와 실무 사이의 간격을 끝내 좁히지 못했다.",
-          "image_query": "dark monitor screen glowing AI interface studio night",
+          "title": "TD+UE5 동시에 쓰기",
+          "body": "두 도구를 함께 쓰면 실시간 연출과 고화질이 한 파이프라인 안에 들어온다.",
+          "image_query": "real-time projection mapping control room dual screen setup",
           "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "Veo 3.1의 강점",
-          "body": "모션이 자연스럽고 색감이 일관됐다. 파사드 배경처럼 긴 루프에서 안정적이었다.",
-          "image_query": "smooth looping light animation on building facade close detail",
+          "title": "상설 몰입 전시관",
+          "body": "팝업은 화제가 되지만 도시 경험으로 남지 않는다. 고정된 공간이 콘텐츠를 쌓이게 한다.",
+          "image_query": "immersive digital art permanent gallery interior dark glowing walls",
           "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "Kling 3.0의 강점",
-          "body": "프롬프트 반응이 빠르고 구조적인 장면 구성에 강했다. 반면 루프 끝부분이 튀었다.",
-          "image_query": "structured motion graphic projection on architecture wall night",
+          "title": "메타버스 체험 설계",
+          "body": "물리 공간이 없어도 경험을 만들 수 있다. 동선 대신 '진입 동기'를 설계해야 한다.",
+          "image_query": "virtual immersive world environment glowing landscape digital space",
           "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "Seedance 2.0의 강점",
-          "body": "질감과 색온도 표현이 섬세했다. 분위기 위주의 짧은 루프에 잘 맞았다.",
-          "image_query": "warm textured light glowing softly on concrete facade surface",
+          "title": "국가유산 전국 분석",
+          "body": "12개 지역을 보니 같은 포맷도 기획 수준 차이가 컸다. 기술보다 기획이 결과를 가른다.",
+          "image_query": "projection mapping onto traditional heritage building night wide shot",
           "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "Runway의 강점",
-          "body": "편집 연동이 가장 편했다. 기존 영상 위에 얹는 작업에서 속도가 달랐다.",
-          "image_query": "video editing timeline screen with glowing overlay footage studio",
+          "title": "야간 프로젝션 시리즈화",
+          "body": "매 시즌 돌아오는 콘텐츠로 설계하면 장소 자체의 가치가 달라진다.",
+          "image_query": "night projection series illuminated historic building crowd plaza",
           "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "Sora가 없어도 작업은 계속된다.\n도구보다 판단이 먼저다.",
+      "outro_line": "미디어아트가 도시에 남으려면 기획 첫 줄에 '몇 회 시리즈로 갈 것인가'가 있어야 한다.\n한 번의 감동보다 반복이 장소를 만든다.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「창작 노트」 — 일과 창작에 대한 1인칭 에세이·관점. (CRAFT TALK식 에세이)",
-      "pillar": "Creative Leadership (팀 운영·PM·디렉팅)",
-      "date": "2026-07-18"
+      "theme": "「위클리 큐레이션」 — 이번 주 공간·AI·미디어아트에서 주목할 것 3~5개를 각각 한 줄 코멘트와 함께 정리. (Dense Discovery·뉴닉식 다이제스트)",
+      "pillar": "Future City (스마트시티·디지털 공공예술·도시 경험)",
+      "date": "2026-07-19"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -77,80 +77,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "instagram": "https://www.instagram.com/p/Da6q_CclFK6/",
-      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7484065241354395648",
-      "facebook": "https://www.facebook.com/1140846082456388_122107961553366256"
-    }
+    ]
   },
   {
-    "topic": "Sound Room — 소리만으로 공간 전체를 바꾸는 몰입형 사운드 전시 구상",
-    "image_query": "immersive sound installation dark room ambient light",
+    "topic": "위클리 큐레이션 — 공간·AI·미디어아트에서 주목할 것 5 (몰입 전시·야간 프로젝션·디지털 체험 월드)",
+    "image_query": "immersive digital art exhibition dark room light",
     "instagram": {
-      "caption": "「창작 노트」\n\n눈을 감으면 공간이 달라진다.\n\n빛도, 스크린도 아니다.\n소리 하나가 방 전체를 뒤집는다.\n\n지금 구상 중인 Sound Room은\n청각만으로 몰입을 만드는 공간이다.\n\n시각 자극이 빠지면 사람은 오히려 더 깊이 반응한다.\n그게 이 작업을 시작한 이유다.\n\n\nClose your eyes. The room changes.\nOnly sound — no screens, no light tricks.\nDesigning an immersive space built entirely on what you hear.\n\n#사운드아트 #몰입형전시 #공간경험 #인터랙티브아트 #미디어아트 #사운드인스톨레이션 #전시기획",
-      "series": "1 Minute Media Art"
+      "series": "Before → After",
+      "caption": "「위클리 큐레이션」\n\n이번 주 몰입 전시 씬에서 눈에 띄는 흐름 5개를 모았다.\n\n팀랩 방식의 디지털 아트 상설관,\n메타버스형 가상 체험 월드,\n국가유산 12곳 미디어아트 전수 분석,\n야간 프로젝션 시리즈화 시도,\n명화·인상주의 몰입 전시까지.\n\n방향은 달라도 공통점은 하나다.\n공간이 콘텐츠가 되고 있다.\n\n\nThis week: 5 directions shaping the immersive experience scene — from digital art venues to heritage night projections.\nThe space itself is becoming the content.\n\n#미디어아트 #몰입전시 #프로젝션매핑 #디지털아트 #국가유산 #공간콘텐츠 #전시기획 #위클리큐레이션"
     },
     "facebook": {
-      "text": "「창작 노트」\n\n나는 전시장에서 눈을 감아본 적이 있다.\n\n그 순간 공간이 사라지는 게 아니라, 오히려 더 커졌다.\n벽의 위치가 느껴지고, 공기의 밀도가 달라지고, 어디서 소리가 오는지 몸이 먼저 알아챘다.\n\n우리는 공간을 '보는 것'이라고 너무 당연하게 전제한다.\n그런데 나는 반대로 묻고 싶었다. 소리만 남기면 어떻게 될까.\n\n지금 구상하는 Sound Room은 그 질문에서 출발했다. 시각 자극을 모두 걷어내고, 사운드만으로 공간의 형태와 감각을 바꾸는 몰입형 방이다. Lux Sound Room에서 힌트를 얻었지만, 방향은 다르게 가져가고 싶다.\n\n기술은 단순하다. 복잡한 장비보다, 소리를 어떻게 배치하느냐가 경험을 결정한다.\n관람객이 방에 들어서는 순간 — 무엇을 보기 전에 — 몸이 먼저 반응하는 공간. 그게 목표다.\n\n시각에 의존하지 않는 전시를 만들어본 적 있다면, 그때 관람객이 어떻게 달라지던가요?"
+      "text": "「위클리 큐레이션」\n\n전시 기획을 할 때 가장 자주 받는 질문이 있다. '요즘 어디서 영감 얻어요?'라는 것이다.\n\n솔직히 말하면, 거창한 해외 레퍼런스보다 국내 현장에서 벌어지는 일들이 더 빠르게 움직인다. 이번 주에 눈에 들어온 것들만 추려봤다.\n\n첫째, teamLab 방식의 디지털 아트 상설관 모델이 국내에서도 본격적으로 논의되기 시작했다. 임시 전시가 아니라 '자리를 잡는' 형태다.\n\n둘째, 메타버스형 가상 체험 월드. 유행이 꺾인 듯 보였지만, 브랜드 IP와 결합하면서 다시 방식을 찾아가고 있다.\n\n셋째, 국가유산을 대상으로 한 미디어아트 전국 12지역 전수 분석이 나왔다. 어디서 뭘 하는지 한눈에 보이기 시작했다는 점이 중요하다.\n\n넷째, 그중에서도 야간 프로젝션을 단발 이벤트가 아니라 시리즈로 가져가려는 움직임이 생겼다. 지속성이 생기면 비즈니스가 된다.\n\n다섯째, 명화·인상주의를 소재로 한 몰입 전시가 꾸준히 관객을 끌어들이고 있다. IP가 있으면 공간 기획의 절반은 해결된다는 걸 다시 확인했다.\n\n이 다섯 가지를 가로지르는 질문 하나. 공간이 콘텐츠가 되는 시대에, 당신이 기획하는 '장소'는 한 번 오면 끝인가, 아니면 다시 오게 만드는가?"
     },
     "linkedin": {
-      "text": "「창작 노트」\n\n전시를 기획하면서 한 가지를 배웠다. 자극이 많을수록 사람이 더 깊이 빠져드는 건 아니다.\n\n오히려 반대다.\n\n지금 구상 중인 Sound Room은 시각 자극을 의도적으로 걷어낸 공간이다. 스크린도, 프로젝션도 없다. 소리만 남긴다.\n\n공간 경험 프로젝트를 해오면서 느낀 건, 관람객이 가장 강하게 반응하는 순간이 '가장 화려한 장면'이 아니라는 점이다. 기대와 다른 감각이 들어올 때, 몸이 먼저 반응한다.\n\n눈을 감으면 벽의 위치가 들린다. 소리가 어디서 오는지 몸이 계산한다. 시각이 빠진 자리를 청각과 촉각이 채운다.\n\nSound Room은 그 원리를 공간 단위로 실험하는 작업이다. 기술 구성은 간단하게 가져가려 한다. 복잡한 장비보다 사운드의 배치와 밀도가 경험을 만든다.\n\n\"감각 하나를 뺐을 때 나머지가 열린다.\"\n\n이 작업은 아직 초안 단계다. 하지만 방향은 분명하다. 공간이 보여주는 것보다, 느끼게 하는 것이 더 오래 남는다.\n\n#사운드아트 #몰입형공간 #공간경험 #ImmersiveExhibition #SoundDesign #미디어아트"
+      "text": "「위클리 큐레이션」\n\n몰입 전시 시장을 오래 지켜보면서 느낀 것이 있다. 공간을 만드는 속도보다, 공간을 지속시키는 구조가 훨씬 어렵다는 점이다.\n\n이번 주 주목한 흐름 5개를 짧게 정리했다.\n\n— teamLab형 디지털 아트 상설관\n단발 팝업에서 벗어나, 상설 운영 모델이 실제로 논의되기 시작했다. 운영비·콘텐츠 교체 주기·재방문 설계가 동시에 풀려야 성립한다.\n\n— 메타버스형 가상 체험 월드\n유행이 지난 것처럼 보였지만, 브랜드 IP와 묶이면서 새로운 접점을 만들고 있다. 기술보다 IP가 먼저다.\n\n— 국가유산 미디어아트 전국 12지역 전수 분석\n흩어져 있던 사례들이 지도 위에 올라오기 시작했다. 지역별 밀도와 공백이 보이면, 다음 기획지가 보인다.\n\n— 국가유산 야간 프로젝션 시리즈화\n단발 이벤트를 시리즈로 전환하는 순간, 관객이 '다음'을 기다리게 된다. 지속성이 곧 비즈니스 모델이다.\n\n— 명화·인상주의 몰입 전시\n검증된 IP가 공간 기획의 절반을 해결한다. 관객은 낯선 것보다 익숙한 것을 새롭게 경험하고 싶어한다.\n\n\"공간은 한 번 오는 곳이 아니라, 다시 오게 만드는 곳이어야 한다.\"\n\n이 다섯 가지를 보면서 공통으로 느낀 건 하나다. 지금 몰입 전시 씬에서 살아남는 것들은 모두 '재방문 이유'를 설계하고 있다.\n\n#몰입전시 #미디어아트 #공간콘텐츠 #ImmersiveExperience #ProjectionMapping #콘텐츠비즈니스"
     },
     "carousel": {
-      "badge": "SOUND SPACE",
-      "cover_bold": "소리가 공간을 바꾼다",
-      "cover_accent": "공간을 바꾼다",
-      "cover_keyword": "눈을 감아라",
+      "badge": "WEEKLY CURATION",
+      "cover_bold": "이번 주 전시 씬 5가지",
+      "cover_accent": "전시 씬",
+      "cover_keyword": "공간이 콘텐츠다",
       "cover_rest": [
-        "시각 없이 만드는 몰입의 조건"
+        "공간·AI·미디어아트에서 주목할 흐름"
       ],
+      "reel_hook": "공간이 콘텐츠가 된다",
       "facts": [
-        "시각 자극 없이도 몰입은 된다",
-        "소리 배치가 공간의 형태를 만든다",
-        "몸이 먼저 반응하는 게 진짜 경험"
+        "상설관은 구조가 먼저다",
+        "야간 프로젝션은 시리즈가 답",
+        "IP 있으면 공간 기획이 쉽다"
       ],
-      "caption": "1 Minute Media Art · parkjunhyuk.xyz",
+      "caption": "Before → After · parkjunhyuk.xyz",
       "points": [
         {
-          "title": "왜 소리로만 만드나",
-          "body": "시각이 없으면 나머지 감각이 열린다. 그 빈자리가 몰입을 만든다.",
-          "image_query": "dark empty room with faint ambient glow sound installation"
+          "title": "디지털 아트 상설관",
+          "body": "팝업이 아닌 자리 잡는 전시. 운영 구조가 없으면 공간도 없다.",
+          "image_query": "teamlab style immersive digital art room glowing floor"
         },
         {
-          "title": "소리로 벽을 만드는 법",
-          "body": "소리의 방향과 밀도를 설계하면, 공간의 경계가 들린다.",
-          "image_query": "directional speakers installed on dark ceiling immersive room"
+          "title": "가상 체험 월드",
+          "body": "유행이 꺾인 줄 알았는데, 브랜드 IP와 묶이니 다시 방향이 보인다.",
+          "image_query": "virtual experience world colorful interactive digital installation"
         },
         {
-          "title": "관람객은 언제 반응하나",
-          "body": "화려한 장면보다 기대와 다른 감각이 들어올 때 몸이 먼저 반응한다.",
-          "image_query": "person standing alone in dark sound room eyes closed"
+          "title": "국가유산 12지역 분석",
+          "body": "흩어진 사례가 지도에 올라왔다. 공백이 보이면 다음 기획지가 보인다.",
+          "image_query": "projection mapping on traditional korean heritage building night"
         },
         {
-          "title": "기술은 단순하게",
-          "body": "복잡한 장비보다 소리의 배치가 경험을 결정한다.",
-          "image_query": "minimal speaker setup in dark exhibition space ambient light"
+          "title": "야간 프로젝션 시리즈",
+          "body": "단발 이벤트를 시리즈로 바꾸면 관객이 다음을 기다리게 된다.",
+          "image_query": "night projection mapping series historic building illuminated crowd"
         },
         {
-          "title": "이 작업이 남기는 것",
-          "body": "공간이 보여주는 것보다 느끼게 한 것이 더 오래 기억된다.",
-          "image_query": "visitor walking out of immersive dark sound room soft light"
+          "title": "명화 몰입 전시",
+          "body": "익숙한 IP를 새롭게 경험하게 한다. 관객이 이미 원하는 것을 공간으로 만든 셈이다.",
+          "image_query": "impressionist art immersive exhibition room visitors surrounded by paintings light"
         }
       ],
-      "outro_line": "Sound Room은 아직 초안이다.\n하지만 눈을 감았을 때 더 넓어지는 공간을 만들고 싶다는 건 분명하다.",
-      "reel_hook": "눈 감으면 공간이 커진다"
+      "outro_line": "공간이 콘텐츠가 되는 시대다.\n다시 오게 만드는 이유를 설계하는 사람이 이긴다."
     },
     "topic_meta": {
-      "theme": "「창작 노트」 — 일과 창작에 대한 1인칭 에세이·관점. (CRAFT TALK식 에세이)",
-      "pillar": "Future City (스마트시티·디지털 공공예술·도시 경험)",
-      "date": "2026-07-18"
+      "theme": "「위클리 큐레이션」 — 이번 주 공간·AI·미디어아트에서 주목할 것 3~5개를 각각 한 줄 코멘트와 함께 정리. (Dense Discovery·뉴닉식 다이제스트)",
+      "pillar": "Content Business (콘텐츠 수익화·IP·문화콘텐츠 산업)",
+      "date": "2026-07-19"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/Da6rBz5lL5_/"
-    }
+    "_video": "reel.mp4"
   }
 ]
