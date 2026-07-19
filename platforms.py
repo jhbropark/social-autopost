@@ -261,6 +261,36 @@ def ig_permalink(media_id: str):
     return None
 
 
+# IG 일시 오류 코드 — 재시도로 대부분 복구된다.
+#   9007/2207027 컨테이너가 아직 준비 안 됨(비동기 처리 지연)
+#   9004/2207052 미디어 URL 다운로드 실패(raw.githubusercontent 일시 지연)
+#   1·2 서버 일시 오류, 4·17·32·613 레이트리밋
+_IG_TRANSIENT = {1, 2, 4, 17, 32, 613, 9004, 9007}
+
+
+def _ig_call(url, data, what, attempts=4, delay=8):
+    """IG API POST — 일시 오류(미디어 미준비·다운로드 실패·레이트리밋·5xx)면
+    지수 백오프(8·16·32초)로 재시도. 영구 오류는 즉시 중단."""
+    last = ""
+    for i in range(attempts):
+        r = requests.post(url, data=data, timeout=60)
+        if r.status_code < 300:
+            return r.json()
+        last = f"{r.status_code}: {r.text}"
+        try:
+            err = r.json().get("error", {}) or {}
+        except Exception:
+            err = {}
+        transient = bool(err.get("is_transient")) or err.get("code") in _IG_TRANSIENT or r.status_code >= 500
+        if not transient or i == attempts - 1:
+            break
+        wait = delay * (2 ** i)
+        msg = str(err.get("error_user_msg") or err.get("message") or "")[:90]
+        print(f"⏳ IG {what} 일시 오류 — {wait}s 후 재시도 ({i + 1}/{attempts - 1}): {msg}")
+        time.sleep(wait)
+    raise RuntimeError(f"IG {what} {last}")
+
+
 def _wait_until_ready(base, container_id, token, attempts=15, delay=4):
     """미디어 컨테이너가 게시 가능(FINISHED) 상태가 될 때까지 폴링.
     IG는 컨테이너 생성이 비동기라, 생성 직후 media_publish 하면
@@ -289,53 +319,42 @@ def post_instagram(caption: str, image_urls) -> dict:
 
     # 단일 이미지
     if len(image_urls) == 1:
-        c = requests.post(
+        creation_id = _ig_call(
             f"{base}/{ig_id}/media",
-            data={"image_url": image_urls[0], "caption": caption, "access_token": token},
-            timeout=60,
-        )
-        if c.status_code >= 300:
-            raise RuntimeError(f"IG media create {c.status_code}: {c.text}")
-        creation_id = c.json()["id"]
+            {"image_url": image_urls[0], "caption": caption, "access_token": token},
+            "media create",
+        )["id"]
     else:
         # 캐러셀: 1) 각 슬라이드를 carousel_item 으로 생성
         child_ids = []
         for url in image_urls:
-            ch = requests.post(
+            ch = _ig_call(
                 f"{base}/{ig_id}/media",
-                data={"image_url": url, "is_carousel_item": "true", "access_token": token},
-                timeout=60,
+                {"image_url": url, "is_carousel_item": "true", "access_token": token},
+                "carousel item",
             )
-            if ch.status_code >= 300:
-                raise RuntimeError(f"IG carousel item {ch.status_code}: {ch.text}")
-            child_ids.append(ch.json()["id"])
+            child_ids.append(ch["id"])
         # 2) 캐러셀 컨테이너 생성
-        c = requests.post(
+        creation_id = _ig_call(
             f"{base}/{ig_id}/media",
-            data={
+            {
                 "media_type": "CAROUSEL",
                 "children": ",".join(child_ids),
                 "caption": caption,
                 "access_token": token,
             },
-            timeout=60,
-        )
-        if c.status_code >= 300:
-            raise RuntimeError(f"IG carousel container {c.status_code}: {c.text}")
-        creation_id = c.json()["id"]
+            "carousel container",
+        )["id"]
 
     # 컨테이너가 게시 가능 상태가 될 때까지 대기 (비동기 처리 완료 보장)
     _wait_until_ready(base, creation_id, token)
 
-    # 게시
-    p = requests.post(
+    # 게시 — 아직 준비 전이면(9007) 백오프 재시도
+    return _ig_call(
         f"{base}/{ig_id}/media_publish",
-        data={"creation_id": creation_id, "access_token": token},
-        timeout=60,
+        {"creation_id": creation_id, "access_token": token},
+        "publish",
     )
-    if p.status_code >= 300:
-        raise RuntimeError(f"IG publish {p.status_code}: {p.text}")
-    return p.json()
 
 
 def post_reel(video_url: str, caption: str, cover_url: str = None) -> dict:
@@ -352,19 +371,14 @@ def post_reel(video_url: str, caption: str, cover_url: str = None) -> dict:
     }
     if cover_url:
         data["cover_url"] = cover_url
-    c = requests.post(f"{base}/{ig_id}/media", data=data, timeout=60)
-    if c.status_code >= 300:
-        raise RuntimeError(f"IG reel create {c.status_code}: {c.text}")
-    creation_id = c.json()["id"]
+    creation_id = _ig_call(f"{base}/{ig_id}/media", data, "reel create")["id"]
 
     # 영상 처리 대기(최대 ~6분)
     _wait_until_ready(base, creation_id, token, attempts=60, delay=6)
 
-    p = requests.post(
+    # 게시 — 아직 준비 전이면(9007) 백오프 재시도
+    return _ig_call(
         f"{base}/{ig_id}/media_publish",
-        data={"creation_id": creation_id, "access_token": token},
-        timeout=60,
+        {"creation_id": creation_id, "access_token": token},
+        "reel publish",
     )
-    if p.status_code >= 300:
-        raise RuntimeError(f"IG reel publish {p.status_code}: {p.text}")
-    return p.json()
