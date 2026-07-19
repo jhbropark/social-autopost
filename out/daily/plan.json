@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Da9RIoBkwoo/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7484430626293460992",
+      "facebook": "https://www.facebook.com/1140846082456388_122108136765366256"
+    }
   },
   {
     "topic": "위클리 큐레이션 — 공간·AI·미디어아트에서 주목할 것 5 (몰입 전시·야간 프로젝션·디지털 체험 월드)",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Da9RLd_kc5Y/"
+    }
   }
 ]
