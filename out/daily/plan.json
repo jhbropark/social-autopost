@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Da_4ShKoP-L/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7484798254266626048",
+      "facebook": "https://www.facebook.com/1140846082456388_122108277009366256"
+    }
   },
   {
     "topic": "국가유산 미디어아트 전국 12지역 전수분석 — 2026 가을 프로젝션 매핑 케이스 스터디",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Da_4W52HMwt/"
+    }
   }
 ]
