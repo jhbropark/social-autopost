@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbCaj_Gmnpa/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485155050273558528",
+      "facebook": "https://www.facebook.com/1140846082456388_122108421675366256"
+    }
   },
   {
     "topic": "명화·인상주의를 프로젝션으로 재해석한 몰입 전시 구상",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbCam1wjCMn/"
+    }
   }
 ]
