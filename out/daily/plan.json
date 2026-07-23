@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbHku72krUa/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7485881307613405184",
+      "facebook": "https://www.facebook.com/1140846082456388_122108777013366256"
+    }
   },
   {
     "topic": "생애주기와 기억 — 호흡·심장박동·발걸음 데이터로 한 사람의 일생을 시각화하는 이머시브 미디어아트 공연 컨셉",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbHk2B0EeuR/"
+    }
   }
 ]
