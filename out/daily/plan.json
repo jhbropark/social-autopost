@@ -1,71 +1,71 @@
 [
   {
-    "topic": "실시간 AI 디퓨전 파사드 — StreamDiffusionTD·TouchDesigner로 관객 반응을 즉시 생성하는 미디어 파사드 리서치",
-    "image_query": "AI projection media facade building night",
+    "topic": "반 고흐류 몰입형 전시의 과포화·파산과 오리지널 작가주의 전환 — 다음 몰입형 전시의 방향",
+    "image_query": "immersive exhibition dark empty hall projection light",
     "instagram": {
-      "caption": "「메이킹」\n\n사전에 만든 영상은 끝났다.\n이제 벽이 관객을 보고 실시간으로 그린다.\n\n파사드에 AI 디퓨전을 붙이는 방법을 리서치 중이다.\n카메라가 광장의 움직임을 읽고,\n그 순간 건물 외벽에 새 이미지가 생성된다.\n\n완성본을 트는 게 아니라, 지금 이 순간을 그리는 것.\n\n\nPre-rendered is over. The wall now generates in real time — reading the crowd, drawing the moment.\nExploring AI diffusion on architectural facades.\n\n\n#미디어파사드 #미디어아트 #AI생성 #공간브랜딩 #프로젝션 #리서치메이킹",
-      "series": "1 Minute Media Art"
+      "caption": "「창작 노트」\n\n반 고흐 전시가 파산하고 있다.\n\n복제된 감동은 결국 소비된다.\n그 공간에 작가의 언어가 없으면\n관객은 한 번 오고 끝낸다.\n\n다음 몰입형 전시는\n원작자의 목소리에서 시작해야 한다.\n\n\nThe Van Gogh immersive wave is crashing.\nThe next chapter belongs to original authorship — artists who build their own language into the space.\nThat's where I'm putting my focus next.\n\n#몰입형전시 #전시기획 #미디어아트 #공간경험 #작가주의 #크리에이티브디렉팅 #전시디자인",
+      "series": "Before → After"
     },
     "facebook": {
-      "text": "「메이킹」\n\n파사드 프로젝트 브리핑에서 클라이언트가 가장 먼저 묻는 말이 있다. '영상은 몇 분짜리예요?'\n\n그 질문 자체가 지금까지 파사드가 어떻게 만들어졌는지를 잘 보여준다. 수개월 동안 렌더링한 영상을 정해진 시간에 트는 방식. 완성도는 높지만, 그 건물 앞에 누가 서 있든 같은 장면이 나온다.\n\n나는 이 방식을 다르게 만들 수 있는지 리서치하고 있다.\n\nStreamDiffusion을 TouchDesigner에 연결하면, 카메라로 읽어들인 광장의 장면이 실시간으로 AI 이미지 생성의 입력값이 된다. 사람이 몰리면 벽의 질감이 달라지고, 누군가 멈춰 서면 그 반응이 외벽에 번진다. 미리 만들어둔 영상이 아니라, 지금 이 순간이 그려진다.\n\n아직 리서치 단계다. 레이턴시, 해상도, 설치 조건처럼 실제 외벽에 올리기 전에 풀어야 할 문제가 적지 않다. 그래도 방향은 또렷하다. 관객이 콘텐츠를 소비하는 게 아니라, 관객이 콘텐츠를 만드는 것.\n\n발주처가 '영상 몇 분짜리'를 물을 때, 우리는 그 질문을 바꿀 준비가 됐는가?\n\n당신이 만약 이 파사드 앞에 섰을 때, 벽이 당신을 보고 있다면 — 그 경험을 '브랜딩'이라고 부를 수 있을까요?"
+      "text": "「창작 노트」\n\n반 고흐 전시가 파산 신청을 했다는 소식을 처음 들었을 때, 나는 '예상했다'는 생각보다 먼저 '이제 시작이구나'라는 생각이 들었다.\n\n지난 몇 년간 세계 곳곳에서 같은 구조의 몰입형 전시가 쏟아졌다. 명화를 벽에 크게 띄우고, 음악을 깔고, 관객이 그 안에 서 있는 형식. 처음 본 사람은 압도된다. 두 번째는 익숙하다. 세 번째는 굳이 간다.\n\n문제는 포화가 아니다. 복제된 감동에는 원본이 없다는 게 문제다.\n\n원작자 없는 전시는 '경험 상품'이지 '작가의 언어'가 아니다. 공간이 아무리 화려해도 그 안에 누군가의 고유한 세계관이 없으면, 관객은 한 번 소비하고 떠난다.\n\n내가 다음 몰입형 전시에서 주목하는 방향은 하나다. 살아있는 작가가 자신의 언어로 공간 전체를 설계하는 전시. 기술은 수단이고, 서사는 작가에게서 나와야 한다. 공간을 채우는 것과 공간을 말하게 하는 것은 다르다.\n\n반 고흐 이후의 빈자리는 '더 화려한 명화 전시'가 채우지 않는다. 오리지널 작가주의가 채운다.\n\n당신이 기획자라면, 지금 구상 중인 전시에서 '작가의 언어'는 어디에 있나?"
     },
     "linkedin": {
-      "text": "「메이킹」\n\n미디어 파사드 프로젝트의 제작비 대부분은 영상 렌더링에 쓰인다. 그리고 그 영상은 개막일부터 철거일까지 한 프레임도 바뀌지 않는다.\n\n나는 이 구조가 바뀔 수 있다고 본다.\n\nStreamDiffusion을 TouchDesigner에 연결하는 방식을 리서치 중이다. 개념은 단순하다. 건물 앞 광장에 설치된 카메라가 실시간으로 장면을 읽고, 그 입력값을 AI 디퓨전 모델이 즉시 이미지로 바꿔 외벽에 쏜다. 사전에 완성된 영상 파일은 없다. 지금 이 순간, 이 광장의 모습이 파사드가 된다.\n\n실무적으로 풀어야 할 문제는 분명히 있다. 실시간 생성의 레이턴시를 어디까지 줄일 수 있는지, 대형 외벽 해상도에서 품질이 유지되는지, 기상 조건과 조도 변화에 시스템이 안정적인지. 이 단계를 건너뛰고 싶은 마음도 있지만, 건너뛰면 현장에서 무너진다.\n\n그런데 이 리서치가 브랜드 경험 관점에서 흥미로운 이유가 따로 있다. 지금까지 파사드는 브랜드가 관객에게 일방적으로 송출하는 미디어였다. 실시간 생성이 가능해지면, 그 공간에 모인 사람들이 콘텐츠의 변수가 된다. 같은 브랜드 공간이지만, 오늘 저녁과 내일 저녁의 파사드는 다르다.\n\n\"공간 브랜딩은 고정된 메시지가 아니라, 그 자리에서 만들어지는 관계다.\"\n\n이 방향이 맞다면, 발주처가 제작사에 묻는 첫 번째 질문도 달라져야 한다. '영상 몇 분짜리예요?'가 아니라 '시스템이 무엇을 읽나요?'로.\n\n#미디어파사드 #브랜드경험 #AI생성 #공간브랜딩 #MediaFacade #GenerativeAI"
+      "text": "「창작 노트」\n\n반 고흐 전시가 파산하기 시작했다. 나는 이게 위기라고 보지 않는다.\n\n지난 몇 년간 몰입형 전시 시장은 같은 공식을 반복했다. 명화를 분해해 벽과 바닥에 투사하고, 감각을 자극하는 음악을 얹는다. 첫 파도는 강했다. 관객은 몰렸고 티켓은 팔렸다.\n\n그런데 그 공식이 복제될수록, 원본의 힘은 희석됐다.\n\n관객은 학습한다. 같은 구조의 공간에 반복 노출되면 '와' 하는 순간이 짧아진다. 두 번째 방문부터 감동이 줄어드는 전시는 구조적으로 지속이 어렵다.\n\n문제의 핵심은 '명화'가 아니었다. '원작자의 언어가 없는 공간'이었다.\n\n내가 다음 단계로 주목하는 건 오리지널 작가주의 전시다. 살아있는 작가가 자신의 세계관을 공간 전체에 걸쳐 설계하는 방식. 기술은 그 언어를 증폭하는 수단이 되고, 전시 전체가 하나의 작가적 선언이 된다.\n\n가령 작가가 직접 서사를 짜고, 공간 동선을 감정의 흐름으로 설계하고, 미디어 기술이 그 감정의 밀도를 높이는 구조. 이런 전시는 복제가 어렵다. 작가의 언어 자체가 원본이기 때문이다.\n\n\"포화는 항상 복제에서 온다. 오리지널은 포화되지 않는다.\"\n\n한국에서 이 담론을 먼저 만들고 싶다. 반 고흐 이후의 공백을 채울 다음 몰입형 전시의 언어는 여기서 시작된다.\n\n#몰입형전시 #전시기획 #미디어아트 #CreativeDirecting #공간경험"
     },
     "carousel": {
-      "badge": "MEDIA FACADE",
-      "cover_bold": "벽이 관객을 보고 그린다",
-      "cover_accent": "관객을 보고",
+      "badge": "CRAFT TALK",
+      "cover_bold": "반 고흐 이후가 온다",
+      "cover_accent": "반 고흐 이후",
       "cover_rest": [
-        "사전 렌더링 파사드의 다음 단계"
+        "몰입형 전시의 다음 방향"
       ],
-      "cover_keyword": "실시간 생성",
+      "cover_keyword": "파산 이후",
       "facts": [
-        "사전 영상은 개막일부터 안 바뀐다",
-        "관객이 파사드의 변수가 된다",
-        "레이턴시 해결이 실현의 열쇠다"
+        "복제된 감동은 한 번으로 끝난다",
+        "원작자 없는 전시는 소비재다",
+        "오리지널은 복제가 안 된다"
       ],
-      "caption": "1 Minute Media Art · parkjunhyuk.xyz",
-      "reel_hook": "벽이 당신을 보고 그리기 시작했다",
+      "caption": "Before → After · parkjunhyuk.xyz",
+      "reel_hook": "반 고흐 전시가 파산했다",
       "points": [
         {
-          "title": "지금까지의 파사드 방식",
-          "body": "수개월 렌더링한 영상을 정해진 시간에 튼다. 누가 서 있든 같은 장면이 나온다.",
-          "image_query": "media facade building projection night static display",
+          "title": "왜 지금 파산하나",
+          "body": "같은 공식이 반복될수록 관객의 감동 임계치가 낮아진다. 복제가 시장을 망쳤다.",
+          "image_query": "empty immersive projection hall dark abandoned interior",
           "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "실시간 생성으로 바뀌는 것",
-          "body": "카메라가 광장을 읽고, AI가 그 순간 외벽에 새 이미지를 만든다. 미리 만든 파일이 없다.",
-          "image_query": "AI projection real time generative light on building facade",
+          "title": "무엇이 진짜 문제였나",
+          "body": "기술이 부족해서가 아니다. 그 공간에 작가의 언어가 없었다.",
+          "image_query": "large scale projection on museum wall low light corridor",
           "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "기술 연결 구조",
-          "body": "StreamDiffusion을 TouchDesigner에 붙인다. 입력은 실시간 영상, 출력은 생성된 이미지다.",
-          "image_query": "projection mapping control room screens night setup",
+          "title": "관객은 이미 알고 있다",
+          "body": "두 번째 방문부터 감동이 줄어드는 전시는 오래가지 못한다. 관객은 빠르게 학습한다.",
+          "image_query": "crowd standing in immersive light installation from behind",
           "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "지금 풀고 있는 문제",
-          "body": "레이턴시, 대형 외벽 해상도, 기상 조건 안정성. 현장에서 무너지지 않으려면 이 순서다.",
-          "image_query": "large building facade projection test urban night closeup texture",
+          "title": "다음은 작가주의 전시다",
+          "body": "살아있는 작가가 공간 전체를 자신의 서사로 설계한다. 기술은 그 언어를 증폭하는 수단이다.",
+          "image_query": "artist designing immersive environment with projection mapping studio",
           "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "브랜드 경험이 달라지는 이유",
-          "body": "같은 공간이지만 오늘 저녁과 내일 저녁의 파사드는 다르다. 관객이 콘텐츠의 일부가 된다.",
-          "image_query": "crowd gathering watching glowing media facade urban plaza night",
+          "title": "오리지널은 포화되지 않는다",
+          "body": "복제할 수 없는 작가의 세계관이 곧 경쟁력이다. 반 고흐 이후의 빈자리는 여기서 채워진다.",
+          "image_query": "immersive exhibition unique light art installation atmospheric glow",
           "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "사전 렌더링이 끝나는 자리에서 새로운 파사드가 시작된다.\n지금은 리서치 중이고, 그 과정을 여기서 계속 공개할 예정이다.",
+      "outro_line": "반 고흐 이후의 공백은 더 화려한 전시가 채우지 않는다.\n그 자리는 자신만의 언어를 가진 작가가 채운다.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「메이킹」 — 진행 중 프로젝트의 제작 과정·스케치·결정의 비하인드. (Creative Lives식 과정 공개)",
-      "pillar": "Brand Experience (브랜딩·고객 경험·공간 브랜딩)",
-      "date": "2026-07-24"
+      "theme": "「창작 노트」 — 일과 창작에 대한 1인칭 에세이·관점. (CRAFT TALK식 에세이)",
+      "pillar": "Creative Leadership (팀 운영·PM·디렉팅)",
+      "date": "2026-07-25"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -77,80 +77,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "instagram": "https://www.instagram.com/p/DbKJDECoIPp/",
-      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486242429616934914",
-      "facebook": "https://www.facebook.com/1140846082456388_122108980425366256"
-    }
+    ]
   },
   {
-    "topic": "레일을 타고 움직이며 보는 위치마다 다른 그림을 보여주는 아나모픽 키네틱 디스플레이 구상",
-    "image_query": "kinetic LED display rail installation dark gallery",
+    "topic": "야간 산책 빛 전시 시퀀스 — 빛의 길·속삭이는 숲·빛의 연못 (수목원·공원 야간관광 인터랙티브 미디어아트 컨셉)",
+    "image_query": "night park light installation path forest",
     "instagram": {
-      "caption": "「메이킹」\n\n화면이 사람을 따라온다.\n\n레일 위에서 움직이는 디스플레이.\n서 있는 위치마다 보이는 그림이 달라지는 구조를 초안으로 잡고 있다.\n\n아나모픽 원리를 LED 패널에 얹으면\n'어디서 보느냐'가 콘텐츠 자체가 된다.\n\n아직 드래프트 단계지만,\n이 아이디어가 어디까지 갈 수 있는지 궁금해서 계속 그리고 있다.\n\n\nA display that moves along a rail, showing different images depending on where you stand.\nAnamorphic logic, now embedded in motion.\n\n#미디어아트 #키네틱아트 #인터랙티브 #LED설치 #전시기획 #디지털아트 #메이킹",
-      "series": "Before → After"
+      "caption": "「창작 노트」\n\n밤 산책 하나가 세 개의 장면이 된다.\n\n걸음마다 빛이 차오르는 길,\n소리가 살아나는 숲,\n빛의 폭포가 쏟아지는 연못.\n\n같은 동선인데, 사람은 세 번 다른 곳에 서 있는 느낌을 받는다.\n그게 시퀀스 설계의 핵심이다.\n\n\nOne night walk. Three distinct scenes — a glowing path, a whispering forest, a pool lit from within.\nThe route stays the same. The experience doesn't.\n\n#미디어아트 #야간전시 #공원전시 #빛설치 #인터랙티브아트 #도시경험 #퍼블릭아트 #FutureCity",
+      "series": "Creative Director's Notebook"
     },
     "facebook": {
-      "text": "「메이킹」\n\n화면이 사람 쪽으로 고개를 돌린다는 상상을 초안으로 옮기는 중이다.\n\n대부분의 디스플레이는 한 방향만 본다. 설치된 자리에서 콘텐츠를 내보내고, 사람이 알아서 맞춰 선다. 화면이 주고 사람이 받는 구조다.\n\n이번 아이디어는 그 관계를 뒤집는다. 레일을 따라 움직이는 LED 패널이 보는 사람을 향해 이동하고, 서 있는 위치에 따라 표출되는 콘텐츠도 달라진다. 아나모픽 원리에서 힌트를 얻었다. 아나모픽은 '보는 각도'가 맞아야 비로소 상이 완성되는 기법인데, 거기에 '움직임'을 더하면 어떨까 싶었다.\n\n아직 드래프트다. 레일 구조를 어떻게 설계할지, 어떤 센서로 사람의 위치를 읽을지, 콘텐츠가 전환되는 타이밍을 어떻게 잡을지 — 결정할 게 많다. 그래도 초안을 그리는 이유는, 아이디어가 가장 순수한 상태일 때의 방향을 잃지 않으려는 것이다.\n\n화면이 나를 따라온다는 경험이 사람에게 어떤 감각을 남길까. 그게 지금 내가 가장 궁금한 질문이다.\n\n당신이 공간에서 화면을 보는 방식 중, 가장 기억에 남는 순간은 어떤 장면이었나요?"
+      "text": "「창작 노트」\n\n산책로를 설계하면서 동선보다 '감정의 순서'를 먼저 그린 적이 있다.\n\n빛의 길, 속삭이는 숲, 빛의 연못. 지금 구상하는 야간 산책 전시의 세 장면이다.\n\n세 장면이 같은 공원 안에 있다. 하지만 방문자는 각 구간에서 전혀 다른 감각 안에 놓인다. 길에서는 발걸음에 반응하는 빛을 따라 걷고, 숲에서는 나뭇가지 사이로 소리가 흘러나오며, 연못에서는 수면 위로 빛이 쏟아진다.\n\n중요한 건 장면 하나하나가 아니라 순서다. 길이 몸을 열면, 숲이 귀를 열고, 연못이 시선을 붙든다. 이 흐름이 자연스럽게 이어질 때 방문자는 '전시를 보러 온 사람'이 아니라 '그 밤 안으로 걸어 들어간 사람'이 된다.\n\n공원이나 수목원은 이미 야간 관광의 장소가 됐다. 그런데 대부분의 야간 조명 행사는 빛을 '장식'으로 쓴다. 나는 빛을 '시간의 구분선'으로 쓰고 싶다. 한 장면이 끝나고 다음 장면이 시작되는 경계, 그 경계를 방문자가 직접 넘는 구조.\n\n당신이 이 산책을 마친다면, 어느 장면에서 발걸음이 가장 느려졌을 것 같은가?"
     },
     "linkedin": {
-      "text": "「메이킹」\n\n화면이 고정돼 있어야 한다는 전제를 의심하면서 이 작업이 시작됐다.\n\n아나모픽 키네틱 디스플레이를 구상 중이다. 레일을 따라 LED 패널이 이동하고, 보는 사람의 위치에 맞춰 콘텐츠가 달라지는 구조다.\n\n아나모픽 기법은 원래 회화에서 출발했다. '바른 각도에서만 상이 완성된다'는 원리인데, 이걸 정적인 화면이 아니라 움직이는 패널에 얹으면 전혀 다른 경험이 만들어진다.\n\n공간 경험 프로젝트를 다루면서 하나 반복적으로 확인한 게 있다. 사람은 '나를 위해 반응하는 것'에 훨씬 오래 머문다. 일방적으로 쏘는 콘텐츠보다, 내 위치를 읽고 따라오는 화면 앞에서 발걸음이 느려진다.\n\n아직 드래프트 단계라 결정되지 않은 것들이 많다. 레일 구조, 위치 감지 방식, 콘텐츠 전환 타이밍 — 각각이 서로에게 영향을 주기 때문에 한 번에 풀리지 않는다. 디렉팅의 상당 부분은 이런 '미결 변수들의 우선순위를 정하는 일'이라고 생각한다.\n\n\"좋은 경험은 기술이 아니라 관계에서 온다.\"\n\n화면과 사람 사이의 관계를 다시 설계하는 것. 지금 내가 초안 위에서 계속 묻고 있는 질문이다.\n\n#미디어아트 #인터랙티브디자인 #공간경험 #크리에이티브디렉팅 #ExperienceDesign #MediaArt"
+      "text": "「창작 노트」\n\n야간 공원 행사 대부분은 조명을 '장식'으로 쓴다. 나는 빛을 '장면의 경계'로 쓰려 한다.\n\n지금 구상 중인 야간 산책 전시는 세 구간으로 나뉜다.\n빛의 길, 속삭이는 숲, 빛의 연못.\n\n같은 공원 동선이지만 각 구간은 다른 기술 레이어로 작동한다. 길은 발걸음에 반응하는 인터랙티브 LED로 채우고, 숲 구간은 프로젝션과 사운드가 나뭇가지 사이에서 켜지며, 연못은 수면 투영으로 빛의 폭포를 만든다.\n\n핵심은 기술 스펙이 아니라 '감정의 시퀀스'다. 길이 방문자의 몸을 활성화하면, 숲이 청각을 건드리고, 연못이 시선을 완전히 잡아둔다. 이 순서가 무너지면 세 장면은 그냥 세 개의 설치물이 된다.\n\n수목원·공원의 야간관광 수요는 분명히 늘고 있다. 그런데 체류 시간과 재방문율을 함께 높이려면 '볼 것'보다 '경험의 흐름'을 팔아야 한다. 방문자가 스스로 장면을 넘기는 구조, 그게 공공 공간에서 미디어아트가 해야 할 일이라고 생각한다.\n\n\"경험은 장면이 아니라 순서로 기억된다.\"\n\n공원·수목원의 야간 콘텐츠를 기획하거나 검토 중이라면, 동선 설계 단계부터 감각의 순서를 함께 넣는 걸 권한다.\n\n#야간전시 #FutureCity #공공미디어아트 #인터랙티브아트 #도시경험"
     },
     "carousel": {
-      "badge": "MAKING NOTE",
-      "cover_bold": "화면이 날 따라온다",
-      "cover_accent": "날 따라온다",
-      "cover_keyword": "화면이 움직인다",
+      "badge": "NIGHT WALK",
+      "cover_bold": "밤 산책이 세 장면이 된다",
+      "cover_accent": "세 장면",
       "cover_rest": [
-        "보는 위치마다 그림이 달라지는 구조"
+        "빛의 길·숲·연못, 시퀀스 설계 이야기"
       ],
+      "cover_keyword": "장면이 바뀐다",
       "facts": [
-        "화면이 사람을 향해 이동한다",
-        "위치마다 다른 콘텐츠가 표출된다",
-        "아나모픽 원리를 움직임에 얹었다"
+        "빛은 장식이 아니라 경계다",
+        "감정의 순서가 체류를 만든다",
+        "동선은 같아도 경험은 달라진다"
       ],
-      "caption": "Before → After · parkjunhyuk.xyz",
-      "reel_hook": "화면이 나를 따라 움직였다",
+      "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
+      "reel_hook": "걸음마다 빛이 차오른다",
       "points": [
         {
-          "title": "아이디어의 출발점",
-          "body": "아나모픽은 보는 각도가 맞아야 상이 완성된다. 거기에 '움직임'을 더하면 어떨까 싶었다.",
-          "image_query": "kinetic LED panel rail installation dark exhibition space"
+          "title": "장면 1 — 빛의 길",
+          "body": "발을 내디딜 때마다 바닥 빛이 켜진다. 방문자의 몸이 전시의 스위치가 된다.",
+          "image_query": "interactive LED pathway glowing footsteps night park"
         },
         {
-          "title": "화면이 사람을 향한다",
-          "body": "레일 위 LED 패널이 보는 사람 쪽으로 이동한다. 서 있는 자리에 따라 보이는 그림이 달라진다.",
-          "image_query": "motorized display panel moving along ceiling rail in gallery"
+          "title": "장면 2 — 속삭이는 숲",
+          "body": "나뭇가지 사이로 소리와 빛이 흘러나온다. 눈이 아니라 귀가 먼저 반응하는 구간이다.",
+          "image_query": "projection light through forest trees night sound installation"
         },
         {
-          "title": "위치가 콘텐츠가 된다",
-          "body": "'어디서 보느냐'가 감상 방식을 결정한다. 사람이 화면에 맞추는 게 아니라, 화면이 사람에게 맞춘다.",
-          "image_query": "anamorphic projection angle shift viewer position art installation"
+          "title": "장면 3 — 빛의 연못",
+          "body": "수면 위로 빛이 쏟아진다. 폭포처럼 흘러내리는 영상이 연못을 다른 공간으로 만든다.",
+          "image_query": "water surface projection light reflection night pond"
         },
         {
-          "title": "지금 풀고 있는 문제들",
-          "body": "레일 구조, 위치 감지 방식, 콘텐츠 전환 타이밍 — 셋이 서로 영향을 주기 때문에 순서를 정하는 게 먼저다.",
-          "image_query": "draft sketch diagram LED rail system interactive layout"
+          "title": "순서가 경험을 만든다",
+          "body": "세 장면이 이어질 때 방문자는 전시를 보는 게 아니라 그 밤 안으로 걸어 들어간 느낌을 받는다.",
+          "image_query": "night walk path leading through illuminated nature park"
         },
         {
-          "title": "드래프트가 중요한 이유",
-          "body": "아이디어가 가장 순수한 상태일 때의 방향을 붙잡아두려고 계속 그린다.",
-          "image_query": "designer sketching kinetic art concept notebook dark studio"
+          "title": "공공 공간에서 빛의 역할",
+          "body": "빛을 장식이 아닌 장면의 경계로 쓸 때, 공원은 체류하고 싶은 곳이 된다.",
+          "image_query": "glowing outdoor art installation public park night atmosphere"
         }
       ],
-      "outro_line": "아직 초안이지만, 이 방향은 계속 간다.\n더 다듬어지면 다시 공유하겠다."
+      "outro_line": "같은 산책로도 어떻게 나누느냐에 따라 완전히 다른 밤이 된다.\n빛의 순서가 곧 경험의 설계다."
     },
     "topic_meta": {
-      "theme": "「메이킹」 — 진행 중 프로젝트의 제작 과정·스케치·결정의 비하인드. (Creative Lives식 과정 공개)",
-      "pillar": "Creative Leadership (팀 운영·PM·디렉팅)",
-      "date": "2026-07-24"
+      "theme": "「창작 노트」 — 일과 창작에 대한 1인칭 에세이·관점. (CRAFT TALK식 에세이)",
+      "pillar": "Future City (스마트시티·디지털 공공예술·도시 경험)",
+      "date": "2026-07-25"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/DbKJF05jm-L/"
-    }
+    "_video": "reel.mp4"
   }
 ]
