@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbMt3eBG_xR/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486604867210240000",
+      "facebook": "https://www.facebook.com/1140846082456388_122109144243366256"
+    }
   },
   {
     "topic": "야간 산책 빛 전시 시퀀스 — 빛의 길·속삭이는 숲·빛의 연못 (수목원·공원 야간관광 인터랙티브 미디어아트 컨셉)",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbMt6OoAP8M/"
+    }
   }
 ]
