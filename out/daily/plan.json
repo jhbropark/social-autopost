@@ -1,71 +1,71 @@
 [
   {
-    "topic": "위클리 큐레이션 — 공간·AI·미디어아트에서 이번 주 주목할 것 5",
-    "image_query": "digital art installation city night light",
+    "topic": "1인 디렉터의 AI 워크플로 전체 공개 — StreamDiffusion·TD·UE5·매핑 도구체인",
+    "image_query": "AI generative art workflow dark studio screen",
     "instagram": {
-      "caption": "「위클리 큐레이션」\n\n이번 주 공간·AI·미디어아트에서 눈에 걸린 것들.\n\n전구 모티브 대형 LED 설치, 생성형 AI 미디어 파사드, 모바일 AR 전시까지.\n빛과 도시가 다시 말을 거는 방식이 달라지고 있다.\n\n체험형 팝업이 '인증샷 공장'이 되는 데는 이유가 있고,\n1인 디렉터가 AI 워크플로를 공개하는 데도 이유가 있다.\n\n스와이프하면 다섯 가지 정리해뒀다.\n\n\nThis week's picks: LED light art, AI-generated media facades, mobile AR exhibitions, and how solo creators are reshaping creative workflows.\nSome weeks, every signal points the same direction.\n\n#미디어아트 #디지털아트 #AI크리에이티브 #공간디자인 #미디어파사드 #AR전시 #퓨처시티 #위클리큐레이션",
-      "series": "Creative Director's Notebook"
+      "caption": "「공간 한 문제」\n\n혼자서 팀 한 개 분량을 낸다.\n어떻게?\n\nStreamDiffusion으로 이미지를 실시간 생성하고\nTouchDesigner로 연결하고\nUE5로 공간에 입히고\n매핑 툴로 벽에 올린다.\n\n이게 내 작업 흐름 전부다.\n\n도구가 많아 보이지만, 연결 방식이 핵심이다.\n각 단계가 매끄럽게 이어지면 1인도 충분히 돌아간다.\n\n\nI run a full production pipeline solo — from AI image generation to TouchDesigner, Unreal Engine 5, and projection mapping.\nThe key isn't the tools. It's how they connect.\n\n#AI크리에이티브 #미디어아트 #프로젝션매핑 #TouchDesigner #UE5 #1인디렉터 #AI워크플로",
+      "series": "Space Inspiration"
     },
     "facebook": {
-      "text": "「위클리 큐레이션」\n\n전시장에서 관람객이 스마트폰을 드는 순간, 나는 그게 실패의 신호인지 성공의 신호인지 한참 고민했다.\n\n이번 주에 모인 다섯 가지 소재를 보면서 그 질문이 다시 떠올랐다.\n\n전구 모티브 대형 LED 설치는 낡은 소재를 몸으로 느끼는 스케일로 바꿔놨다. 빛의 밀도가 달라지면 공간의 온도도 달라진다.\n\n체험형 팝업의 공간 설계 5법칙은 결국 '동선이 감정을 만든다'는 오래된 진실을 다시 증명한다. 인증샷은 의도된 설계의 결과지, 우연이 아니다.\n\n1인 디렉터의 AI 워크플로 공개는 흥미롭다. 도구가 투명해질수록 실력의 차이가 더 또렷하게 보인다.\n\nAI 생성형 미디어 파사드는 건물 외벽을 실시간으로 살아 움직이게 한다. 도시가 콘텐츠가 되는 속도가 빨라지고 있다.\n\n모바일 AR 관람은 전시의 입장을 바꾼다. 물리적 공간에 없어도, 혹은 있어도 다른 층위로 보게 만든다.\n\n다섯 가지를 묶어보니 하나의 방향이 보인다. 경험의 설계자와 기술의 실행자 사이 경계가 지워지고 있다.\n\n당신이 만드는 공간에서, 관람객이 스마트폰을 드는 건 방해일까 — 아니면 그 공간이 그들의 언어로 말을 걸었다는 뜻일까?"
+      "text": "「공간 한 문제」\n\n처음 혼자 공간 프로젝트 전체를 맡았을 때, 나는 도구가 부족하다고 생각했다.\n\n틀렸다. 도구는 충분했다. 문제는 연결이었다.\n\n지금 내 작업 흐름은 이렇다. StreamDiffusion으로 이미지를 실시간 생성한다. 그걸 TouchDesigner로 받아서 움직임과 신호를 붙인다. Unreal Engine 5로 공간 안에 배치하고, 마지막으로 매핑 툴로 실제 벽면에 올린다.\n\n이 흐름이 한 줄로 이어지면, 혼자서도 팀이 하던 일을 해낼 수 있다.\n\n핵심은 각 도구를 잘 쓰는 게 아니다. 어떤 순서로, 어느 지점에서 넘기느냐다. 그 연결 설계가 곧 디렉팅이다.\n\n나는 이걸 'AI 아트디렉터'라는 정체성으로 정리했다. 생성형 AI는 실행 속도를 올려주는 수단이고, 디렉팅 판단은 여전히 사람이 한다.\n\n당신이 1인으로 작업한다면, 지금 가장 많이 막히는 구간은 어디인가 — 생성인가, 연결인가, 출력인가?"
     },
     "linkedin": {
-      "text": "「위클리 큐레이션」\n\n공간을 만드는 사람과 콘텐츠를 만드는 사람이 같은 도구를 쓰기 시작했다.\n\n이번 주 다섯 가지 흐름을 정리했다.\n\n첫째, 전구 모티브 대형 LED 설치. 익숙한 오브제를 몸으로 압도하는 스케일로 번역하면 관람객의 반응 자체가 달라진다. 물리적 크기가 감정의 밀도를 결정한다.\n\n둘째, 체험형 팝업의 공간 설계 5법칙. '인증샷 공장'이라는 말이 폄하처럼 쓰이지만, 사람이 자발적으로 콘텐츠를 생산하게 만드는 동선 설계는 브랜드 입장에서 가장 효율적인 미디어 전략이다.\n\n셋째, 1인 디렉터의 실제 AI 워크플로 공개. 프로세스가 공개될수록 도구 격차는 줄고 판단력 격차는 커진다. 어떤 순서로, 왜 그 도구를 선택하느냐가 진짜 실력이 된다.\n\n넷째, AI 생성형 미디어 파사드. 건물 외벽이 실시간으로 변하는 콘텐츠가 되면 도시 자체가 미디어 채널로 기능한다. 옥외 광고와 공공예술의 경계가 흐려지고 있다.\n\n다섯째, 모바일 AR 전시 관람. 스마트폰을 '해설 도구'가 아니라 '다른 층위의 감상 도구'로 쓰기 시작하면 전시의 문법이 바뀐다.\n\n\"경험의 설계자와 기술의 실행자 사이 경계가 지워지는 속도가 빨라지고 있다.\"\n\n이 다섯 가지에서 공통으로 보이는 건 하나다. 공간을 짓는 사람이 콘텐츠를 이해해야 하고, 콘텐츠를 만드는 사람이 공간을 설계할 줄 알아야 한다.\n\n#미디어아트 #퓨처시티 #AI크리에이티브 #공간경험 #미디어파사드 #ExperienceDesign"
+      "text": "「공간 한 문제」\n\n팀 없이 공간 프로젝트를 납품할 수 있냐는 질문을 받을 때마다, 나는 도구 목록보다 연결 순서를 먼저 떠올린다.\n\n내 작업 흐름은 네 단계로 이어진다.\n\nStreamDiffusion으로 이미지를 실시간 생성한다. TouchDesigner로 그 신호를 받아 움직임을 붙인다. Unreal Engine 5로 공간 안에 배치하고, 매핑 툴로 실제 벽면에 올린다.\n\n각 도구는 혼자서도 배울 수 있다. 하지만 이 흐름을 한 줄로 이어본 사람은 생각보다 많지 않다.\n\n연결이 끊기는 지점은 대부분 도구 사이 '형식 변환' 구간이다. 가령 생성된 이미지를 실시간으로 TouchDesigner에 밀어 넣으려면, 포맷과 타이밍을 미리 맞춰두지 않으면 중간에서 막힌다. 이 구간을 설계하는 것이 진짜 디렉팅이다.\n\n생성형 AI는 실행 속도를 올려주지만, 어떤 순서로 어디서 개입하느냐는 판단의 영역이다. 그 판단이 1인 디렉터의 경쟁력이 된다.\n\n\"도구가 아니라 연결 설계가 워크플로의 본체다.\"\n\n공간·미디어 프로젝트를 1인 체제로 운영 중인 분이라면, 지금 가장 자주 막히는 구간이 어딘지 댓글로 알려주세요. 다음 글에서 그 지점을 짚겠습니다.\n\n#AI크리에이티브 #미디어아트 #1인디렉터 #AIworkflow #공간경험 #콘텐츠비즈니스"
     },
     "carousel": {
-      "badge": "WEEKLY CURATION",
-      "cover_bold": "이번 주 주목한 5가지",
-      "cover_accent": "5가지",
-      "cover_keyword": "놓치면 아깝다",
+      "badge": "AI CREATIVE",
+      "cover_bold": "혼자서 팀을 냅니다",
+      "cover_accent": "혼자서",
       "cover_rest": [
-        "공간·AI·미디어아트 다이제스트"
+        "제 도구 연결 방식, 처음부터 끝까지"
       ],
+      "cover_keyword": "도구체인 공개",
+      "reel_hook": "AI로 혼자 팀 분량을 냅니다",
       "facts": [
-        "동선이 감정을 만든다",
-        "AI는 판단력 격차를 키운다",
-        "도시가 콘텐츠가 되고 있다"
+        "연결 설계가 곧 디렉팅이다",
+        "도구보다 순서가 결과를 가른다",
+        "1인도 공간 프로젝트 전체 가능"
       ],
-      "caption": "Creative Director's Notebook · parkjunhyuk.xyz",
-      "reel_hook": "이번 주 몰랐으면 손해",
+      "caption": "Space Inspiration · parkjunhyuk.xyz",
       "points": [
         {
-          "title": "대형 LED 빛 설치",
-          "body": "전구 모티브를 압도적 스케일로 키우면 공간의 온도가 달라진다. 크기가 감정을 만든다.",
-          "image_query": "large LED bulb light installation immersive exhibition dark hall",
+          "title": "첫 단계: 이미지 실시간 생성",
+          "body": "StreamDiffusion으로 이미지를 실시간으로 만든다. 렌더 대기 없이 바로 확인하며 방향을 잡는다.",
+          "image_query": "AI generative image stream glowing dark monitor studio",
           "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "인증샷이 나오는 이유",
-          "body": "자발적으로 사진 찍게 만드는 동선은 우연이 아니다. 설계된 결과다.",
-          "image_query": "people taking photos inside experiential pop-up brand space colorful",
+          "title": "두 번째: 신호로 움직임을 붙인다",
+          "body": "TouchDesigner로 생성된 이미지를 받아 움직임과 타이밍을 설계한다. 연결이 끊기지 않아야 한다.",
+          "image_query": "TouchDesigner node network screen dark creative studio",
           "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "1인 AI 워크플로",
-          "body": "프로세스가 공개될수록 도구 격차는 줄고 판단력 격차는 커진다.",
-          "image_query": "solo creator working AI tools laptop dark studio workflow",
+          "title": "세 번째: 공간 안에 배치한다",
+          "body": "Unreal Engine 5로 실제 공간과 같은 환경을 만들고, 그 안에 영상을 올려 미리 확인한다.",
+          "image_query": "Unreal Engine 5 architectural visualization dark interior rendering",
           "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "건물이 콘텐츠가 된다",
-          "body": "AI가 실시간으로 바꾸는 외벽 파사드. 도시가 미디어 채널로 바뀌고 있다.",
-          "image_query": "AI generative media facade building projection night urban",
+          "title": "네 번째: 벽면에 올린다",
+          "body": "매핑 툴로 실제 벽의 굴곡과 비율에 맞게 영상을 정렬한다. 여기서 미세한 조정이 완성도를 가른다.",
+          "image_query": "projection mapping calibration on dark textured building wall",
           "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "스마트폰으로 보는 전시",
-          "body": "AR은 해설 도구가 아니다. 같은 공간을 다른 층위로 보게 만드는 감상 도구다.",
-          "image_query": "visitor using mobile AR smartphone in art gallery exhibition space",
+          "title": "연결 설계가 핵심이다",
+          "body": "도구 하나하나보다, 이 흐름이 끊기지 않게 이어지는 구조가 진짜 경쟁력이다.",
+          "image_query": "full projection mapping workflow dark studio multiple screens glowing",
           "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "다섯 가지 흐름의 공통점은 하나다.\n공간을 만드는 사람과 콘텐츠를 만드는 사람이 같은 자리에 서고 있다.",
+      "outro_line": "도구는 누구나 배울 수 있다.\n연결 방식이 디렉터를 가른다.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「위클리 큐레이션」 — 이번 주 공간·AI·미디어아트에서 주목할 것 3~5개를 각각 한 줄 코멘트와 함께 정리. (Dense Discovery·뉴닉식 다이제스트)",
-      "pillar": "Future City (스마트시티·디지털 공공예술·도시 경험)",
-      "date": "2026-07-26"
+      "theme": "「공간 한 문제」 — 이번 주 풀어야 할 공간·경험 설계 문제 하나를 제시하고 접근법을 보여준다. 글 첫 부분에 코너명 노출.",
+      "pillar": "Content Business (콘텐츠 수익화·IP·문화콘텐츠 산업)",
+      "date": "2026-07-27"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -77,80 +77,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "instagram": "https://www.instagram.com/p/DbPTKB9nEoi/",
-      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486968342810042368",
-      "facebook": "https://www.facebook.com/1140846082456388_122109262857366256"
-    }
+    ]
   },
   {
-    "topic": "위클리 큐레이션 — 이번 주 공간·AI·미디어아트에서 주목한 5가지",
-    "image_query": "immersive media art exhibition dark room glowing light",
+    "topic": "AI 생성형 미디어 파사드 — 건물이 매일 밤 다른 영상을 스스로 만들어 내보내는 공간 실험",
+    "image_query": "media facade projection building night",
     "instagram": {
-      "series": "Space Inspiration",
-      "caption": "「위클리 큐레이션」\n이번 주 내가 주목한 것 5가지.\n\n인증샷이 나오는 공간은 우연이 아니다.\n설계 단계에서 이미 '어디서 찍힐지'를 정해둔다.\n\nAI는 이제 보조 도구가 아니라, 1인 디렉터의 실제 워크플로 안에 들어와 있다.\n\n건물 외벽이 살아 움직이고, 스마트폰 하나로 전시가 겹쳐지고, 센서가 관람객의 움직임에 반응한다.\n\n이 5가지를 하나로 묶는 건 결국 같은 질문이다.\n'경험을 어떻게 설계할 것인가.'\n\n\nFive things I'm watching this week — from branded space to AI workflows, generative facades, AR exhibitions, and sensor-driven aquariums.\nAll circling one question: how do we design experience?\n\n#미디어아트 #공간디자인 #AI크리에이티브 #팝업스토어 #인터랙티브전시 #AR전시 #몰입형경험 #위클리큐레이션"
+      "caption": "「공간 한 문제」\n\n같은 건물인데, 어제와 오늘 밤이 다르다.\n\nAI가 그 자리에서 영상을 만든다.\n미리 제작한 콘텐츠를 트는 게 아니라,\n매 순간 새로 생성한다.\n\n랜드마크가 '고정된 얼굴'이어야 한다는 생각,\n나는 거기서 의심을 시작했다.\n\n\nEvery night, the same building wears a different face.\nNot pre-made content — AI generates it live.\nThis is the question I'm researching now.\n\n#미디어파사드 #생성형AI #공간경험 #미디어아트 #도심랜드마크 #AIcreative #프로젝션매핑 #공간디자인",
+      "series": "AI for Creators"
     },
     "facebook": {
-      "text": "「위클리 큐레이션」\n체험형 팝업 현장에서 나는 이런 장면을 자주 봤다. 관람객이 한 귀퉁이에 몰려 줄을 서고, 나머지 공간은 텅 빈 채 방치된다.\n\n그게 설계 실패라는 걸 알면서도, 팝업 기획은 여전히 콘텐츠가 아니라 '분위기'에 기댄다. 이번 주 공간 설계 5법칙을 들여다보면서 다시 확인했다. 인증샷이 터지는 공간은 감도가 높은 게 아니라 동선이 정교한 것이다.\n\nAI 쪽에서는 1인 디렉터가 실제 쓰는 워크플로를 공개하는 사례가 늘고 있다. 흥미로운 건, 그 워크플로가 생각보다 단순하다는 점이다. 비싼 툴보다 '어떤 순서로 판단하는가'가 결과물의 밀도를 가른다.\n\n미디어 파사드는 이제 생성형 AI와 붙었다. 건물 외벽이 실시간으로 변하는 그림을 뿜어내는 장면은, 5년 전만 해도 대형 제작사가 독점하던 영역이었다. 지금은 소규모 팀도 진입할 수 있는 판이 열렸다.\n\nAR 전시와 센서 연동 디지털 아쿠아리움은 같은 방향을 가리킨다. 관람객이 그냥 보는 게 아니라, 공간이 그 사람을 인식하고 반응하는 구조다. 이 흐름이 자리를 잡으면, '전시를 다녀왔다'는 말의 뜻이 달라진다.\n\n당신이 지금 기획 중인 공간이나 콘텐츠에서, 관람객의 어떤 행동을 '설계'하고 있나요?"
+      "text": "「공간 한 문제」\n\n건물 외벽에 영상을 올리는 일을 오래 들여다봤다.\n\n대부분의 미디어 파사드는 '재생'이다. 미리 만든 파일을 틀고, 정해진 시간이 지나면 끈다. 건물이 아무리 커도, 결국 대형 모니터와 다를 게 없다.\n\n그럼 여기서 문제가 생긴다.\n'공간이 매번 같은 말을 반복한다면, 사람들은 다시 올 이유가 있을까?'\n\n나는 이 질문을 AI 생성형 파사드 쪽에서 풀어보고 싶었다. 영상을 미리 제작하는 대신, AI가 그날 밤 실시간으로 영상을 만든다. 날씨, 시간, 심지어 광장에 모인 사람들의 움직임 같은 조건을 입력 삼아 매 순간 다른 장면을 내보내는 방식이다.\n\n'같은 건물인데 어제와 오늘 밤 다르다'는 경험은, 사람을 다시 그 앞으로 불러낸다. 랜드마크가 '고정된 얼굴'이 아니라 '살아있는 얼굴'이 되는 순간이다.\n\n지금은 리서치 단계다. 기술 구현 가능성보다 먼저 묻고 싶은 건 이거다.\n'브랜드가 건물 외벽에서 매일 밤 다른 이야기를 해야 한다면, 그 이야기는 누가 어떻게 만들어야 할까?'"
     },
     "linkedin": {
-      "text": "「위클리 큐레이션」\n공간을 만들면서 가장 자주 들은 말은 '분위기 좋게 해주세요'였다. 그런데 실제로 사람이 머물고, 사진 찍고, 다시 찾는 공간은 분위기가 아니라 동선이 설계된 곳이었다.\n\n이번 주 주목한 5가지를 짧게 정리했다.\n\n첫째, 체험형 팝업의 인증샷 설계. 어느 지점에서 어떤 방향으로 찍힐지를 미리 계산하는 것이 '공간 설계'의 실제 작업이다. 감성보다 구조가 먼저다.\n\n둘째, 1인 디렉터의 AI 워크플로 공개. 화려한 툴보다 판단의 순서가 결과물의 밀도를 결정한다. 이 사실이 점점 더 구체적인 사례로 증명되고 있다.\n\n셋째, AI 생성형 미디어 파사드. 건물 외벽이 실시간 생성 영상을 출력하는 구조는, 이제 대형 제작사 전유물이 아니다. 소규모 팀이 진입 가능한 문턱이 내려왔다.\n\n넷째, AR 전시 콘텐츠. 스마트폰 하나로 현실 공간 위에 디지털 레이어를 얹는 관람 방식은 '전시를 보러 간다'는 행위를 다시 정의하는 중이다.\n\n다섯째, 센서 연동 인터랙티브 디지털 아쿠아리움. 관람객의 위치와 움직임에 따라 전시가 반응하는 구조는, 공간이 사람을 '읽는다'는 감각을 준다.\n\n\"경험은 기억에 남는 순간을 설계하는 일이다.\"\n\n이 다섯 가지는 결국 같은 방향을 가리킨다. 공간이, 기술이, 콘텐츠가 각각 따로 작동하는 시대는 끝났다.\n\n#공간경험 #미디어아트 #AICreative #인터랙티브전시 #콘텐츠비즈니스 #위클리큐레이션"
+      "text": "「공간 한 문제」\n\n미디어 파사드를 기획할 때 가장 먼저 받는 질문은 '영상 몇 편 필요해요?'다.\n\n그 질문 자체가, 공간을 여전히 '재생 장치'로 보고 있다는 신호다.\n\n대부분의 파사드 프로젝트는 콘텐츠를 '납품'하는 구조로 굴러간다. 제작사가 영상을 만들고, 일정에 맞춰 파일을 올리고, 캠페인이 끝나면 꺼진다. 건물은 그 시간 동안 대형 스크린 역할을 할 뿐이다.\n\n내가 리서치하는 방향은 다르다.\nAI가 그 자리에서 영상을 생성하는 파사드다.\n\n미리 만든 파일 없이, 설정한 조건과 실시간 데이터를 바탕으로 매 순간 다른 장면이 건물 위에 펼쳐진다. 날씨, 시각, 광장의 밀도 같은 요소가 영상의 재료가 된다.\n\n브랜드 입장에서 이게 흥미로운 이유가 있다. '오늘 밤만 볼 수 있다'는 경험은 사람을 다시 그 공간으로 불러낸다. 캠페인이 끝난 뒤에도 건물이 계속 말을 건다는 뜻이기도 하다.\n\n물론 아직 풀어야 할 문제가 많다. 생성 결과물의 품질을 어떻게 보장할지, 브랜드 정체성과 어떻게 연결할지, 운영 구조는 어떻게 설계할지.\n\n\"좋은 공간은 반복해서 와도 매번 조금씩 다른 것을 준다.\"\n\n미디어 파사드가 그 역할을 할 수 있다면, 랜드마크의 정의가 달라진다.\n\n#미디어파사드 #생성형AI #공간경험 #브랜드경험 #미디어아트 #AIcreative"
     },
     "carousel": {
-      "badge": "WEEKLY CURATION",
-      "cover_bold": "이번 주 주목할 것 5가지",
-      "cover_accent": "주목할 것 5가지",
-      "cover_keyword": "경험을 설계하다",
+      "badge": "SPACE QUESTION",
+      "cover_bold": "건물이 매일 밤 달라진다",
+      "cover_accent": "매일 밤 달라진다",
       "cover_rest": [
-        "공간·AI·미디어아트 다이제스트"
+        "AI가 영상을 그 자리에서 만든다"
       ],
+      "cover_keyword": "살아있는 외벽",
       "facts": [
-        "인증샷은 설계된다, 우연이 아니다",
-        "AI 워크플로는 툴보다 순서가 핵심",
-        "공간이 관람객을 읽는 시대가 왔다"
+        "파사드는 재생이 아닐 수 있다",
+        "AI가 영상을 실시간 생성한다",
+        "공간이 매번 다르면 사람은 다시 온다"
       ],
-      "caption": "Space Inspiration · parkjunhyuk.xyz",
-      "reel_hook": "건물 외벽이 살아 움직였다",
+      "caption": "AI for Creators · parkjunhyuk.xyz",
+      "reel_hook": "건물이 오늘 밤만 이 얼굴입니다",
       "points": [
         {
-          "title": "인증샷이 나오는 공간",
-          "body": "잘 찍히는 공간은 감도가 높은 게 아니라 동선이 정교한 것이다. 설계 단계에서 '어디서 찍힐지'를 미리 정해둔다.",
-          "image_query": "branded pop-up store interior with dramatic light and open space"
+          "title": "파사드는 대부분 재생이다",
+          "body": "미리 만든 영상을 틀고 끄는 구조다. 건물이 아무리 커도 결국 대형 모니터와 같다.",
+          "image_query": "media facade building wide shot night city"
         },
         {
-          "title": "1인 디렉터의 AI 작업법",
-          "body": "비싼 툴보다 판단의 순서가 결과물을 가른다. 실제 워크플로를 공개하는 사례가 늘면서 그 구조가 생각보다 단순하다는 게 드러난다.",
-          "image_query": "single creative director working at desk with multiple screens and digital tools"
+          "title": "AI는 영상을 직접 만든다",
+          "body": "파일을 올리는 대신, AI가 그 순간 조건을 읽어 새 장면을 생성한다.",
+          "image_query": "projection light patterns generated on building surface night"
         },
         {
-          "title": "생성형 미디어 파사드",
-          "body": "건물 외벽이 실시간으로 변하는 영상을 내뿜는다. 소규모 팀도 진입할 수 있는 판이 열렸다.",
-          "image_query": "generative AI projection mapping on building facade at night colorful light"
+          "title": "조건이 재료가 된다",
+          "body": "날씨, 시각, 광장 밀도 같은 실시간 데이터가 영상의 내용을 바꾼다.",
+          "image_query": "crowd gathered in plaza watching illuminated building facade"
         },
         {
-          "title": "스마트폰으로 보는 AR 전시",
-          "body": "현실 공간 위에 디지털 레이어를 얹어 관람한다. '전시를 보러 간다'는 말의 뜻이 달라지고 있다.",
-          "image_query": "visitor holding smartphone viewing augmented reality art in museum gallery"
+          "title": "같은 건물, 다른 밤",
+          "body": "'오늘 밤만 볼 수 있다'는 경험이 사람을 다시 그 공간으로 부른다.",
+          "image_query": "closeup colorful light projected on concrete building wall night"
         },
         {
-          "title": "센서가 반응하는 수족관",
-          "body": "관람객의 위치와 움직임에 따라 전시가 달라진다. 공간이 사람을 읽는다는 감각을 준다.",
-          "image_query": "interactive digital aquarium installation with sensor responding to visitor movement glowing fish"
+          "title": "브랜드와 공간을 잇는 방식",
+          "body": "캠페인이 끝난 뒤에도 건물이 계속 말을 건다. 랜드마크의 정의가 달라진다.",
+          "image_query": "aerial view glowing landmark building illuminated urban night"
         }
       ],
-      "outro_line": "이 다섯 가지는 각각 다른 영역처럼 보이지만, 결국 같은 질문에서 출발한다.\n'경험을 어떻게 설계할 것인가.'"
+      "outro_line": "지금은 리서치 단계다.\n풀어야 할 문제가 많을수록, 질문이 좋다는 뜻이다."
     },
     "topic_meta": {
-      "theme": "「위클리 큐레이션」 — 이번 주 공간·AI·미디어아트에서 주목할 것 3~5개를 각각 한 줄 코멘트와 함께 정리. (Dense Discovery·뉴닉식 다이제스트)",
-      "pillar": "Content Business (콘텐츠 수익화·IP·문화콘텐츠 산업)",
-      "date": "2026-07-26"
+      "theme": "「공간 한 문제」 — 이번 주 풀어야 할 공간·경험 설계 문제 하나를 제시하고 접근법을 보여준다. 글 첫 부분에 코너명 노출.",
+      "pillar": "Creator OS (CRM·자동화·생산성)",
+      "date": "2026-07-27"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/DbPTM28lU86/"
-    }
+    "_video": "reel.mp4"
   }
 ]
