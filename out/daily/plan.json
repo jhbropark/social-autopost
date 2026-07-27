@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbR5cJGjqMr/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7487334006544297984",
+      "facebook": "https://www.facebook.com/1140846082456388_122109453609366256"
+    }
   },
   {
     "topic": "AI 생성형 미디어 파사드 — 건물이 매일 밤 다른 영상을 스스로 만들어 내보내는 공간 실험",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbR5fMllbfp/"
+    }
   }
 ]
