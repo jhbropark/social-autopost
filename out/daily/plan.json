@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbUbcfSmn5_/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7487690268016660480",
+      "facebook": "https://www.facebook.com/1140846082456388_122109624177366256"
+    }
   },
   {
     "topic": "실내외 센서 데이터로 구동하는 인터랙티브 디지털 아쿠아리움 전시 구상",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbUbfWHgWu-/"
+    }
   }
 ]
