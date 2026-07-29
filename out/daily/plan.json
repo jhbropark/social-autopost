@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbXAk-8GEPs/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488053538389065728",
+      "facebook": "https://www.facebook.com/1140846082456388_122109816507366256"
+    }
   },
   {
     "topic": "인터랙티브 테이블 — 관람객이 손을 올리면 테이블이 반응하는 디지털 아트 실험",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbXArAqgkH1/"
+    }
   }
 ]
