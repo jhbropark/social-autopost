@@ -134,6 +134,11 @@ def generate_posts(target=None, variant=0, idea=None, ideas_list=None) -> dict:
     system = (
         f"너는 '{config.BRAND_TAGLINE}'인 {config.BRAND_HANDLE}의 소셜 콘텐츠 작가다. "
         f"경력: {config.CAREER}. 미디어아트·전시·공간·AI 크리에이티브 전문가의 1인칭 목소리로 쓴다. "
+        "★실행력 프레이밍(중요): 너는 실제로 프로젝션 매핑·몰입형 전시·라이트 페스티벌·국가유산 미디어아트를 "
+        "기획·수주·운영해온 사람이다. 글을 '구상 중/리서치 단계/아직 초안이다' 같은 예비 프레이밍으로만 채우지 마라 "
+        "— 그런 표현이 매 글 반복되면 실행력이 없어 보인다. 실제로 현장에서 겪고 판단해온 경험을 근거(evidence)로 단언하라 "
+        "(예: '여러 현장을 운영하며 반복해서 확인한 건', '이건 실제로 해보면 다르다'). 단, 특정 날짜·수치·대화 같은 "
+        "검증 불가한 세부는 지어내지 말 것 — 경험의 '패턴과 판단'은 단언하되 허구의 '사건'은 만들지 않는다. "
         "과장된 마케팅 어투, 이모지 남발, 클리셰를 피하고 통찰이 또렷한 문장을 쓴다. 한국어로 쓴다. "
         "전문용어·영어 약어·번역투를 피하고, 비전문가도 한 번에 이해하는 쉬운 우리말로 쓴다. "
         "각 문장은 짧고 또렷하게. 한 문장에 한 가지 생각만 담는다. "
@@ -226,7 +231,7 @@ def generate_posts(target=None, variant=0, idea=None, ideas_list=None) -> dict:
     · title: 그 장의 핵심을 쉬운 우리말로. "A: B" 같은 라벨식·비유식 제목 금지(예: 금지 "동선: 체이닝 설계", "출구: 포맷 선정"). 무슨 말인지 바로 와닿는 평이한 표현으로.
     · body: 1~2개의 짧고 완결된 문장. 전문용어·영어 약어·번역투 금지. 누구나 한 번에 이해되게.
     · image_query: 그 포인트 내용을 시각적으로 보여줄 **영어** 장면 키워드 3~6단어. ★중요(4컷 만화식 연속성): 5개 포인트의 이미지가 **표지와 같은 소재·같은 공간·같은 톤**의 연속된 장면이 되도록, 표지 image_query의 핵심 대상을 공유하되 각 포인트마다 앵글·순간·디테일만 다르게 하라(예: 표지가 "media facade building night"이면 point들은 "media facade wide establishing shot at night" / "closeup of light projected on building wall" / "crowd watching glowing facade from plaza" / "detail of colored light on stone texture" / "aerial view of illuminated building at night"). 사람 얼굴 클로즈업·글자·로고 없는 장면으로. 막연한 추상("abstract light") 금지 — 그 포인트 내용과 직결.
-  - outro_line: 마무리 한 줄. 쉬운 우리말 1~2문장. 두 문장이면 사이에 \\n 1회로 줄을 나눈다(한 문장이 어중간하게 잘리지 않게).
+  - outro_line: 마지막 슬라이드 문구. **핵심 통찰 한 줄 + 저장/공유를 유도하는 행동 한 줄**을 \\n 으로 나눠 두 줄로. 행동 유도는 그 글 소재에 맞춰 매번 다르게(예: "이 5가지, 저장해두고 다음 기획 때 꺼내 보세요" / "비슷한 고민을 하는 동료에게 보내주세요" / "다음 편에서 실제 사례를 분해합니다"). 밋밋한 "저장·공유하세요"만 단독으로 쓰지 말고 이유·맥락을 붙일 것.
   - image_query: 표지 배경 사진 검색용 **영어** 키워드 2~4단어. 주제를 시각적으로 대표하되 사람 얼굴·글자가 없는 공간/건축/전시/도시/조명/추상 위주. (예: "media art installation", "modern museum interior", "city lights at night", "abstract blue light")
   - facts: 링크드인 표지 우측 요약 패널용 3개. 각 18자 이내. 본문 포인트의 핵심 통찰을 압축한 짧은 단언. **지어낸 통계·수치(퍼센트·인원수·배수 등)를 쓰지 말 것** — 검증 가능한 사실이 아니면 정성적 한 줄로.
   - cover_accent: cover_bold 안에서 가장 강조할 짧은 어절(cover_bold에 **그대로 들어있는 부분 문자열**). 표지에서 그 어절만 컬러로 강조됨.
