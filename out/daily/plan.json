@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbcLGR2GnUy/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7488780270859415552",
+      "facebook": "https://www.facebook.com/1140846082456388_122110158147366256"
+    }
   },
   {
     "topic": "Sound Room — 소리만으로 공간을 바꾸는 몰입형 사운드 전시 기획 중",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbcLKL4ibbP/"
+    }
   }
 ]
