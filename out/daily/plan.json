@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbewvcrFK50/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7489144457527705600",
+      "facebook": "https://www.facebook.com/1140846082456388_122110326195366256"
+    }
   },
   {
     "topic": "teamLab형 디지털 아트 상설관 구조 분석 — 왜 줄 서서 볼까",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbewyPHgWgR/"
+    }
   }
 ]
