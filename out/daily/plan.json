@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbhUlu-jSRC/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7489505049505878016",
+      "facebook": "https://www.facebook.com/1140846082456388_122110460133366256"
+    }
   },
   {
     "topic": "위클리 큐레이션 — 공간·AI·미디어아트 이번 주 주목할 것 5 (국가유산 미디어아트·프로젝션 시리즈화·명화 몰입전시·바이오 인터랙티브·매체 선택 가이드)",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbhUwHbCp9e/"
+    }
   }
 ]
