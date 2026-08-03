@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Dbj5og1jurX/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7489867705538342912",
+      "facebook": "https://www.facebook.com/1140846082456388_122110597455366256"
+    }
   },
   {
     "topic": "명화·인상주의 미디어아트 몰입 전시 기획 — 그림 속으로 걸어 들어가는 공간 설계 문제",
@@ -142,6 +147,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Dbj5rO3DJA8/"
+    }
   }
 ]
