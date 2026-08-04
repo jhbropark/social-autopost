@@ -76,7 +76,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Dbmcx-KgApY/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7490226552325021696",
+      "facebook": "https://www.facebook.com/1140846082456388_122110743123366256"
+    }
   },
   {
     "topic": "드론쇼·프로젝션·LED 중 어떤 매체를 쓸지 — 발주처를 위한 매체 결정 가이드",
@@ -141,6 +146,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Dbmc3FnACou/"
+    }
   }
 ]
