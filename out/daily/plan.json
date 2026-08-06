@@ -76,7 +76,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7490951707418554368",
+      "facebook": "https://www.facebook.com/1140846082456388_122111025225366256"
+    }
   },
   {
     "topic": "아나모픽 키네틱 디스플레이 — 보는 위치마다 달라지는 화면, 레일을 타고 따라오는 LED",
@@ -142,6 +146,7 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {}
   }
 ]
