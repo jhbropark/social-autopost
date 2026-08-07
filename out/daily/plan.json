@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491319194362486784",
+      "facebook": "https://www.facebook.com/1140846082456388_122111183385366256"
+    }
   },
   {
     "topic": "야간 산책 빛 전시 시퀀스 — 빛의 길·속삭이는 숲·빛의 연못 컨셉 메이킹",
@@ -143,6 +147,7 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {}
   }
 ]
