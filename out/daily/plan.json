@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbwqQlGFC2x/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491663466093740032",
+      "facebook": "https://www.facebook.com/1140846082456388_122111326479366256"
+    }
   },
   {
     "topic": "체험형 팝업이 인증샷 공장이 되는 공간 설계 5법칙",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbwqTL1jyJ6/"
+    }
   }
 ]
