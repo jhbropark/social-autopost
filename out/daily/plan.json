@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DbzPnVSGshX/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7492027105917145089",
+      "facebook": "https://www.facebook.com/1140846082456388_122111468841366256"
+    }
   },
   {
     "topic": "이번 주 공간·AI·미디어아트에서 주목할 것 5가지 위클리 큐레이션",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DbzPqrwDnMJ/"
+    }
   }
 ]
