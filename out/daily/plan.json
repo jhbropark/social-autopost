@@ -77,7 +77,12 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Db10rHAll28/",
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7492390077520781312",
+      "facebook": "https://www.facebook.com/1140846082456388_122111608455366256"
+    }
   },
   {
     "topic": "실내·실외 센서 데이터로 관람객 움직임에 반응하는 디지털 아쿠아리움 인터랙티브 전시",
@@ -143,6 +148,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Db10tv7lBD7/"
+    }
   }
 ]
