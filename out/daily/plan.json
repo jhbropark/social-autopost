@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "linkedin": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7492751607776890880",
+      "facebook": "https://www.facebook.com/1140846082456388_122111772879366256"
+    }
   },
   {
     "topic": "인터랙티브 테이블 — 손을 올리는 순간 관람객이 연출자가 되는 경험",
@@ -143,6 +147,7 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {}
   }
 ]
