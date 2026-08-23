@@ -40,7 +40,7 @@ def _ig_cta(caption):
     if LEADGEN_KEYWORD:
         out += f"\n\n💬 댓글에 '{LEADGEN_KEYWORD}' 남기면 전체 정리본을 DM으로 보내드려요"
     if NEWSLETTER_URL:
-        out += "\n\n📬 매주 공간·AI·미디어아트 인사이트를 뉴스레터로 — 프로필 링크"
+        out += "\n\n🎓 미디어아트를 배우고 싶다면 — VARIS, 프로필 링크"
     return out
 
 ERR_FILE = "_error.txt"     # 실패 원인 누적(워크플로우 실패 알림 스텝이 읽음)
