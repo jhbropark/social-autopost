@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DeVtP-6kXce/",
+      "facebook": "https://www.facebook.com/1140846082456388_122121634785366256"
+    }
   },
   {
     "topic": "위클리 큐레이션 — 공간·AI·미디어아트에서 이번 주 주목할 것 5가지 (야간 빛 전시 / LED 전구 설치 / 팝업 공간설계 / 1인 AI 워크플로 / AI 미디어 파사드)",
@@ -143,6 +147,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DeVtTAkgj45/"
+    }
   }
 ]
