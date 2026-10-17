@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DelECocDqNu/",
+      "facebook": "https://www.facebook.com/1140846082456388_122122461513366256"
+    }
   },
   {
     "topic": "Sound Room — 소리만으로 공간을 바꾸는 몰입형 사운드 전시",
@@ -142,6 +146,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DelEGGyDQlJ/"
+    }
   }
 ]
