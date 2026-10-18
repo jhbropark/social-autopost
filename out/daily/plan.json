@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Deno50ElJPv/",
+      "facebook": "https://www.facebook.com/1140846082456388_122122580781366256"
+    }
   },
   {
     "topic": "위클리 큐레이션 — 이번 주 공간·AI·미디어아트 콘텐츠 비즈니스에서 주목할 것 5가지",
@@ -143,6 +147,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Deno840iMIq/"
+    }
   }
 ]
