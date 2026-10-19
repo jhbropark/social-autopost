@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DeqPZgMAFx6/",
+      "facebook": "https://www.facebook.com/1140846082456388_122122703559366256"
+    }
   },
   {
     "topic": "국가유산 미디어아트 전국 12지역 전수분석 — 유산별 기법 비교 및 내년 공모 대비 케이스 시리즈",
@@ -142,6 +146,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DeqPd-Gko7x/"
+    }
   }
 ]
