@@ -76,7 +76,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/DevZfs7FMzL/",
+      "facebook": "https://www.facebook.com/1140846082456388_122122960935366256"
+    }
   },
   {
     "topic": "발주처 매체결정 가이드: 드론쇼 vs 프로젝션매핑 vs LED — 예산·표면·메시지 기반 결정 트리 인포그래픽",
@@ -142,6 +146,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/DevZiUrFEPN/"
+    }
   }
 ]
