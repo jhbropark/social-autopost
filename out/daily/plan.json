@@ -1,71 +1,70 @@
 [
   {
-    "topic": "국가유산 야간 프로젝션 시리즈화 — 문화재를 밤마다 살아있는 스크린으로",
-    "image_query": "projection mapping historic building night",
+    "topic": "바이오 반응형 인터랙티브 전시 — 관객 심박수가 생성형 콘텐츠의 변수가 되는 몰입형 경험 개념 설계",
+    "image_query": "biometric interactive art installation dark room",
     "instagram": {
-      "caption": "「현장 노트」\n\n낮엔 문화재, 밤엔 거대한 스크린.\n\n조명만 바꿨을 뿐인데, 사람들이 멈춘다.\n소리가 더해지면, 그 자리에서 떠나지 못한다.\n\n유산은 보존 대상이기도 하지만,\n가장 강력한 무대이기도 하다.\n\n한 번 보면 아는 것 — 건물 위에 빛이 내려앉는 순간,\n그 공간은 '역사'가 아니라 '지금'이 된다.\n\n\nHistoric landmarks become screens after dark.\nProjection + sound turn preservation into presence.\nThe past doesn't disappear — it speaks.\n\n#미디어아트 #프로젝션매핑 #국가유산 #몰입형전시 #공간경험 #빛의전시 #야간전시",
-      "series": "Space Inspiration"
+      "caption": "「AI 실험실」\n\n심박수를 센서로 읽어서\n그 수치로 영상이 바뀌는 전시를 구상하고 있다.\n\n관객이 '보는 사람'이 아니라 '변수'가 되는 순간.\n작품은 더 이상 고정된 결과물이 아니다.\n\n센서 종류마다 구현 난이도가 크게 갈린다.\n어떤 방식이 현장에서 실제로 작동하는지,\n직접 뜯어보는 중이다.\n\n\nI'm designing an exhibition where the audience's heartbeat changes the visuals in real time.\nNot viewers — variables.\nEach biometric sensor type comes with very different implementation challenges.\n\n#인터랙티브전시 #미디어아트 #몰입형전시 #바이오센서 #생성형AI #AI크리에이티브",
+      "series": "AI for Creators"
     },
     "facebook": {
-      "text": "「현장 노트」\n\n현장을 여럿 운영하다 보면 반복해서 확인하는 게 있다. 낮에는 그냥 지나치던 공간이, 밤에 빛과 소리를 입는 순간 사람들이 발을 멈춘다.\n\n문화재 공간이 특히 그렇다. 낮엔 해설판 앞에서 사진 한 장 찍고 지나가는 곳이, 밤에 프로젝션을 얹으면 아무도 자리를 뜨지 않는다. 건물이 살아서 말을 거는 것처럼 느껴지기 때문이다.\n\n이건 단순히 '멋지다'는 감각 문제가 아니다. 유산을 어떻게 '경험'시킬 것인가, 라는 기획의 문제다.\n\n지금 내가 들여다보고 있는 건 국가유산 공간을 야간 프로젝션으로 시리즈화하는 아이디어다. 한 공간, 한 번의 이벤트로 끝내는 게 아니라 — 여러 유산 공간을 하나의 기획 언어로 묶어, 매 시즌 반복 가능한 콘텐츠로 만드는 구조다.\n\n프로젝션과 사운드만으로도 공간은 완전히 달라진다. 시공 비용이 크지 않고, 건물에 물리적 변형을 주지 않는다. 지자체 입장에서는 유산을 훼손하지 않고 새로운 관광 콘텐츠를 만들 수 있는 거의 유일한 방법이다.\n\n유산이 '박물관 속 기록'이 아니라 '지금 이 계절에 가야 할 이유'가 되는 것 — 그게 내가 이 시리즈에서 만들고 싶은 경험이다."
+      "text": "「AI 실험실」\n\n전시장에서 관객이 가장 조용해지는 순간은 무언가에 '반응했을 때'가 아니라, 자신이 '원인이 됐다는 걸 깨달은 때'다.\n\n지금 구상하는 건 심박수를 실시간으로 읽어서 그 값이 생성형 영상과 사운드를 직접 바꾸는 전시다. ARTECHOUSE의 Quantum Bloom류 접근에서 출발했지만, 내가 집중하는 건 구현 가능성이다.\n\n여러 공간 프로젝트를 운영하면서 반복해서 확인한 게 있다. 기획 단계에서 '멋있어 보이는 센서'와 '현장에서 실제로 작동하는 센서'는 다르다. 심박 측정 하나만 해도 손목형 광학 센서, 귀 클립형, 카메라 기반 rPPG(비접촉 측정) 방식이 각기 다른 노이즈 조건과 지연 시간을 가진다. 어떤 방식을 쓰느냐에 따라 콘텐츠 반응 설계 자체가 달라진다.\n\n그래서 지금 이 단계에서 하는 실험은 센서별 구현 난이도 비교다. 스펙 시트를 읽는 게 아니라, 실제 지연·오차·착용 거부감 같은 현장 변수를 직접 해부하는 작업이다.\n\n브랜드나 기관이 이 방식에 관심을 갖는 건 단순히 '신기하다'는 이유가 아니다. 관객이 작품의 변수가 된다는 건, 두 번 같은 경험이 없다는 뜻이다. 같은 공간에 다시 오고 싶은 이유가 생긴다.\n\n비슷한 방향을 고민하는 분과 이야기 나눠보고 싶다."
     },
     "linkedin": {
-      "text": "「현장 노트」\n\n문화재 공간에서 가장 강한 반응을 이끌어내는 건 해설도, 조명 리뉴얼도 아니었다.\n\n빛과 소리가 건물 표면에 맞닿는 그 순간이었다.\n\n여러 공간을 운영하면서 반복해서 본 패턴이 있다. 낮에 관람객이 5분 머물던 곳에서, 프로젝션이 켜진 밤엔 사람들이 자리를 떠나지 않는다. 설명이 없어도 된다. 건물이 직접 말을 걸기 때문이다.\n\n지금 내가 검토하는 건 국가유산 공간을 야간 프로젝션으로 시리즈화하는 구조다.\n\n핵심은 '한 번짜리 이벤트'를 만드는 게 아니라, 반복 가능한 기획 언어를 설계하는 것이다. 유산 공간마다 고유한 서사를 영상과 사운드로 풀어내되, 시즌마다 콘텐츠를 교체할 수 있는 틀을 갖추는 방식이다.\n\n지자체 입장에서 이 방식이 현실적인 이유가 있다. 건물에 물리적 변형을 주지 않고, 설치와 철거가 빠르며, 매년 다른 콘텐츠로 재방문 이유를 만들 수 있다. 유산 보존 원칙과 관광 콘텐츠 수요를 동시에 충족하는 포맷은 많지 않은데, 프로젝션 매핑은 그 몇 안 되는 선택지 중 하나다.\n\n중요한 건 기술이 아니라 기획이다. 어떤 서사를 어느 계절에, 어떤 관람 동선으로 경험시킬 것인가. 그 설계가 공간을 '한 번 가봤던 곳'에서 '매년 다시 가고 싶은 곳'으로 바꾼다.\n\n유산은 가장 오래된 무대다. 그 무대를 어떻게 쓸 것인가가 남은 질문이다.\n\n#미디어아트 #프로젝션매핑 #국가유산 #공간기획 #문화콘텐츠 #지역문화"
+      "text": "「AI 실험실」\n\n관객의 심장 박동을 콘텐츠 변수로 쓰는 전시를 설계하면서, 제일 먼저 부딪힌 건 기술이 아니라 '어떤 센서를 쓸 것인가'였다.\n\n겉으로 보면 단순해 보인다. 심박수를 읽고 그 값으로 생성형 영상과 사운드를 바꾸는 구조다. 하지만 여러 공간 프로젝트를 운영하며 반복해서 확인한 건, 기획 단계의 '가능하다'와 현장의 '작동한다'는 완전히 다른 말이라는 점이다.\n\n심박 측정 방식만 해도 선택지가 여럿이다. 손목형 광학 센서는 착용 거부감이 있고, 귀 클립형은 움직임 노이즈에 취약하다. 카메라로 얼굴의 미세한 색 변화를 읽는 비접촉 방식(rPPG)은 조명 조건에 민감하게 흔들린다. 어떤 방식을 고르느냐가 콘텐츠 반응 속도와 정밀도 설계 전체를 결정한다.\n\n지금 이 개념 설계 단계에서 내가 집중하는 건 바로 이 지점이다. 센서별 실제 지연 시간, 노이즈 패턴, 관객 수용성을 직접 비교하는 것. ARTECHOUSE의 Quantum Bloom 같은 레퍼런스는 결과물로서 훌륭하지만, 그 이면의 구현 선택을 해부하는 작업이 실제 기획에서 더 중요하다.\n\n브랜드와 기관 입장에서 이 포맷이 갖는 가치는 명확하다. 관객이 작품의 변수가 되면, 두 번 같은 경험이 없다. 재방문 동기가 콘텐츠 자체에서 나온다.\n\n다음 단계는 센서 조합과 생성형 AI 연동 파이프라인을 실제로 테스트하는 것이다. 같은 방향을 고민하는 기관이나 브랜드 담당자가 있다면 연결되고 싶다.\n\n#인터랙티브전시 #미디어아트 #몰입형경험 #바이오센서 #생성형AI #ExperienceDesign"
     },
     "carousel": {
-      "badge": "SPACE NOTE",
-      "cover_bold": "밤에만 깨어나는 유산",
-      "cover_accent": "밤에만",
+      "badge": "AI CREATIVE",
+      "cover_bold": "심박수가 그림을 바꾼다",
+      "cover_accent": "심박수가",
       "cover_rest": [
-        "낮엔 문화재, 밤엔 거대한 스크린"
+        "관객이 변수가 되는 전시 설계"
       ],
-      "cover_keyword": "유산이 말한다",
+      "cover_keyword": "내가 작품이다",
       "facts": [
-        "건물이 스크린이 되는 순간",
-        "시즌마다 콘텐츠 교체 가능",
-        "보존 원칙과 관광 수요 동시 충족"
+        "센서 선택이 경험 품질을 결정한다",
+        "비접촉 방식은 조명 조건에 민감하다",
+        "관객이 변수 되면 재방문 동기가 생긴다"
       ],
-      "caption": "Space Inspiration · parkjunhyuk.xyz",
-      "reel_hook": "건물이 밤마다 다시 태어난다",
+      "caption": "AI for Creators · parkjunhyuk.xyz",
       "points": [
         {
-          "title": "낮과 밤은 다른 공간",
-          "body": "빛과 소리가 더해지면, 같은 건물이 완전히 다른 경험이 된다. 사람들이 발을 멈추는 건 이 순간이다.",
-          "image_query": "projection mapping on historic stone facade night wide shot",
+          "title": "이 전시가 다른 이유",
+          "body": "관객이 '보는 사람'이 아니라 작품을 바꾸는 변수가 된다. 두 번 같은 장면이 없다.",
+          "image_query": "immersive biometric art installation dark glowing room",
           "image": "out/daily/0/_pt1.jpg"
         },
         {
-          "title": "건물 자체가 캔버스",
-          "body": "별도 구조물이 필요 없다. 유산 건물의 표면이 그대로 영상 스크린이 된다.",
-          "image_query": "closeup of colorful light projected onto ancient stone wall",
+          "title": "심박 센서, 어떤 걸 쓸까",
+          "body": "손목형·귀 클립형·카메라 비접촉 방식, 셋 다 노이즈와 지연이 다르다. 선택이 콘텐츠 반응 속도를 결정한다.",
+          "image_query": "heart rate sensor wearable device closeup dark background",
           "image": "out/daily/0/_pt2.jpg"
         },
         {
-          "title": "소리가 공간을 완성한다",
-          "body": "영상만으론 반쪽이다. 사운드가 더해질 때 관람객은 그 공간 안에 있다고 느낀다.",
-          "image_query": "crowd standing in plaza watching illuminated heritage building at night",
+          "title": "비접촉 방식의 함정",
+          "body": "카메라로 얼굴 색 변화를 읽는 방식은 조명이 바뀌면 값이 흔들린다. 전시 조명 설계와 함께 짜야 한다.",
+          "image_query": "camera sensor detecting face subtle light change dark exhibition",
           "image": "out/daily/0/_pt3.jpg"
         },
         {
-          "title": "시즌마다 새롭게",
-          "body": "콘텐츠만 바꾸면 같은 공간이 매년 새 이유가 된다. 재방문을 만드는 가장 단순한 구조다.",
-          "image_query": "different colored light patterns on same historic building facade night",
+          "title": "생성형 AI와 연결하면",
+          "body": "심박 수치가 높아질수록 영상이 빠르고 거칠어진다. AI가 실시간으로 그 순간의 그림을 만들어낸다.",
+          "image_query": "generative AI visuals reacting to data real time projection",
           "image": "out/daily/0/_pt4.jpg"
         },
         {
-          "title": "지자체에 맞는 이유",
-          "body": "건물을 훼손하지 않고, 설치와 철거가 빠르다. 보존 원칙을 지키면서도 콘텐츠를 만들 수 있다.",
-          "image_query": "aerial view of illuminated heritage landmark surrounded by night visitors",
+          "title": "브랜드·기관에 맞는 이유",
+          "body": "체험이 끝나도 '내 심박이 만든 장면'이 기억된다. 콘텐츠가 아닌 관계가 남는 경험이다.",
+          "image_query": "audience standing inside immersive glowing installation space",
           "image": "out/daily/0/_pt5.jpg"
         }
       ],
-      "outro_line": "유산은 가장 오래된 무대다. 그 무대를 어떻게 쓸지 고민 중인 분이 있다면 이 슬라이드를 저장해두세요.",
+      "outro_line": "관객이 변수가 되는 순간, 전시는 공연이 된다.\n센서별 구현 비교가 궁금하면 저장해두고 기획 때 꺼내 보세요.",
       "top_image": "out/daily/0/_hero.jpg"
     },
     "topic_meta": {
-      "theme": "「현장 노트」 — 전시·미디어아트 현장에서 직접 관찰한 것 하나와 거기서 얻은 인사이트. (Right Click Save식 현장 디스패치)",
-      "pillar": "Creator OS (CRM·자동화·생산성)",
-      "date": "2026-10-20"
+      "theme": "「AI 실험실」 — 이번 주 시도한 AI 크리에이티브 실험이나 도구 하나와 그 결과·배운 점. (Designing with AI식)",
+      "pillar": "Media Art (공간·전시·인터랙션·공공미디어)",
+      "date": "2026-10-21"
     },
     "_type": "carousel",
     "_dir": "0",
@@ -77,78 +76,72 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ],
-    "_links": {
-      "instagram": "https://www.instagram.com/p/Des1L_KlEr7/",
-      "facebook": "https://www.facebook.com/1140846082456388_122122837821366256"
-    }
+    ]
   },
   {
-    "topic": "명화·인상주의를 미디어아트로 재해석한 몰입형 프로젝션 전시",
-    "image_query": "immersive projection exhibition impressionist painting art",
+    "topic": "발주처 매체결정 가이드: 드론쇼 vs 프로젝션매핑 vs LED — 예산·표면·메시지 기반 결정 트리 인포그래픽",
+    "image_query": "festival light show projection mapping outdoor night",
     "instagram": {
-      "caption": "「현장 노트」\n\n그림 속으로 걸어 들어간다.\n모네의 붓질이 사방 벽을 타고 움직인다.\n\n명화를 미디어아트로 재해석하는 몰입 전시를 들여다보면,\n기술보다 먼저 답해야 할 질문이 생긴다.\n\n'이 작품을 공간이 대신 설명할 수 있는가.'\n\n벽면 전체가 캔버스가 되는 순간,\n관객은 작품 앞에 서는 게 아니라 작품 안으로 들어간다.\n그 차이가 전시 경험을 완전히 바꾼다.\n\n\nWalking into the painting — not standing in front of it.\nThat shift in perspective is what immersive projection does best.\nThe canvas becomes the room itself.\n\n#몰입형전시 #미디어아트 #프로젝션매핑 #인상주의 #전시기획 #공간경험",
-      "series": "「현장 노트」"
+      "caption": "「AI 실험실」\n드론쇼? 프로젝션? LED?\n\n발주처가 물어보기 전에\n답이 나오는 결정표를 만들었어요.\n\nAI로 예산·표면·메시지 조건을 넣으면\n어떤 매체가 맞는지 한눈에 보이는 초안.\n여러 현장을 거치며 반복해서 받던 질문이\n드디어 구조가 됐습니다.\n\n\nDrone show, projection, or LED — which one fits?\nI built a decision-tree draft using AI to match budget, surface, and message conditions.\nTurning years of repeated client questions into one clear visual.\n\n#미디어아트 #라이트페스티벌 #프로젝션매핑 #드론쇼 #LED #지자체축제 #AI실험실 #parkjunhyuk",
+      "series": "1 Minute Media Art"
     },
     "facebook": {
-      "text": "「현장 노트」\n\n명화를 크게 틀어놓는 것과 그 안으로 걸어 들어가는 것은 다르다.\n\n몰입형 프로젝션 전시를 기획하다 보면 이 차이를 설계하는 일이 전부라는 걸 반복해서 느낀다. 화면이 크다고 몰입이 되지는 않는다. 관객이 '내가 작품 밖에 있다'는 감각을 잃어버리는 순간이 있어야 한다.\n\n모네의 수련이 벽을 타고 흐를 때, 그 붓질이 바닥까지 내려와 발밑을 채울 때, 사람들은 멈춘다. 걸음이 느려지고, 목소리가 낮아진다. 공간이 만들어내는 분위기가 몸의 반응을 먼저 바꾼다.\n\n이런 순간을 설계할 때 내가 가장 신경 쓰는 건 속도다. 영상이 너무 빠르면 관객이 쫓기는 느낌을 받는다. 인상주의 특유의 흐릿하고 느린 결을 영상으로 옮길 때, 프레임 전환 하나가 공간 전체의 호흡을 좌우한다.\n\n명화가 소재가 되는 게 아니라 공간 자체가 명화가 되는 것. 그 방향으로 전시를 구상하고 있다.\n\n비슷한 방향으로 전시를 준비하거나 고민 중인 분이 있다면, 이야기 나눠보고 싶다."
+      "text": "「AI 실험실」\n\n발주처가 가장 자주 던지는 질문이 하나 있다. '드론쇼랑 프로젝션 중에 뭐가 나을까요?'\n\n표면도 다르고, 예산도 다르고, 행사가 전하고 싶은 메시지도 다른데, 이 질문은 언제나 비교 없이 날아온다.\n\n실제로 여러 현장을 거쳐보면 패턴이 보인다. 이 선택이 자주 실패하는 이유는 매체를 먼저 고르고 목적을 나중에 맞추기 때문이다. 순서가 거꾸로다.\n\n그래서 이번에 AI를 실험 도구로 써봤다. 예산 구간·투사 가능한 표면 유무·전달하려는 메시지 성격, 이 세 가지 조건을 입력하면 매체가 좁혀지는 결정 트리 초안을 잡은 것이다.\n\nAI가 답을 만들어준 건 아니다. 내가 현장에서 쌓아온 판단 기준을 구조로 정리하는 데 AI가 속도를 붙여줬다. 초안 자체는 여전히 손볼 게 많지만, '머릿속에만 있던 기준'이 눈에 보이는 형태가 된 것만으로도 다르다.\n\n다음 번 미팅 전에 이걸 인포그래픽으로 다듬어서 발주처에 먼저 건네볼 생각이다. 질문을 받기 전에 기준을 보여주는 것, 그게 신뢰를 만드는 가장 빠른 방법이라고 나는 믿는다."
     },
     "linkedin": {
-      "text": "「현장 노트」\n\n전시 규모가 커진다고 경험이 깊어지지는 않는다.\n\n몰입형 전시 현장을 여러 번 운영하면서 반복해서 확인한 건, 관객이 멈추는 순간은 화면이 커서가 아니라는 점이다. 공간이 '나를 에워싸고 있다'는 감각이 켜지는 순간, 사람들은 비로소 작품 안으로 들어온다.\n\n명화·인상주의를 프로젝션으로 재해석하는 전시를 구상할 때, 가장 먼저 따지는 건 기술 스펙이 아니다. '관객이 작품 밖에 있다는 자의식을 어느 지점에서 내려놓는가'라는 질문이다.\n\n인상주의 회화는 이 실험에 특히 잘 맞는 소재다. 윤곽이 흐리고, 색이 층층이 쌓이고, 빛이 시간과 함께 변한다. 고정된 캔버스에서는 그 순간을 한 컷으로만 볼 수 있지만, 프로젝션 공간에서는 그 시간의 흐름 자체를 펼칠 수 있다.\n\n이걸 잘하려면 영상의 속도 설계가 핵심이다. 전환이 빠르면 관객이 공간보다 화면을 '보게' 된다. 느리고 연속적인 흐름이 유지될 때, 공간 전체가 하나의 작품처럼 읽힌다.\n\n미디어아트가 명화를 소재로 삼을 때 흔히 빠지는 함정은 재현이다. 잘 알려진 그림을 크게 틀어두는 것. 그보다 한 발 더 나아가야 한다. 원작이 담지 못한 시간, 빛, 공기까지 공간이 대신 말하게 하는 것이 몰입 전시의 역할이다.\n\n#몰입형전시 #미디어아트 #프로젝션 #전시기획 #ImmersiveExperience"
+      "text": "「AI 실험실」\n\n발주처가 던지는 질문 중 가장 답하기 어려운 건 '뭐가 더 좋아요?'다.\n\n드론쇼, 프로젝션매핑, LED — 세 매체는 각각 맞는 조건이 다르다. 그런데 현장에서 보면 매체를 먼저 정하고 예산을 꿰맞추거나, 옆 지자체가 했다는 이유로 선택하는 경우가 적지 않다.\n\n이번 주 실험은 그 판단 과정을 구조화하는 것이었다.\n\nAI에게 조건 세 가지를 넣었다. 예산 구간, 투사할 수 있는 표면이 있는지 여부, 그리고 그 행사가 전달하려는 메시지의 성격. 이 세 조건을 입력하면 어떤 매체가 적합한지 좁혀지는 결정 트리 초안을 잡아봤다.\n\nAI가 실제 판단을 대신하진 않는다. 내가 반복해서 내려온 선택의 근거를 빠르게 시각화하는 데 쓸모가 있었다. 머릿속에만 있던 기준이 구조가 되는 순간, 설명하기가 훨씬 쉬워진다.\n\n수주 전 미팅에서 이 결정표를 먼저 꺼내면 발주처의 질문 방식이 달라진다. '뭐가 좋아요?'에서 '우리 조건은 이런데 어느 쪽이에요?'로. 그 전환 하나가 협업의 질을 바꾼다.\n\n인포그래픽으로 다듬는 중이고, 완성되면 공유할 예정이다. 라이트 페스티벌이나 지자체 문화 행사를 기획하는 분이라면 한번 참고해보셔도 좋을 것 같다.\n\n#라이트페스티벌 #미디어아트 #프로젝션매핑 #LightFestival #MediaArt #AI크리에이티브"
     },
     "carousel": {
-      "badge": "MEDIA ART",
-      "cover_bold": "그림 안으로 들어간다",
-      "cover_accent": "안으로 들어간다",
+      "badge": "AI CREATIVE",
+      "cover_bold": "매체, 어떻게 고르나요",
+      "cover_accent": "어떻게 고르나요",
       "cover_rest": [
-        "인상주의 몰입 전시, 5가지 설계 포인트"
+        "드론·프로젝션·LED 결정 기준"
       ],
-      "cover_keyword": "작품 속으로",
+      "cover_keyword": "답이 먼저 나온다",
       "facts": [
-        "크기보다 에워싸임이 몰입을 만든다",
-        "속도 설계가 공간 호흡을 결정한다",
-        "재현이 아닌 시간을 펼치는 것"
+        "매체보다 조건이 먼저다",
+        "표면·예산·메시지로 좁혀라",
+        "기준이 보이면 설명이 쉽다"
       ],
-      "caption": "AI for Creators · parkjunhyuk.xyz",
+      "caption": "1 Minute Media Art · parkjunhyuk.xyz",
+      "reel_hook": "발주처 답, 표 하나로 끝냈다",
       "points": [
         {
-          "title": "벽이 캔버스가 될 때",
-          "body": "바닥과 천장까지 이어질 때 관객은 그림 밖에 있다는 감각을 잃는다.",
-          "image_query": "immersive projection room monet water lilies floor ceiling"
+          "title": "매체보다 조건이 먼저다",
+          "body": "드론·프로젝션·LED는 각각 맞는 상황이 다르다. 매체를 먼저 고르면 순서가 거꾸로다.",
+          "image_query": "outdoor light festival night wide shot projection building"
         },
         {
-          "title": "속도가 호흡을 만든다",
-          "body": "전환이 느릴수록 공간이 하나의 작품처럼 읽힌다. 빠르면 화면만 보게 된다.",
-          "image_query": "slow moving light projection impressionist painting large wall"
+          "title": "예산 구간으로 먼저 좁혀라",
+          "body": "세 매체는 초기 비용 구조 자체가 다르다. 예산 범위를 먼저 두면 선택지가 반으로 줄어든다.",
+          "image_query": "projection mapping building facade close budget planning"
         },
         {
-          "title": "인상주의가 맞는 이유",
-          "body": "흐린 윤곽과 쌓이는 빛은 프로젝션의 특성과 자연스럽게 맞닿는다.",
-          "image_query": "soft blurred impressionist colors projected on curved wall"
+          "title": "투사할 표면이 있는지 확인",
+          "body": "프로젝션은 넓고 평평한 면이 필요하다. 표면이 없다면 드론이나 LED가 현실적이다.",
+          "image_query": "blank building wall surface texture night light projection"
         },
         {
-          "title": "관객이 멈추는 순간",
-          "body": "발밑까지 색이 내려올 때 걸음이 느려진다. 몸이 먼저 반응한다.",
-          "image_query": "visitor standing inside immersive light projection exhibition floor"
+          "title": "메시지 성격으로 최종 결정",
+          "body": "움직이는 서사가 필요하면 프로젝션, 야외 분산 연출이라면 드론, 상시 운영이라면 LED가 맞다.",
+          "image_query": "drone light show sky formation outdoor night festival"
         },
         {
-          "title": "재현보다 한 발 앞으로",
-          "body": "원작을 크게 틀지 말고, 그 안의 시간과 빛과 공기를 공간이 말하게 하라.",
-          "image_query": "immersive art room glowing colored light atmospheric mist"
+          "title": "결정 기준이 신뢰를 만든다",
+          "body": "발주처가 묻기 전에 결정표를 꺼내면 질문의 질이 달라진다. 그게 수주로 이어지는 차이다.",
+          "image_query": "meeting presentation infographic light festival planning table"
         }
       ],
-      "outro_line": "몰입 전시는 기술이 아니라 관객의 감각을 설계하는 일이다.\n명화 기반 전시를 고민 중이라면 이 5가지를 기획 초안에 먼저 대입해 보세요."
+      "outro_line": "매체 선택은 취향이 아니라 조건이다.\n다음 기획 미팅 전에 이 기준표를 꺼내 보세요."
     },
     "topic_meta": {
-      "theme": "「현장 노트」 — 전시·미디어아트 현장에서 직접 관찰한 것 하나와 거기서 얻은 인사이트. (Right Click Save식 현장 디스패치)",
-      "pillar": "Media Art (공간·전시·인터랙션·공공미디어)",
-      "date": "2026-10-20"
+      "theme": "「AI 실험실」 — 이번 주 시도한 AI 크리에이티브 실험이나 도구 하나와 그 결과·배운 점. (Designing with AI식)",
+      "pillar": "AI Creative (AI 영상·디자인·워크플로우)",
+      "date": "2026-10-21"
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4",
-    "_links": {
-      "instagram": "https://www.instagram.com/reel/Des1Op7lAuP/"
-    }
+    "_video": "reel.mp4"
   }
 ]
