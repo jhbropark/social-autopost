@@ -97,7 +97,7 @@ jobs:
             echo "No publish-state changes to commit."
           fi
           state_commit="$(git rev-parse HEAD)"
-          echo "Publish-state commit: `$state_commit`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Publish-state commit: $state_commit" >> "$GITHUB_STEP_SUMMARY"
           for attempt in 1 2 3; do
             git fetch origin "$branch"
             if ! git rebase "origin/$branch"; then
@@ -106,7 +106,9 @@ jobs:
               exit 1
             fi
             if git push origin "HEAD:$branch"; then
-              echo "Publish-state commit pushed: $state_commit"
+              pushed_commit="$(git rev-parse HEAD)"
+              echo "Publish-state commit pushed: $pushed_commit"
+              echo "Publish-state commit pushed: $pushed_commit" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
             echo "::warning::Publish-state push failed on attempt $attempt; refreshing and retrying."
