@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/Dex-LnjjRgQ/",
+      "facebook": "https://www.facebook.com/1140846082456388_122123086071366256"
+    }
   },
   {
     "topic": "생애주기와 기억 — 태어남에서 죽음까지의 시간을 빛과 소리로 걷는 이머시브 미디어아트 공연 컨셉",
@@ -143,6 +147,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/Dex-OgqkxvQ/"
+    }
   }
 ]
