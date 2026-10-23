@@ -76,7 +76,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/De0jOWPjSmv/",
+      "facebook": "https://www.facebook.com/1140846082456388_122123223465366256"
+    }
   },
   {
     "topic": "아나모픽 키네틱 디스플레이 — 레일을 타고 움직이며 보는 위치마다 다른 그림을 보여주는 인터랙티브 LED 구조물 기획",
@@ -142,6 +146,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/De0jWaZE1MG/"
+    }
   }
 ]
