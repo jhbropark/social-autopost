@@ -11,6 +11,8 @@ on:
       - "scripts/save_publish_state.sh"
       - "tests/test_publish_gate.py"
       - "tests/test_save_publish_state.py"
+      - "tests/test_publish_receipts.py"
+      - "out/daily/publish-receipts.json"
 
 permissions:
   contents: read
