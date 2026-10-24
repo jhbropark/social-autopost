@@ -85,6 +85,8 @@ jobs:
       # (부분 실패여도 성공한 채널 링크는 기록 → 재시도 시 성공한 채널은 건너뜀)
       - name: Commit publish state (dedup guard)
         if: always()
+        env:
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
         run: |
           bash scripts/save_publish_state.sh out/daily/plan.json
 
