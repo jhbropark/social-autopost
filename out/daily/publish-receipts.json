@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "description": "Only confirmed outcomes from the two cited scheduled runs; this is not a cumulative posting ledger.",
+  "records": [
+    {
+      "date": "2026-10-23",
+      "topic": "실시간 AI 디퓨전 파사드 셋업 비하인드 — StreamDiffusion + TouchDesigner로 관객 반응에 실시간 생성되는 미디어 파사드",
+      "platform": "instagram",
+      "content_type": "carousel",
+      "provider_id": "18115332665030152",
+      "permalink": "https://www.instagram.com/p/De0jOWPjSmv/",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/39892654501",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-23",
+      "topic": "아나모픽 키네틱 디스플레이 — 레일을 타고 움직이며 보는 위치마다 다른 그림을 보여주는 인터랙티브 LED 구조물 기획",
+      "platform": "instagram",
+      "content_type": "reel",
+      "provider_id": "17964125847218811",
+      "permalink": "https://www.instagram.com/reel/De0jWaZE1MG/",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/39892654501",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-23",
+      "topic": "실시간 AI 디퓨전 파사드 셋업 비하인드 — StreamDiffusion + TouchDesigner로 관객 반응에 실시간 생성되는 미디어 파사드",
+      "platform": "facebook",
+      "content_type": "post",
+      "provider_id": "122123223465366256",
+      "permalink": "https://www.facebook.com/1140846082456388_122123223465366256",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/39892654501",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-23",
+      "topic": "실시간 AI 디퓨전 파사드 셋업 비하인드 — LinkedIn",
+      "platform": "linkedin",
+      "provider_id": null,
+      "permalink": null,
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/39892654501",
+      "outcome": "failed",
+      "http_status": 401,
+      "error_endpoint": "https://api.linkedin.com/v2/userinfo"
+    },
+    {
+      "date": "2026-10-24",
+      "topic": "안티 명화전시 — 반 고흐류 몰입형 전시의 과포화와 다음 방향",
+      "platform": "instagram",
+      "content_type": "carousel",
+      "provider_id": "17908379337329877",
+      "permalink": "https://www.instagram.com/p/De3IBgVjj5s/",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/40056312336",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-24",
+      "topic": "야간 산책 빛 전시 시퀀스 — 빛의 길·속삭이는 숲·빛의 연못",
+      "platform": "instagram",
+      "content_type": "reel",
+      "provider_id": "17906156766605036",
+      "permalink": "https://www.instagram.com/reel/De3IEbFFDch/",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/40056312336",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-24",
+      "topic": "안티 명화전시 — 반 고흐류 몰입형 전시의 과포화와 다음 방향",
+      "platform": "facebook",
+      "content_type": "post",
+      "provider_id": "122123365743366256",
+      "permalink": "https://www.facebook.com/1140846082456388_122123365743366256",
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/40056312336",
+      "outcome": "published"
+    },
+    {
+      "date": "2026-10-24",
+      "topic": "안티 명화전시 — LinkedIn",
+      "platform": "linkedin",
+      "provider_id": null,
+      "permalink": null,
+      "run_url": "https://github.com/jhbropark/social-autopost/actions/runs/40056312336",
+      "outcome": "failed",
+      "http_status": 401,
+      "error_endpoint": "https://api.linkedin.com/v2/userinfo"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+name: Publish State Safety Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/daily.yml"
+      - ".github/workflows/publish-state-tests.yml"
+      - "scripts/publish_gate.py"
+      - "scripts/save_publish_state.sh"
+      - "tests/test_publish_gate.py"
+      - "tests/test_save_publish_state.py"
+      - "tests/test_publish_receipts.py"
+      - "out/daily/publish-receipts.json"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run publish-state fixtures
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
