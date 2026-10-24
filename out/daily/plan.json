@@ -77,7 +77,11 @@
       "05_point.jpg",
       "06_point.jpg",
       "07_outro.jpg"
-    ]
+    ],
+    "_links": {
+      "instagram": "https://www.instagram.com/p/De3IBgVjj5s/",
+      "facebook": "https://www.facebook.com/1140846082456388_122123365743366256"
+    }
   },
   {
     "topic": "야간 산책 빛 전시 시퀀스 — 빛의 길·속삭이는 숲·빛의 연못",
@@ -143,6 +147,9 @@
     },
     "_type": "reel",
     "_dir": "reel0",
-    "_video": "reel.mp4"
+    "_video": "reel.mp4",
+    "_links": {
+      "instagram": "https://www.instagram.com/reel/De3IEbFFDch/"
+    }
   }
 ]
