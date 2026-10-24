@@ -26,7 +26,7 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Generate content + media (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
+      - name: Guard unresolved publish\n        run: python scripts/publish_gate.py guard\n\n      - name: Generate content + media (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
@@ -49,7 +49,7 @@ jobs:
           git commit -m "chore: daily posts $(date -u +%F)" || echo "nothing to commit"
           git push
 
-      - name: Publish (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
+      - name: Mark publish pending\n        run: python scripts/publish_gate.py begin\n\n      - name: Publish (IG 캐러셀1 + 릴스1 / LinkedIn 1 / FB 1)
         env:
           IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/out/daily"
           CACHE_BUST: ${{ github.run_id }}
